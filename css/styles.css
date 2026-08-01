@@ -553,21 +553,39 @@ ul, ol {
 
 .product-card {
   background: #FFFFFF;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid #E2E8F0;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: 0 6px 20px rgba(7, 18, 30, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
   display: flex;
   flex-direction: column;
   max-width: 280px;
   width: 100%;
+  position: relative;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0096D6 0%, #0B4C8C 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.product-card:hover::before {
+  opacity: 1;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 150, 214, 0.12);
-  border-color: rgba(0, 150, 214, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0, 150, 214, 0.16);
+  border-color: rgba(0, 150, 214, 0.4);
 }
 
 .product-card__image-container {
@@ -585,11 +603,11 @@ ul, ol {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-  transition: transform var(--transition-normal);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-card:hover .product-card__image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* HERO CAROUSEL FULL HEADER (CATALOGUE) */

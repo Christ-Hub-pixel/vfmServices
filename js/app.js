@@ -183,7 +183,15 @@ const VFMApp = {
     });
 
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        const linkPath = link.getAttribute('href')?.split('#')[0];
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html') || (currentPath === 'index.html' && linkPath === 'index.html')) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         navList.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       });

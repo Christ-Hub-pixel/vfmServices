@@ -1,0 +1,41 @@
+/* ==========================================================================
+   VFM SERVICES - STYLES SPÉCIFIQUES PAGE À PROPOS
+   ========================================================================== */
+@import url('css/styles.css');
+
+.about-header {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #07121E 100%);
+  color: #FFFFFF;
+  padding: 5rem 0 3rem 0;
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.about-image-card {
+  background: #FFFFFF;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.about-image-card img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  max-height: 480px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}

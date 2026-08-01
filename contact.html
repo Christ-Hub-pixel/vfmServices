@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Contactez VFM Service à Abidjan (Riviera 3 - Cité ARTCI). Géolocalisation avec repère exact, devis express pompes Pedrollo et groupes électrogènes.">
+  <title>Contact & Géolocalisation | VFM Service Abidjan</title>
+
+  <link rel="icon" type="image/png" href="assets/icone.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header" role="banner">
+    <div class="container header__nav">
+      <a href="index.html" class="header__logo">
+        <img src="assets/logo.png" alt="VFM Service Logo">
+      </a>
+
+      <nav role="navigation" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="apropos.html" class="nav__link">À Propos</a></li>
+          <li><a href="catalogue.html" class="nav__link">Catalogue</a></li>
+          <li><a href="contact.html" class="nav__link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#devisForm" class="btn btn--accent">
+          Soumettre une Demande
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: var(--header-height);">
+    <!-- CONTACT HEADER -->
+    <section class="contact-hero-header">
+      <div class="container">
+        <span class="badge badge--red" style="margin-bottom: 1rem;">Service Technique & Devis 24/7</span>
+        <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800;">Contactez Nos Experts</h1>
+        <p style="color: rgba(255, 255, 255, 0.85); max-width: 600px; margin: 0.75rem auto 0 auto;">
+          Obtenez votre devis gratuit ou retrouvez les locaux de VFM Service à Abidjan Riviera 3, Cité ARTCI.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION FORMULAIRE & COORDONNÉES -->
+    <section class="section contact-section" style="background: var(--color-bg); color: var(--color-text-main);">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="badge badge--blue" style="margin-bottom: 1rem;">Information Officielle</span>
+            <h2
+              style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.5rem;">
+              Nos Coordonnées
+            </h2>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📍</div>
+              <div>
+                <div class="contact-item__label" style="color: var(--color-text-muted);">Adresse du Siège</div>
+                <div class="contact-item__value" style="color: var(--color-primary-dark);">Abidjan ; Riviera 3, Cité
+                  ARTCI, Côte d'Ivoire</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📞</div>
+              <div>
+                <div class="contact-item__label" style="color: var(--color-text-muted);">Téléphone Fixe</div>
+                <div class="contact-item__value" style="color: var(--color-primary-dark);"><a
+                    href="tel:+2252522013724">+225 25 22 01 37 24</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">📱</div>
+              <div>
+                <div class="contact-item__label" style="color: var(--color-text-muted);">Cellulaire / WhatsApp Direct
+                </div>
+                <div class="contact-item__value" style="color: var(--color-primary-dark);"><a
+                    href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer">+225 07 15 41 68 31</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item__icon">✉️</div>
+              <div>
+                <div class="contact-item__label" style="color: var(--color-text-muted);">Adresse Email</div>
+                <div class="contact-item__value" style="color: var(--color-primary-dark);"><a
+                    href="mailto:infos@vfmservices.net">infos@vfmservices.net</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulaire de Devis Express (Email & WhatsApp) -->
+          <form id="devisForm" class="contact-form" style="background: #FFFFFF; border: 1px solid var(--color-border);"
+            aria-label="Formulaire de Devis">
+            <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.5rem;">
+              Demander un Devis Gratuit
+            </h3>
+
+            <div class="form-group">
+              <label for="formName" class="form-label" style="color: var(--color-text-main);">Nom Complet *</label>
+              <input type="text" id="formName" class="form-input"
+                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
+                placeholder="Ex: Kouassi Yao" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="formPhone" class="form-label" style="color: var(--color-text-main);">Téléphone *</label>
+                <div class="phone-input-group">
+                  <select id="formCountryCode" class="phone-country-select" title="Indicatif pays">
+                    <option value="+225" selected>🇨🇮 +225</option>
+                    <option value="+226">🇧🇫 +226</option>
+                    <option value="+223">🇲🇱 +223</option>
+                    <option value="+221">🇸🇳 +221</option>
+                    <option value="+233">🇬🇭 +233</option>
+                    <option value="+228">🇹🇬 +228</option>
+                    <option value="+229">🇧🇯 +229</option>
+                  </select>
+                  <input type="tel" id="formPhone" class="form-input phone-with-select"
+                    style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
+                    placeholder="07 15 41 68 31" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="formEmail" class="form-label" style="color: var(--color-text-main);">Votre Email</label>
+                <input type="email" id="formEmail" class="form-input"
+                  style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
+                  placeholder="Ex: contact@client.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formService" class="form-label" style="color: var(--color-text-main);">Besoin Matériel</label>
+              <select id="formService" class="form-select"
+                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);">
+                <option value="Pompe Hydraulique Pedrollo">Pompe Hydraulique Pedrollo</option>
+                <option value="Groupe Électrogène">Groupe Électrogène</option>
+                <option value="Outillage & Pièces détachées">Outillage & Pièces détachées</option>
+                <option value="Installation / Maintenance">Installation / Maintenance</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="formMessage" class="form-label" style="color: var(--color-text-main);">Message /
+                Spécifications</label>
+              <textarea id="formMessage" class="form-textarea"
+                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
+                placeholder="Précisez votre besoin (puissance, débit, urgence...)"></textarea>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn btn--primary" style="width: 100%; font-size: 1.05rem; padding: 0.9rem;">
+                ✉️ Soumettre la demande
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- CARTE DE GÉOLOCALISATION AVEC MARQUEUR DE POSITION EXACTE -->
+        <div style="margin-top: 4rem;">
+          <div style="text-align: center; margin-bottom: 1.5rem;">
+            <span class="badge badge--red">📍 Emplacement Du Siège</span>
+            <h3
+              style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--color-primary-dark); margin-top: 0.5rem;">
+              Position Exacte de VFM Service sur la Carte
+            </h3>
+            <p style="color: var(--color-text-muted);">Abidjan ; Riviera 3, Cité ARTCI - Côte d'Ivoire</p>
+          </div>
+
+          <div class="map-container" style="position: relative;">
+            <iframe class="map-iframe"
+              src="https://maps.google.com/maps?q=VFM%20Service%2C%20Riviera%203%20Cite%20ARTCI%2C%20Abidjan&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+              title="Position marqueur exact de VFM Service à Abidjan Riviera 3 Cité ARTCI" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER CORPORATE ULTRA-PROFESSIONNEL -->
+  <footer class="footer">
+    <div class="footer__main">
+      <div class="container footer__grid">
+        <!-- Col 1: Branding & Mission -->
+        <div>
+          <div class="footer__logo-card">
+            <img src="assets/logo.png" alt="VFM Service Logo">
+          </div>
+          <p class="footer__brand-text">
+            Depuis plus de 20 ans, VFM Service est votre partenaire de référence en Côte d'Ivoire pour la fourniture,
+            l'installation et la maintenance de pompes Pedrollo et groupes électrogènes.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <span class="badge badge--red">Partenaire Pedrollo</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Rapide -->
+        <div>
+          <h4 class="footer__title">Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Accueil</a></li>
+            <li><a href="apropos.html" class="footer__link">À Propos & Vision</a></li>
+            <li><a href="catalogue.html" class="footer__link">Catalogue Produits</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Expertises & Départements -->
+        <div>
+          <h4 class="footer__title">Nos Expertises</h4>
+          <ul class="footer__links">
+            <li><a href="catalogue.html" class="footer__link">Pompes Pedrollo</a></li>
+            <li><a href="catalogue.html" class="footer__link">Groupes Électrogènes</a></li>
+            <li><a href="catalogue.html" class="footer__link">Outillage & Pièces</a></li>
+            <li><a href="contact.html" class="footer__link">Installation & SAV 24/7</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Siège & Contact -->
+        <div>
+          <h4 class="footer__title">Siège & Contact</h4>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📍</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Adresse du Siège</small>
+              <span class="footer__contact-value">Abidjan ; Riviera 3, Cité ARTCI</span>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📞</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Téléphone Fixe</small>
+              <a href="tel:+2252522013724" class="footer__contact-value">+225 25 22 01 37 24</a>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📱</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">WhatsApp Direct</small>
+              <a href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer"
+                class="footer__contact-value" style="color: var(--color-primary);">+225 07 15 41 68 31</a>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">✉️</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Email Officiel</small>
+              <a href="mailto:infos@vfmservices.net" class="footer__contact-value">infos@vfmservices.net</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; 2026 <strong>VFM Service</strong>. Tous droits réservés. Directrice Générale : Mme Virginie Konan.</p>
+      <p style="color: rgba(255, 255, 255, 0.6);">Spécialiste en Pompes Hydrauliques & Groupes Électrogènes à Abidjan
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

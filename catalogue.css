@@ -1,0 +1,38 @@
+/* ==========================================================================
+   VFM SERVICES - STYLES SPÉCIFIQUES PAGE CATALOGUE
+   ========================================================================== */
+@import url('css/styles.css');
+
+.catalogue-header {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 150, 214, 0.15) 0%, transparent 70%),
+              var(--color-primary-dark);
+  color: #FFFFFF;
+  padding: 6rem 0 3.5rem 0;
+  text-align: center;
+}
+
+.search-bar-wrapper {
+  max-width: 600px;
+  margin: 2rem auto 0 auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 3rem;
+  background: #FFFFFF;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  color: var(--color-text-main);
+  box-shadow: var(--shadow-md);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}

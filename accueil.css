@@ -1,0 +1,12 @@
+/* ==========================================================================
+   VFM SERVICES - STYLES SPÉCIFIQUES PAGE ACCUEIL
+   ========================================================================== */
+@import url('css/styles.css');
+
+/* Personnalisations spécifiques à la page d'accueil */
+.accueil-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+}

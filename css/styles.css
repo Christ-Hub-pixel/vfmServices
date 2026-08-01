@@ -2093,10 +2093,11 @@ body.cart-drawer-open .floating-cart-btn {
     margin-left: auto;
     margin-right: auto;
   }
-  .hero__cta {
+  .hero__badges {
     justify-content: center;
   }
-  .hero__badges {
+}
+
 /* ==========================================================================
    DESIGN RESPONSIVE OPTIMISÉ (MOBILES, TABLETTES & ÉCRANS LARGES)
    ========================================================================== */

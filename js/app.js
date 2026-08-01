@@ -33,6 +33,7 @@ const VFMApp = {
     this.initCarousels();
     this.initDevisForm();
     this.initSmoothScroll();
+    this.initBackToTop();
   },
 
   initCarousels() {
@@ -295,7 +296,7 @@ const VFMApp = {
       } else if (category !== 'all') {
         badge.textContent = `${visibleCount} matériel${visibleCount > 1 ? 's' : ''} dans cette catégorie`;
       } else {
-        badge.textContent = `30 équipements disponibles`;
+        badge.textContent = `61 équipements disponibles`;
       }
     }
   },
@@ -385,6 +386,30 @@ const VFMApp = {
           });
         }
       });
+    });
+  },
+
+  initBackToTop() {
+    if (document.getElementById('backToTopBtn')) return;
+
+    const btnHTML = `
+      <button id="backToTopBtn" class="back-to-top-btn" aria-label="Retour en haut de page" title="Retour en haut de page">
+        ↑
+      </button>
+    `;
+    document.body.insertAdjacentHTML('beforeend', btnHTML);
+
+    const btn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 };

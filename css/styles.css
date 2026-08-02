@@ -2857,4 +2857,14 @@ body.cart-drawer-open .floating-cart-btn {
     height: 48px;
     font-size: 1.5rem;
   }
+  .product-card__image-container {
+    height: 170px !important;
+  }
+  .product-card {
+    border-radius: 14px;
+  }
+  .executive-img {
+    height: 250px;
+    object-fit: cover;
+  }
 }

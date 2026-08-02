@@ -36,6 +36,7 @@ const VFMApp = {
     this.initBackToTop();
     this.initWhatsAppWidget();
     this.initAnimatedCounters();
+    this.initScrollReveal();
   },
 
   initCarousels() {
@@ -468,6 +469,22 @@ const VFMApp = {
     }, { threshold: 0.3 });
 
     counterElements.forEach(el => observer.observe(el));
+  },
+
+  initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealElements.length) return;
+
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
   },
 };
 

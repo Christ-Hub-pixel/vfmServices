@@ -750,10 +750,12 @@ const VFMCart = {
 
   updateUI() {
     const count = this.getTotalCount();
+    const navCount = document.getElementById('navCartCount');
     const badge = document.getElementById('cartBadge');
     const floatBadge = document.getElementById('floatCartBadge');
     const headerCount = document.getElementById('cartHeaderCount');
 
+    if (navCount) navCount.textContent = count;
     if (badge) badge.textContent = count;
     if (floatBadge) floatBadge.textContent = count;
     if (headerCount) headerCount.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;

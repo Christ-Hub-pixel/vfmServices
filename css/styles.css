@@ -2938,3 +2938,48 @@ body.cart-drawer-open .floating-cart-btn {
     height: 42px;
   }
 }
+
+/* ADAPTATION RESPONSIVE DYNAMIQUE DES BOUTONS PAR APPAREIL */
+@media (min-width: 2560px) {
+  .btn, .font-button, button:not(.nav-toggle) {
+    padding: 1rem 2.25rem;
+    font-size: 1.1rem;
+  }
+  .btn-cart-trigger {
+    padding: 0.65rem 1.35rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 2559px) {
+  .btn, .font-button, button:not(.nav-toggle) {
+    padding: 0.85rem 2rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .btn, .font-button, button:not(.nav-toggle) {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+  }
+  .btn-cart-trigger {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn, .font-button, button:not(.nav-toggle) {
+    padding: 0.6rem 1.15rem;
+    font-size: 0.84rem;
+    min-height: 44px;
+  }
+  .btn-cart-trigger {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  .btn-cart-text {
+    display: none;
+  }
+}

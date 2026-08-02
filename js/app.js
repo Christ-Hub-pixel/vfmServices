@@ -171,34 +171,25 @@ const VFMApp = {
   },
 
   initNavigation() {
-    document.querySelectorAll('.nav-toggle').forEach(navToggle => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav__list');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    if (navToggle && navList) {
       navToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const header = navToggle.closest('header, nav');
-        if (!header) return;
-        
-        let navMenu = header.querySelector('nav');
-        if (navMenu) {
-          const isHidden = navMenu.classList.contains('hidden');
-          if (isHidden) {
-            navMenu.classList.remove('hidden');
-            navMenu.classList.add('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'dark:bg-inverse-surface', 'p-6', 'shadow-xl', 'border-b', 'border-outline-variant', 'z-50');
-            navToggle.setAttribute('aria-expanded', 'true');
-          } else {
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'dark:bg-inverse-surface', 'p-6', 'shadow-xl', 'border-b', 'border-outline-variant', 'z-50');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        }
+        const isOpen = navList.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
       });
-    });
+    }
 
-    document.querySelectorAll('nav a').forEach(link => {
+    navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        const navMenu = link.closest('nav');
-        if (navMenu && navMenu.classList.contains('absolute')) {
-          navMenu.classList.add('hidden');
-          navMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-white', 'dark:bg-inverse-surface', 'p-6', 'shadow-xl', 'border-b', 'border-outline-variant', 'z-50');
+        if (navList) {
+          navList.classList.remove('open');
+        }
+        if (navToggle) {
+          navToggle.setAttribute('aria-expanded', 'false');
         }
       });
     });

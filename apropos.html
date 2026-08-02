@@ -1,411 +1,476 @@
 <!DOCTYPE html>
-<html class="light scroll-smooth" lang="fr">
+<html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>À Propos - VFM Services Abidjan</title>
-<link rel="icon" type="image/png" href="assets/icone.png">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/styles.css">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary-container": "#022b6b",
-                        "on-secondary-fixed-variant": "#930013",
-                        "on-tertiary": "#ffffff",
-                        "on-tertiary-fixed": "#370e00",
-                        "secondary-fixed-dim": "#ffb3ad",
-                        "primary-fixed": "#d9e2ff",
-                        "inverse-primary": "#b0c6ff",
-                        "surface-container": "#eeedf3",
-                        "surface-tint": "#3f5c9e",
-                        "error": "#ba1a1a",
-                        "on-surface-variant": "#444650",
-                        "error-container": "#ffdad6",
-                        "on-background": "#1a1b20",
-                        "on-error": "#ffffff",
-                        "on-primary-container": "#7995da",
-                        "surface-container-lowest": "#ffffff",
-                        "outline": "#747781",
-                        "secondary-fixed": "#ffdad7",
-                        "inverse-surface": "#2f3035",
-                        "tertiary": "#350d00",
-                        "primary-fixed-dim": "#b0c6ff",
-                        "tertiary-fixed": "#ffdbce",
-                        "on-secondary-container": "#fffbff",
-                        "background": "#faf8ff",
-                        "surface-container-high": "#e8e7ee",
-                        "on-surface": "#1a1b20",
-                        "inverse-on-surface": "#f1f0f6",
-                        "surface": "#faf8ff",
-                        "outline-variant": "#c4c6d2",
-                        "surface-container-low": "#f4f3f9",
-                        "secondary": "#c01823",
-                        "brand-red": "#c01823",
-                        "tertiary-fixed-dim": "#ffb599",
-                        "on-tertiary-fixed-variant": "#773213",
-                        "on-primary-fixed": "#001946",
-                        "tertiary-container": "#571b00",
-                        "on-error-container": "#93000a",
-                        "surface-variant": "#e3e2e8",
-                        "primary": "#001742",
-                        "on-tertiary-container": "#d97f5a",
-                        "surface-container-highest": "#e3e2e8",
-                        "on-primary": "#ffffff",
-                        "on-secondary-fixed": "#410004",
-                        "surface-dim": "#dad9df",
-                        "surface-bright": "#faf8ff",
-                        "secondary-container": "#dc3034",
-                        "on-secondary": "#ffffff",
-                        "on-primary-fixed-variant": "#254484"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-max": "1440px",
-                        "gutter": "24px",
-                        "margin": "48px",
-                        "unit": "4px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Hanken Grotesk"],
-                        "mono-data": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "label-caps": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "headline-xl": ["Hanken Grotesk"],
-                        "headline-lg": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
-                        "mono-data": ["14px", { "lineHeight": "1.4", "fontWeight": "500" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }],
-                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }]
-                    }
-                }
-            }
-        }
-    </script>
-<style>
-        .tech-grid {
-            background-image: 
-                linear-gradient(to right, #F0F0F0 1px, transparent 1px),
-                linear-gradient(to bottom, #F0F0F0 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-        .tech-border { border: 1px solid #E0E0E0; }
-        .tech-border-l { border-left: 1px solid #E0E0E0; }
-        .tech-border-r { border-right: 1px solid #E0E0E0; }
-        .tech-border-t { border-top: 1px solid #E0E0E0; }
-        .tech-border-b { border-bottom: 1px solid #E0E0E0; }
-        .tech-corner { position: relative; }
-        .tech-corner::before, .tech-corner::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border: 1px solid #001742;
-        }
-        .tech-corner-tl::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-        .tech-corner-br::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-        .marker-plus::before {
-            content: '+';
-            position: absolute;
-            font-family: 'Hanken Grotesk', sans-serif;
-            font-size: 10px;
-            color: #747781;
-            line-height: 1;
-        }
-        .marker-tl::before { top: -4px; left: -3px; }
-        .marker-br::before { bottom: -4px; right: -3px; }
-        .text-uppercase { text-transform: uppercase; }
-        .letter-spacing-wide { letter-spacing: 0.1em; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez VFM Service : Histoire, Mission, Vision en Afrique de l'Ouest, Valeurs et 7 Départements d'Activités. Riviera 3 Cité ARTCI Abidjan.">
+  <title>Qui Sommes-Nous | VFM Service - Mission, Vision & Départements</title>
+
+  <link rel="icon" type="image/png" href="assets/icone.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="apropos.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VFM Service",
+    "image": "assets/logo.png",
+    "telephone": ["+2252522013724", "+2250715416831"],
+    "email": "infos@vfmservices.net",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Riviera 3 – Cité ARTCI",
+      "addressLocality": "Abidjan",
+      "addressCountry": "CI"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Virginie Konan",
+      "jobTitle": "Directrice Générale"
+    }
+  }
+  </script>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<body>
 
-<!-- TopNavBar -->
-<header class="bg-surface sticky full-width top-0 z-50 border-b border-outline-variant flat h-20 flex justify-between items-center px-margin md:px-margin-desktop w-full max-w-container-max mx-auto shadow-sm">
-<div class="flex items-center gap-8 h-full">
-<a class="flex items-center h-full" href="index.html">
-    <img alt="VFM Services Logo" class="h-14 md:h-16 object-contain" src="assets/logo.png"/>
-</a>
-<nav class="hidden md:flex h-full items-center gap-6 tech-border-l pl-8 ml-4">
-<a class="nav__link text-on-surface-variant font-medium hover:text-primary transition-colors" href="index.html">Accueil</a>
-<a class="nav__link text-primary font-bold border-b-2 border-primary pb-1" href="apropos.html">À Propos</a>
-<a class="nav__link text-on-surface-variant font-medium hover:text-primary transition-colors" href="catalogue.html">Catalogue</a>
-<a class="nav__link text-on-surface-variant font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
-</nav>
-</div>
-<div class="flex items-center gap-4 h-full tech-border-l pl-6">
-<button id="navCartBtn" class="hidden lg:flex items-center gap-2 bg-surface-container text-primary border border-primary/20 px-5 py-2 font-label-caps rounded-full hover:bg-primary-fixed transition-all cursor-pointer">
-<span class="material-symbols-outlined text-sm">shopping_cart</span> Panier <span id="navCartCount" class="bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
-</button>
-<a href="contact.html#devisForm" class="bg-brand-red text-white px-6 py-2.5 font-label-caps text-label-caps text-uppercase letter-spacing-wide hover:bg-secondary transition-all shadow">
-    Demander un Devis
-</a>
-<button class="nav-toggle md:hidden text-on-surface">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</header>
+  <!-- HEADER NAVIGATION -->
+  <header class="header" role="banner">
+    <div class="container header__nav">
+      <a href="index.html" class="header__logo">
+        <img src="assets/logo.png" alt="VFM Service Logo">
+      </a>
 
-<main class="flex-grow w-full max-w-container-max mx-auto tech-border-l tech-border-r bg-surface relative tech-grid min-h-screen pb-24">
-<!-- Hero Section -->
-<section class="relative w-full h-[60vh] min-h-[500px] flex flex-col justify-end p-6 md:p-12 tech-border-b bg-surface-variant">
-<div class="absolute inset-0 z-0">
-<img alt="Atelier et Matériel VFM Services" class="w-full h-full object-cover opacity-40 filter contrast-125 grayscale" src="assets/caroussel1.png"/>
-<!-- Technical overlay grid lines -->
-<div class="absolute inset-0 pointer-events-none">
-<div class="w-full h-[1px] bg-primary/20 absolute top-1/4"></div>
-<div class="w-full h-[1px] bg-primary/20 absolute top-1/2"></div>
-<div class="w-[1px] h-full bg-primary/20 absolute left-1/3"></div>
-<div class="w-[1px] h-full bg-primary/20 absolute left-2/3"></div>
-</div>
-</div>
-<div class="relative z-10 w-full max-w-4xl bg-surface p-8 tech-border tech-corner tech-corner-tl tech-corner-br marker-plus marker-tl marker-br shadow-md">
-<div class="mb-4 inline-block border border-primary px-3 py-1 font-label-caps text-label-caps text-primary text-uppercase letter-spacing-wide font-bold">
-    Profil de l'Entreprise Depuis 2004
-</div>
-<h1 class="font-headline-xl text-headline-xl text-primary mb-6">
-    L'Ingénierie de Précision<br/>au Cœur de l'Industrie
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-secondary pl-4 py-1 leading-relaxed">
-    Avec plus de 20 ans d'expertise technique, VFM Services s'impose comme la référence incontournable en Côte d'Ivoire pour l'installation, la maintenance et la fourniture de pompes Pedrollo et groupes électrogènes.
-</p>
-</div>
-</section>
+      <nav role="navigation" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="apropos.html" class="nav__link active">À Propos</a></li>
+          <li><a href="catalogue.html" class="nav__link">Catalogue</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+      </nav>
 
-<!-- Statistics Section -->
-<section class="w-full grid grid-cols-1 md:grid-cols-3 tech-border-b">
-<div class="p-8 tech-border-b md:tech-border-b-0 md:tech-border-r flex flex-col justify-center items-start bg-surface hover:bg-surface-container-low transition-colors group">
-<div class="font-label-caps text-label-caps text-outline mb-2 flex items-center gap-2 text-uppercase font-bold">
-<span class="material-symbols-outlined text-[16px]">history</span>
-    Expérience Cumulée
-</div>
-<div class="font-headline-xl text-headline-xl text-primary flex items-baseline gap-1 group-hover:text-secondary transition-colors font-bold">
-    20+ <span class="font-headline-md text-headline-md">Ans</span>
-</div>
-</div>
-<div class="p-8 tech-border-b md:tech-border-b-0 md:tech-border-r flex flex-col justify-center items-start bg-surface hover:bg-surface-container-low transition-colors group">
-<div class="font-label-caps text-label-caps text-outline mb-2 flex items-center gap-2 text-uppercase font-bold">
-<span class="material-symbols-outlined text-[16px]">engineering</span>
-    Projets Exécutés
-</div>
-<div class="font-headline-xl text-headline-xl text-primary flex items-baseline gap-1 group-hover:text-secondary transition-colors font-bold">
-    500+
-</div>
-</div>
-<div class="p-8 flex flex-col justify-center items-start bg-surface hover:bg-surface-container-low transition-colors group">
-<div class="font-label-caps text-label-caps text-outline mb-2 flex items-center gap-2 text-uppercase font-bold">
-<span class="material-symbols-outlined text-[16px]">factory</span>
-    Sites Industriels Équipés
-</div>
-<div class="font-headline-xl text-headline-xl text-primary flex items-baseline gap-1 group-hover:text-secondary transition-colors font-bold">
-    100+
-</div>
-</div>
-</section>
+      <div class="header__actions">
+        <button id="navCartBtn" class="btn-cart-trigger" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
+          <span class="cart-trigger-icon">🛒</span>
+          <span class="cart-trigger-label">Panier</span>
+          <span id="navCartCount" class="cart-trigger-count">0</span>
+        </button>
+        <a href="contact.html#devisForm" class="btn btn--accent">
+          Soumettre une Demande
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-<!-- Our Story & Management Section -->
-<section class="w-full grid grid-cols-1 lg:grid-cols-12 tech-border-b">
-<!-- Story Content: Avant-Propos Officiel -->
-<div class="lg:col-span-7 p-6 md:p-12 tech-border-b lg:tech-border-b-0 lg:tech-border-r bg-surface flex flex-col justify-center">
-<div class="font-label-caps text-label-caps text-secondary mb-4 flex items-center gap-2 text-uppercase letter-spacing-wide font-bold">
-<div class="w-4 h-1 bg-secondary"></div>
-    Avant-Propos & Présentation Officielle
-</div>
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6">
-    Plus de 20 Ans au Service de l'Énergie, de l'Hydraulique et de l'Outillage
-</h2>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-body-md">
-<p>
-    Depuis plus de vingt (20) ans, VFM Service met son expertise au service des particuliers, des entreprises, des industries et des collectivités en proposant des solutions fiables et performantes dans le domaine de l'énergie, du pompage hydraulique et de l'outillage professionnel.
-</p>
-<p>
-    Basée à Abidjan, Riviera 3 – Cité ARTCI, VFM Service est une société spécialisée dans l'importation, la fourniture, l'installation et la maintenance de groupes électrogènes, de pompes hydrauliques ainsi que d'une large gamme d'outillages adaptés aux besoins des professionnels et des particuliers.
-</p>
-<p>
-    Notre engagement repose sur une exigence permanente de qualité, de fiabilité et de satisfaction client. Grâce à des partenariats avec des fabricants de renommée internationale et à une parfaite maîtrise des contraintes techniques du terrain, nous proposons des équipements performants accompagnés d'un service après-vente réactif et d'une maintenance de qualité.
-</p>
-<div class="p-4 bg-surface-container-low border-l-4 border-primary rounded-r-lg my-4">
-<p class="font-bold text-primary mb-1">👑 Une Équipe Dirigeante Féminine Dynamique</p>
-<p class="text-sm">
-    La force de VFM Service réside également dans son capital humain. À sa tête se trouve une équipe dirigeante féminine dynamique, qui allie avec succès délicatesse, rigueur, efficacité technique et excellence administrative. Cette vision du management, fondée sur la proximité, l'écoute et le professionnalisme, constitue un véritable atout dans la réussite des projets qui nous sont confiés.
-</p>
-</div>
-<p>
-    Au fil des années, VFM Service a su bâtir une relation de confiance durable avec une clientèle prestigieuse, en offrant des solutions innovantes, adaptées aux exigences de chaque secteur d'activité.
-</p>
-<p class="font-semibold text-primary">
-    Choisir VFM Service, c'est faire confiance à un partenaire expérimenté, engagé à fournir des équipements de qualité, une installation conforme aux meilleures pratiques et un accompagnement technique durable pour garantir la performance et la pérennité de vos installations.
-</p>
-</div>
-</div>
+  <main style="padding-top: var(--header-height);">
+    <!-- EN-TÊTE DE PAGE EXECUTIVE -->
+    <section class="about-header">
+      <div class="container" style="position: relative; z-index: 2;">
+        <span class="badge badge--red" style="margin-bottom: 1.25rem;">🏆 20+ Ans d'Excellence & Partenariats Internationaux</span>
+        <h1 style="font-family: var(--font-heading); font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 800; line-height: 1.2;">
+          À Propos de VFM Service
+        </h1>
+        <p style="color: rgba(255, 255, 255, 0.9); max-width: 820px; margin: 1.25rem auto 0 auto; font-size: 1.15rem; line-height: 1.65;">
+          Acteur de référence en Côte d'Ivoire pour la fourniture, l'installation et la maintenance d'équipements hydrauliques, de production d'énergie et d'outillages industriels.
+        </p>
 
-<!-- Management Message: Mot Officiel de la Directrice Générale -->
-<div class="lg:col-span-5 bg-surface-container-low p-6 md:p-10 relative flex flex-col">
-<div class="absolute top-0 right-0 p-4 font-mono-data text-mono-data text-outline/60 font-bold">
-    DIR-EXEC-01
-</div>
-<div class="mb-4 relative w-44 h-44 mx-auto tech-border bg-surface p-2 shadow-sm marker-plus marker-tl marker-br tech-corner tech-corner-tl tech-corner-br">
-<img alt="Madame Virginie Konan, Directrice Générale VFM Services" class="w-full h-full object-cover filter contrast-110 hover:contrast-125 transition-all duration-500" src="assets/directrice.jpeg"/>
-</div>
-<div class="text-center mb-6">
-<h3 class="font-headline-md text-headline-md text-primary font-bold">Madame Virginie Konan</h3>
-<p class="font-label-caps text-label-caps text-secondary mt-1 text-uppercase letter-spacing-wide font-bold">Directrice Générale</p>
-</div>
-<div class="bg-surface tech-border p-6 flex-grow relative shadow-sm rounded-lg overflow-y-auto max-h-[520px]">
-<div class="border-b border-outline-variant pb-3 mb-4">
-<h4 class="font-bold text-primary uppercase text-sm tracking-wider">Mot de la Directrice Générale</h4>
-<p class="text-xs text-secondary font-semibold">Chers partenaires, chers clients,</p>
-</div>
-<div class="space-y-3 text-sm text-on-surface-variant leading-relaxed italic">
-<p>
-    C'est avec un immense plaisir que je vous présente VFM Service, une entreprise ivoirienne qui, depuis plus de vingt ans, accompagne les professionnels et les particuliers dans leurs projets d'alimentation en eau, de production d'énergie et d'équipements techniques.
-</p>
-<p>
-    Au fil des années, notre entreprise s'est imposée comme un partenaire de référence grâce à son professionnalisme, à la qualité de ses prestations et à la confiance renouvelée de ses clients. Aujourd'hui, nous sommes fiers d'avoir participé à l'équipement de plus d'une centaine de stations-services, dépôts consommateurs, usines, bâtiments administratifs, commerciaux et industriels sur toute l'étendue du territoire national.
-</p>
-<p>
-    Notre ambition est claire : fournir durablement à notre clientèle des équipements performants, des solutions innovantes et un service irréprochable, tout en proposant les meilleurs produits aux meilleurs prix.
-</p>
-<p>
-    Cette réussite est avant tout le fruit d'une équipe compétente, engagée et passionnée qui place la satisfaction du client au cœur de chacune de ses actions. Notre politique repose sur l'écoute, la proximité, la réactivité et l'amélioration continue afin de répondre efficacement aux exigences d'un marché en constante évolution.
-</p>
-<p>
-    En tant que représentante de plusieurs marques internationales de renom, VFM Service s'engage à offrir des solutions fiables, conformes aux normes les plus exigeantes et adaptées aux réalités du marché ivoirien.
-</p>
-<p>
-    Je tiens à remercier l'ensemble de nos clients, partenaires et collaborateurs pour leur confiance. Ensemble, nous continuerons à construire des solutions durables au service du développement de notre pays.
-</p>
-</div>
-<div class="mt-6 border-t border-outline-variant pt-4 flex justify-end">
-<div class="text-right">
-    <p class="font-bold text-primary">Virginie Konan</p>
-    <p class="text-xs text-outline font-semibold">Directrice Générale</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+        <!-- CARTES DE STATISTIQUES CLÉS -->
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <span class="about-stat-num">20+ Ans</span>
+            <span class="about-stat-label">D'Expérience & Référence</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="about-stat-num">100+</span>
+            <span class="about-stat-label">Sites & Stations Équipés</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="about-stat-num">61+</span>
+            <span class="about-stat-label">Matériels au Catalogue</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="about-stat-num">100%</span>
+            <span class="about-stat-label">Pedrollo Certifié d'Origine</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Core Values Section -->
-<section class="w-full p-6 md:p-12 tech-border-b bg-surface">
-<div class="text-center mb-12">
-<div class="font-label-caps text-label-caps text-outline mb-2 inline-block px-3 py-1 border border-outline-variant text-uppercase letter-spacing-wide font-bold">
-    Paramètres Opérationnels
-</div>
-<h2 class="font-headline-lg text-headline-lg text-primary font-bold">Nos Valeurs Fondamentales</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Value 1 -->
-<div class="tech-border bg-surface p-8 hover:border-primary transition-colors group relative overflow-hidden shadow-sm">
-<div class="absolute top-0 left-0 w-1 h-full bg-surface-variant group-hover:bg-primary transition-colors"></div>
-<div class="w-12 h-12 bg-surface-container flex items-center justify-center mb-6 tech-border">
-<span class="material-symbols-outlined text-primary group-hover:text-secondary transition-colors">precision_manufacturing</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 font-bold">Précision Technique</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-    Chaque diagnostic et intervention est mené selon des protocoles stricts, garantissant des tolérances minimales et des performances optimales de vos installations.
-</p>
-</div>
-<!-- Value 2 -->
-<div class="tech-border bg-surface p-8 hover:border-primary transition-colors group relative overflow-hidden shadow-sm">
-<div class="absolute top-0 left-0 w-1 h-full bg-surface-variant group-hover:bg-primary transition-colors"></div>
-<div class="w-12 h-12 bg-surface-container flex items-center justify-center mb-6 tech-border">
-<span class="material-symbols-outlined text-primary group-hover:text-secondary transition-colors">verified_user</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 font-bold">Fiabilité Absolue</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-    Nous concevons des solutions résilientes pour minimiser les temps d'arrêt. Notre engagement de disponibilité est l'épine dorsale de notre relation client.
-</p>
-</div>
-<!-- Value 3 -->
-<div class="tech-border bg-surface p-8 hover:border-primary transition-colors group relative overflow-hidden shadow-sm">
-<div class="absolute top-0 left-0 w-1 h-full bg-surface-variant group-hover:bg-primary transition-colors"></div>
-<div class="w-12 h-12 bg-surface-container flex items-center justify-center mb-6 tech-border">
-<span class="material-symbols-outlined text-primary group-hover:text-secondary transition-colors">school</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-primary mb-3 font-bold">Expertise & SAV 24/7</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-    Nos ingénieurs et techniciens d'astreinte interviennent en moins de 2 heures sur site pour le dépannage et le paramétrage de vos pompes et groupes électrogènes.
-</p>
-</div>
-</div>
-</section>
+    <!-- MOT DE LA DIRECTRICE GÉNÉRALE -->
+    <section class="section" style="background: #FFFFFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Message de la Direction</span>
+          <h2 class="section-header__title">Mot de la Directrice Générale</h2>
+        </div>
 
-<!-- CTA Banner -->
-<section class="w-full tech-border-b bg-primary relative overflow-hidden flex flex-col md:flex-row min-h-[380px]">
-<div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative z-10 text-on-primary">
-<div class="font-label-caps text-label-caps text-on-primary/70 mb-4 flex items-center gap-2 text-uppercase letter-spacing-wide font-bold">
-<span class="material-symbols-outlined text-[16px]">build</span>
-    Services Techniques Abidjan
-</div>
-<h2 class="font-headline-lg text-headline-lg mb-6 font-bold">
-    Optimisez la Durée de Vie de vos Équipements
-</h2>
-<p class="font-body-md text-body-md text-on-primary/80 mb-8 max-w-md leading-relaxed">
-    Découvrez nos contrats de maintenance préventive et curative. Une approche systématique pour sécuriser vos investissements industriels.
-</p>
-<div>
-<a href="contact.html#devisForm" class="bg-surface text-primary px-8 py-3.5 font-label-caps text-label-caps text-uppercase letter-spacing-wide hover:bg-surface-variant transition-colors flex items-center gap-2 group border border-transparent hover:border-outline inline-flex font-bold shadow">
-    Demander un Devis Technique
-    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</div>
+        <div class="executive-card">
+          <div class="executive-grid">
+            
+            <div style="text-align: center;">
+              <div class="executive-img-wrapper" style="margin-bottom: 1.25rem;">
+                <img src="assets/directrice.jpeg" alt="Madame Virginie Konan, Directrice Générale VFM Service" class="executive-img">
+              </div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.25rem;">
+                Madame Virginie Konan
+              </h3>
+              <span class="badge badge--blue">Directrice Générale</span>
+            </div>
 
-<div class="w-full md:w-1/2 relative min-h-[300px] tech-border-t md:tech-border-t-0 md:tech-border-l border-primary-fixed/20 bg-surface">
-<img alt="Pompe hydraulique Pedrollo - VFM Services" class="absolute inset-0 w-full h-full object-cover object-center filter contrast-125 grayscale mix-blend-luminosity opacity-90" src="assets/catalogue/Pompes hydrauliques/Pompe de surface.png"/>
-<div class="absolute inset-0 z-20 pointer-events-none p-4 flex flex-col justify-between">
-<div class="flex justify-between w-full">
-<div class="w-4 h-4 border-t-2 border-l-2 border-secondary"></div>
-<div class="w-4 h-4 border-t-2 border-r-2 border-secondary"></div>
-</div>
-<div class="bg-surface/90 backdrop-blur-sm tech-border p-3 inline-flex items-center gap-2 self-start mb-12 ml-4">
-<div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-<span class="font-mono-data text-mono-data text-primary font-bold">SYS-HYD-VFM : ABIDJAN ARTCI</span>
-</div>
-<div class="flex justify-between w-full">
-<div class="w-4 h-4 border-b-2 border-l-2 border-secondary"></div>
-<div class="w-4 h-4 border-b-2 border-r-2 border-secondary"></div>
-</div>
-</div>
-</div>
-</section>
-</main>
+            <div>
+              <p style="font-size: 1.2rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.25rem; line-height: 1.4;">
+                « Accompagner la croissance industrielle et assurer l'accès durable à l'eau et à l'énergie en Côte d'Ivoire. »
+              </p>
+              <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.15rem; font-size: 1.02rem;">
+                Chers partenaires, chers clients,<br><br>
+                C'est avec un immense plaisir que je vous présente <strong>VFM Service</strong>, une entreprise ivoirienne qui, depuis plus de vingt ans, accompagne les professionnels, industriels et particuliers dans leurs projets d'alimentation en eau, de production d'énergie et d'équipements techniques.
+              </p>
+              <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.15rem; font-size: 1.02rem;">
+                Aujourd'hui, nous sommes fiers d'avoir participé à l'équipement de <strong>plus d'une centaine de stations-services, dépôts consommateurs, usines, bâtiments administratifs, commerciaux et industriels</strong> sur toute l'étendue du territoire national.
+              </p>
+              <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.5rem; font-size: 1.02rem;">
+                En tant que représentante officielle et agréée de marques internationales majeures telles que <strong>Pedrollo Italia</strong>, VFM Service garantit des équipements 100% conformes aux normes internationales aux prix les plus compétitifs du marché.
+              </p>
+              <div style="border-top: 1px solid var(--color-border); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <strong style="display: block; color: var(--color-primary-dark); font-size: 1.05rem;">Virginie Konan</strong>
+                  <small style="color: var(--color-text-muted);">Directrice Générale — VFM Service</small>
+                </div>
+                <a href="contact.html#devisForm" class="btn btn--accent">Prendre Contact ➔</a>
+              </div>
+            </div>
 
-<!-- Footer -->
-<footer class="bg-inverse-surface text-on-primary-fixed full-width border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-margin md:px-margin-desktop py-8 w-full max-w-container-max mx-auto tech-border-l tech-border-r">
-<div class="flex items-center gap-4 mb-4 md:mb-0">
-  <img alt="Logo VFM Services" class="h-10 bg-white p-1.5 rounded object-contain" src="assets/logo.png">
-  <span class="font-headline-md text-headline-md font-bold text-white">VFM Services</span>
-</div>
-<div class="font-body-md text-body-md text-surface-dim text-center md:text-left mb-4 md:mb-0 text-sm opacity-80">
-    © 2026 VFM Services. Tous Droits Réservés. Directrice Générale : Mme Virginie Konan.
-</div>
-<nav class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 text-sm">
-<a class="text-surface-dim hover:text-white transition-colors" href="index.html">Accueil</a>
-<a class="text-surface-dim hover:text-white transition-colors" href="apropos.html">À Propos</a>
-<a class="text-surface-dim hover:text-white transition-colors" href="catalogue.html">Catalogue</a>
-<a class="text-surface-dim hover:text-white transition-colors" href="contact.html">Contact</a>
-</nav>
-</footer>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script src="js/app.js"></script>
+    <!-- SECTION QUI SOMMES-NOUS & HISTORIQUE -->
+    <section class="section" style="background: var(--color-bg);">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem;">
+          
+          <!-- QUI SOMMES-NOUS -->
+          <div style="background: #FFFFFF; padding: 2.75rem 2.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <span class="badge badge--blue" style="margin-bottom: 1.25rem;">Qui Sommes-Nous ?</span>
+            <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.15rem;">
+              Expertise & Polyvalence Industrielle
+            </h2>
+            <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1rem;">
+              Fondée il y a plus de vingt ans, <strong>VFM Service</strong> est une entreprise ivoirienne spécialisée dans l'importation, la distribution, l'installation et la maintenance d'équipements de pompage hydraulique, groupes électrogènes et outillage professionnel.
+            </p>
+            <p style="color: var(--color-text-muted); line-height: 1.75;">
+              Implantée à <strong>Abidjan ; Riviera 3, Cité ARTCI</strong>, VFM Service intervient sur l'ensemble du territoire national auprès des administrations, industries, sociétés pétrolières, BTP, exploitations agricoles et particuliers.
+            </p>
+          </div>
+
+          <!-- HISTORIQUE -->
+          <div style="background: #FFFFFF; padding: 2.75rem 2.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <span class="badge badge--red" style="margin-bottom: 1.25rem;">Notre Historique</span>
+            <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.15rem;">
+              Croissance & Réseau International
+            </h2>
+            <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1rem;">
+              Grâce à une rigueur constante et des prestations sur-mesure, VFM Service a développé un solide réseau de partenaires internationaux de premier rang.
+            </p>
+            <p style="color: var(--color-text-muted); line-height: 1.75;">
+              Au cours de son développement, l'entreprise a équipé <strong>plus de 100 stations-services, dépôts consommateurs, usines et immeubles stratégiques</strong> en Côte d'Ivoire.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION SHOWROOM & DISTRIBUTEUR AGRÉÉ PEDROLLO -->
+    <section class="section" style="background: #FFFFFF;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3.5rem; align-items: center;">
+          
+          <!-- IMAGE DU SHOWROOM -->
+          <div style="position: relative;">
+            <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
+              <img src="assets/showroom.jpeg" alt="Showroom VFM Service & Distributeur Agréé Pedrollo à Abidjan" style="width: 100%; height: 420px; object-fit: cover; display: block;">
+            </div>
+            <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; background: rgba(7, 18, 30, 0.92); backdrop-filter: blur(12px); padding: 0.85rem 1.35rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+              <span style="font-weight: 700; color: var(--color-primary); display: block; font-size: 0.92rem;">📍 Showroom Riviera 3 - Cité ARTCI</span>
+              <small style="color: rgba(255, 255, 255, 0.85);">Exposition d'équipements & Attestation d'Agrément Pedrollo Italia</small>
+            </div>
+          </div>
+
+          <!-- TEXTE D'ACCOMPAGNEMENT -->
+          <div>
+            <span class="badge badge--red" style="margin-bottom: 1rem;">Garantie d'Authenticité</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.25rem; line-height: 1.25;">
+              Showroom & Distributeur Agréé Pedrollo
+            </h2>
+            <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.25rem;">
+              En tant que <strong>Distributeur Agréé Officiel de Pedrollo Italia</strong> en Côte d'Ivoire, VFM Service met à votre disposition un showroom moderne situé à la Riviera 3 (Cité ARTCI).
+            </p>
+            <p style="color: var(--color-text-muted); line-height: 1.75; margin-bottom: 1.75rem;">
+              Vous y découvrirez en exposition permanente l'intégralité de nos gammes : pompes de surface, pompes immergées de forage, surpresseurs hydrauliques, automates et pièces d'origine certifiées.
+            </p>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="background: var(--color-bg); padding: 1rem 1.25rem; border-radius: var(--radius-sm); border-left: 4px solid var(--color-primary);">
+                <strong style="color: var(--color-primary-dark); display: block;">100% Produits d'Origine</strong>
+                <small style="color: var(--color-text-muted);">Importation directe du fabricant Pedrollo</small>
+              </div>
+              <div style="background: var(--color-bg); padding: 1rem 1.25rem; border-radius: var(--radius-sm); border-left: 4px solid var(--color-accent);">
+                <strong style="color: var(--color-primary-dark); display: block;">Stock Permanent</strong>
+                <small style="color: var(--color-text-muted);">Disponibilité immédiate à Abidjan</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION MISSION & VISION -->
+    <section class="section" style="background: linear-gradient(135deg, #07121E 0%, #0B4C8C 100%); color: #FFFFFF;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3.5rem;">
+          <div>
+            <span class="badge badge--red" style="margin-bottom: 1.25rem;">Notre Mission</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 1.25rem;">
+              Solutions Technologiques Complètes
+            </h2>
+            <ul style="display: flex; flex-direction: column; gap: 1rem; color: rgba(255, 255, 255, 0.92); font-size: 1.05rem;">
+              <li style="display: flex; align-items: center; gap: 0.75rem;">💧 L'alimentation en eau potable et le pompage hydraulique.</li>
+              <li style="display: flex; align-items: center; gap: 0.75rem;">⚡ La production et la régulation d'énergie électrique.</li>
+              <li style="display: flex; align-items: center; gap: 0.75rem;">🛠️ L'outillage professionnel et équipements de chantier.</li>
+              <li style="display: flex; align-items: center; gap: 0.75rem;">⚙️ L'installation, la maintenance et le SAV certifié.</li>
+            </ul>
+          </div>
+
+          <div>
+            <span class="badge badge--blue" style="margin-bottom: 1.25rem;">Notre Vision</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 1.25rem;">
+              Référence en Afrique de l'Ouest
+            </h2>
+            <p style="color: rgba(255, 255, 255, 0.88); line-height: 1.8; font-size: 1.1rem;">
+              Être la référence incontournable en <strong>Afrique de l'Ouest</strong> dans les domaines du pompage hydraulique, de l'énergie et des équipements industriels, en offrant des solutions d'ingénierie fiables et accessibles qui stimulent le développement économique de nos clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION NOS VALEURS (7 VALEURS) -->
+    <section class="section" style="background: #FFFFFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Notre ADN</span>
+          <h2 class="section-header__title">Nos 7 Valeurs Fondamentales</h2>
+        </div>
+
+        <div class="values-grid-luxury">
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">🎯</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Excellence</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Recherche permanente des meilleures solutions techniques et des plus hauts standards de qualité.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">💼</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Professionnalisme</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Chaque projet est conduit avec rigueur, compétence et respect absolu des délais et engagements.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">🛡️</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Intégrité</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Relations transparentes, honnêtes et durables avec nos clients, partenaires et équipementiers.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">💡</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Innovation</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Privilège accordé aux technologies modernes et aux équipements les plus économes en énergie.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">🤝</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Proximité</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Écoute attentive de nos clients afin de proposer des recommandations techniques sur-mesure.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">⚡</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Réactivité</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">Service rapide et accompagnement technique efficace sur l'ensemble du territoire national.</p>
+          </div>
+
+          <div class="value-card-item">
+            <div style="font-size: 2.25rem; margin-bottom: 0.75rem;">⭐</div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 0.5rem;">Satisfaction Client</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6;">La réussite opérationnelle de nos clients constitue la priorité absolue de toutes nos équipes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION NOS DÉPARTEMENTS D'ACTIVITÉ (7 DÉPARTEMENTS) -->
+    <section class="section" style="background: var(--color-bg);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Organisation Spécialisée</span>
+          <h2 class="section-header__title">Nos Départements d'Activité</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <div class="dept-card-item">
+            <div class="dept-icon-box">💧</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Pompes hydrauliques & pompage</strong>
+              <small style="color: var(--color-text-muted);">Gamme Pedrollo certifiée d'origine</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">⚡</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Groupes électrogènes & énergie</strong>
+              <small style="color: var(--color-text-muted);">Groupes diesel, essence & insonorisés</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">🛠️</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Outillage pro & équipements</strong>
+              <small style="color: var(--color-text-muted);">Matériel haute résistance pour chantiers</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">🏗️</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Installation & mise en service</strong>
+              <small style="color: var(--color-text-muted);">Montage et câblage par experts sur site</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">⚙️</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Maintenance & SAV certifié</strong>
+              <small style="color: var(--color-text-muted);">Entretien régulier & dépannage 24/7</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">📦</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Pièces de rechange & accessoires</strong>
+              <small style="color: var(--color-text-muted);">Stock permanent d'origine garanti</small>
+            </div>
+          </div>
+
+          <div class="dept-card-item">
+            <div class="dept-icon-box">📐</div>
+            <div>
+              <strong style="display: block; color: var(--color-primary-dark); font-size: 1.1rem; margin-bottom: 0.2rem;">Études, conseil & ingénierie</strong>
+              <small style="color: var(--color-text-muted);">Dimensionnement sur-mesure des projets</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER CORPORATE ULTRA-PROFESSIONNEL -->
+  <footer class="footer">
+    <div class="footer__main">
+      <div class="container footer__grid">
+        <!-- Col 1: Branding & Mission -->
+        <div>
+          <div class="footer__logo-card">
+            <img src="assets/logo.png" alt="VFM Service Logo">
+          </div>
+          <p class="footer__brand-text">
+            Depuis plus de 20 ans, VFM Service est votre partenaire de référence en Côte d'Ivoire pour la fourniture, l'installation et la maintenance de pompes Pedrollo et groupes électrogènes.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <span class="badge badge--red">Partenaire Pedrollo</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Rapide -->
+        <div>
+          <h4 class="footer__title">Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Accueil</a></li>
+            <li><a href="apropos.html" class="footer__link">À Propos & Vision</a></li>
+            <li><a href="catalogue.html" class="footer__link">Catalogue Produits</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Expertises & Départements -->
+        <div>
+          <h4 class="footer__title">Nos Expertises</h4>
+          <ul class="footer__links">
+            <li><a href="catalogue.html" class="footer__link">Pompes Pedrollo</a></li>
+            <li><a href="catalogue.html" class="footer__link">Groupes Électrogènes</a></li>
+            <li><a href="catalogue.html" class="footer__link">Outillage & Pièces</a></li>
+            <li><a href="contact.html" class="footer__link">Installation & SAV 24/7</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Siège & Contact -->
+        <div>
+          <h4 class="footer__title">Siège & Contact</h4>
+          
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📍</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Adresse du Siège</small>
+              <span class="footer__contact-value">Abidjan ; Riviera 3, Cité ARTCI</span>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📞</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Téléphone Fixe</small>
+              <a href="tel:+2252522013724" class="footer__contact-value">+225 25 22 01 37 24</a>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">📱</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">WhatsApp Direct</small>
+              <a href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer" class="footer__contact-value" style="color: var(--color-primary);">+225 07 15 41 68 31</a>
+            </div>
+          </div>
+
+          <div class="footer__contact-item">
+            <div class="footer__contact-icon">✉️</div>
+            <div>
+              <small style="display: block; color: rgba(255,255,255,0.5);">Email Officiel</small>
+              <a href="mailto:infos@vfmservices.net" class="footer__contact-value">infos@vfmservices.net</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; 2026 <strong>VFM Service</strong>. Tous droits réservés. Directrice Générale : Mme Virginie Konan.</p>
+      <p style="color: rgba(255, 255, 255, 0.6);">Spécialiste en Pompes Hydrauliques & Groupes Électrogènes à Abidjan</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

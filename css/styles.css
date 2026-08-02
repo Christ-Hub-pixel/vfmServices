@@ -2983,3 +2983,40 @@ body.cart-drawer-open .floating-cart-btn {
     display: none;
   }
 }
+
+/* ADAPTATION RESPONSIVE DYNAMIQUE DES TITRES (H1-H6) ET PARAGRAPHES (P) PAR APPAREIL */
+@media (min-width: 2560px) {
+  h1, .hero__title, .font-headline-xl { font-size: 3.75rem !important; line-height: 1.18; }
+  h2, .section-header__title, .font-headline-lg { font-size: 2.75rem !important; line-height: 1.22; }
+  h3, .font-headline-md { font-size: 2rem !important; }
+  h4 { font-size: 1.5rem !important; }
+  p, .font-body-lg, .font-body-md { font-size: 1.2rem !important; line-height: 1.65; }
+  small { font-size: 1rem !important; }
+}
+
+@media (min-width: 1800px) and (max-width: 2559px) {
+  h1, .hero__title, .font-headline-xl { font-size: 3.25rem !important; line-height: 1.2; }
+  h2, .section-header__title, .font-headline-lg { font-size: 2.35rem !important; line-height: 1.25; }
+  h3, .font-headline-md { font-size: 1.75rem !important; }
+  h4 { font-size: 1.35rem !important; }
+  p, .font-body-lg, .font-body-md { font-size: 1.1rem !important; line-height: 1.6; }
+  small { font-size: 0.92rem !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  h1, .hero__title, .font-headline-xl { font-size: 2.25rem !important; line-height: 1.22; }
+  h2, .section-header__title, .font-headline-lg { font-size: 1.75rem !important; line-height: 1.25; }
+  h3, .font-headline-md { font-size: 1.35rem !important; }
+  h4 { font-size: 1.1rem !important; }
+  p, .font-body-lg, .font-body-md { font-size: 0.95rem !important; line-height: 1.55; }
+  small { font-size: 0.82rem !important; }
+}
+
+@media (max-width: 767px) {
+  h1, .hero__title, .font-headline-xl { font-size: 1.75rem !important; line-height: 1.24; }
+  h2, .section-header__title, .font-headline-lg { font-size: 1.4rem !important; line-height: 1.26; }
+  h3, .font-headline-md { font-size: 1.2rem !important; }
+  h4 { font-size: 1.05rem !important; }
+  p, .font-body-lg, .font-body-md { font-size: 0.88rem !important; line-height: 1.5; }
+  small { font-size: 0.78rem !important; }
+}

@@ -1,8 +1,4 @@
-/* ==========================================================================
-   VFM SERVICES - DESIGN SYSTEM & FEUILLE DE STYLE PRINCIPALE
-   Auteur: Antigravity AI - Expert Engineering
-   Standard: Stripe / Vercel / Apple UI Grade (Clean CSS3, HSL Tokens, BEM)
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 /* --------------------------------------------------------------------------
    1. DESIGN TOKENS & VARIABLES CSS
@@ -18,7 +14,7 @@
   /* Couleurs Neutres & Surfaces */
   --color-bg: #F8FAFC;                 /* Fond d'écran clair principal */
   --color-surface: #FFFFFF;            /* Surface des cartes */
-  --color-surface-glass: rgba(255, 255, 255, 0.85);
+  --color-surface-glass: rgba(255, 255, 255, 0.88);
   --color-text-main: #0F172A;          /* Texte principal (Haute lisibilité) */
   --color-text-muted: #475569;         /* Texte secondaire (Conforme WCAG AA) */
   --color-border: #E2E8F0;             /* Bordure légère */
@@ -30,28 +26,28 @@
   --color-dark-border: rgba(255, 255, 255, 0.1);
   --color-dark-text: #F1F5F9;
 
-  /* Typographie & Échelles */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Outfit', 'Inter', sans-serif;
+  /* Typographie & Échelles (Grade International) */
+  --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
   
   /* Radii & Ombrages (Inspiration Apple / Stripe) */
   --radius-sm: 8px;
-  --radius-md: 14px;
+  --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
   
-  --shadow-sm: 0 2px 4px rgba(11, 76, 140, 0.04);
-  --shadow-md: 0 10px 25px -5px rgba(11, 76, 140, 0.08), 0 8px 10px -6px rgba(11, 76, 140, 0.04);
-  --shadow-lg: 0 20px 35px -10px rgba(11, 76, 140, 0.15);
-  --shadow-glow: 0 0 25px rgba(0, 150, 214, 0.35);
+  --shadow-sm: 0 2px 6px rgba(11, 76, 140, 0.04);
+  --shadow-md: 0 12px 30px -5px rgba(11, 76, 140, 0.08), 0 8px 12px -6px rgba(11, 76, 140, 0.04);
+  --shadow-lg: 0 20px 45px -10px rgba(11, 76, 140, 0.16);
+  --shadow-glow: 0 0 30px rgba(0, 150, 214, 0.4);
 
   /* Transitions & Fluidité */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   
-  /* Dimensions & Spacing */
-  --container-max-width: 1280px;
+  /* Dimensions & Spacing (Conteneur 1350px) */
+  --container-max-width: 1350px;
   --header-height: 135px;
   --z-header: 1000;
   --z-drawer: 1500;
@@ -1637,10 +1633,104 @@ body.cart-drawer-open .floating-cart-btn {
   transform: translateY(0) scale(1);
 }
 
-.back-to-top-btn:hover {
-  background: linear-gradient(135deg, #00B0FF 0%, var(--color-primary) 100%);
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 12px 30px rgba(0, 150, 214, 0.5);
+/* BOUTON FLOTTANT WHATSAPP (WIDGET HIGH-END) */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  z-index: 1200;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 14px 35px rgba(37, 211, 102, 0.6);
+  color: #FFFFFF;
+}
+
+.whatsapp-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: pulseRing 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+/* MARQUEE CARROUSEL DE PARTENAIRES & CLIENTS (TICKER) */
+.marquee-section {
+  padding: 3.5rem 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 3rem;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 3rem;
+  min-width: 100%;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.partner-logo-badge {
+  background: #F8FAFC;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.partner-logo-badge:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 150, 214, 0.15);
 }
 
 .btn-checkout-email {

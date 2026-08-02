@@ -34,6 +34,8 @@ const VFMApp = {
     this.initDevisForm();
     this.initSmoothScroll();
     this.initBackToTop();
+    this.initWhatsAppWidget();
+    this.initAnimatedCounters();
   },
 
   initCarousels() {
@@ -416,7 +418,57 @@ const VFMApp = {
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
+  },
+
+  initWhatsAppWidget() {
+    if (document.getElementById('whatsappFloatBtn')) return;
+
+    const waHTML = `
+      <a id="whatsappFloatBtn" href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Assistance WhatsApp Directe 24/7" title="Contactez un expert VFM sur WhatsApp">
+        <span class="whatsapp-pulse-ring"></span>
+        💬
+      </a>
+    `;
+    document.body.insertAdjacentHTML('beforeend', waHTML);
+  },
+
+  initAnimatedCounters() {
+    const counterElements = document.querySelectorAll('[data-counter]');
+    if (!counterElements.length) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const targetNum = parseInt(el.getAttribute('data-counter'), 10);
+          const prefix = el.getAttribute('data-prefix') || '';
+          const suffix = el.getAttribute('data-suffix') || '';
+          const duration = 2000;
+          const startTimestamp = performance.now();
+
+          const updateCounter = (now) => {
+            const elapsed = now - startTimestamp;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+            const currentNum = Math.floor(easeProgress * targetNum);
+            
+            el.textContent = `${prefix}${currentNum}${suffix}`;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = `${prefix}${targetNum}${suffix}`;
+            }
+          };
+
+          requestAnimationFrame(updateCounter);
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counterElements.forEach(el => observer.observe(el));
+  },
 };
 
 /**

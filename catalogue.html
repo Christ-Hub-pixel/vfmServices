@@ -1,1357 +1,424 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html class="scroll-smooth" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Catalogue complet des pompes hydrauliques Pedrollo, groupes électrogènes et outillage de VFM Services à Abidjan.">
-  <title>Catalogue Produits | VFM Services Pedrollo</title>
-
-  <link rel="icon" type="image/png" href="assets/icone.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="catalogue.css">
-</head>
-
-<body>
-
-  <!-- HEADER NAVIGATION -->
-  <header class="header" role="banner">
-    <div class="container header__nav">
-      <a href="index.html" class="header__logo">
-        <img src="assets/logo.png" alt="VFM Services Logo">
-      </a>
-
-      <nav role="navigation" aria-label="Navigation principale">
-        <ul class="nav__list">
-          <li><a href="index.html" class="nav__link">Accueil</a></li>
-          <li><a href="apropos.html" class="nav__link">À Propos</a></li>
-          <li><a href="catalogue.html" class="nav__link active">Catalogue</a></li>
-          <li><a href="contact.html" class="nav__link">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="header__actions">
-        <button id="navCartBtn" class="btn-cart-trigger" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
-          <span class="cart-trigger-icon">🛒</span>
-          <span class="cart-trigger-label">Panier</span>
-          <span id="navCartCount" class="cart-trigger-count">0</span>
-        </button>
-        <a href="contact.html#devisForm" class="btn btn--accent">
-          Soumettre une Demande
-        </a>
-        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main style="padding-top: var(--header-height);">
-    <!-- EN-TÊTE HERO SLIDER CATALOGUE COMPLET -->
-    <section class="catalogue-hero-header" style="text-align: center;">
-      <div class="container">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Catalogue Produits & Équipements | VFM Services Pedrollo</title>
+<link rel="icon" type="image/png" href="assets/icone.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#465769",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#5e6f83",
+                        "on-tertiary-fixed-variant": "#38485a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#0b1d2d",
+                        "on-tertiary-container": "#e9f1ff",
+                        "inverse-primary": "#a0c9ff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed": "#410000",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed": "#ffdad4",
+                        "outline-variant": "#c0c7d3",
+                        "primary-container": "#0070c0",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-fixed": "#d2e4fb",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#005797",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-container": "#eaf1ff",
+                        "on-secondary-fixed-variant": "#930000",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#0061a7",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-container": "#e22618",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "background": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#022b6b",
+                        "on-primary-fixed": "#001c37",
+                        "on-surface-variant": "#414751",
+                        "surface-container-high": "#dce9ff",
+                        "secondary": "#c01823",
+                        "brand-red": "#c01823",
+                        "outline": "#717783",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "on-surface": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed-dim": "#b7c8de",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "primary-fixed": "#d2e4ff",
+                        "on-primary-fixed-variant": "#00487f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "button": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; background-color: #f8f9ff; color: #0b1c30; }
+        h1, h2, h3, h4, h5, h6, .font-headline-xl, .font-headline-lg, .font-headline-md, .font-button { font-family: 'Hanken Grotesk', sans-serif; }
+        .font-label-sm { font-family: 'JetBrains Mono', monospace; }
         
-        <!-- TITRE AU-DESSUS DU CARROUSEL -->
-        <div style="margin-bottom: 1.5rem;">
-          <span class="badge badge--blue" style="margin-bottom: 0.6rem; display: inline-block;">Gammes d'Équipements Certifiés</span>
-          <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.5rem;">Catalogue VFM Services</h1>
-          <p style="color: rgba(255, 255, 255, 0.85); max-width: 640px; margin: 0 auto; font-size: 1.05rem;">
-            Recherchez vos pompes hydrauliques Pedrollo, groupes électrogènes et équipements industriels.
-          </p>
-        </div>
-
-        <!-- CARROUSEL CADRE ADAPTATIF ENTIÈREMENT VISIBLE -->
-        <div class="hero-carousel" id="catalogueHeroCarousel">
-          <div class="hero-carousel__slides">
-            
-            <!-- SLIDE 1 -->
-            <div class="hero-carousel__slide active">
-              <img src="assets/caroussel1.png" alt="Outillage et Équipements de Chantier" loading="eager">
-              <div class="hero-carousel__overlay"></div>
-              <div class="hero-carousel__caption">
-                <span class="hero-carousel__badge-tag">🛠️ Matériel Professionnel Certifié</span>
-                <h2 class="hero-carousel__title">Outillage & Équipements de Chantier</h2>
-                <p class="hero-carousel__subtitle">Outillage & matériels industriels haute résistance pour le forage et le BTP.</p>
-              </div>
-            </div>
-
-            <!-- SLIDE 2 -->
-            <div class="hero-carousel__slide">
-              <img src="assets/caroussel2.png" alt="Pompes Hydrauliques Pedrollo" loading="lazy">
-              <div class="hero-carousel__overlay"></div>
-              <div class="hero-carousel__caption">
-                <span class="hero-carousel__badge-tag">🌊 Partenaire Officiel Pedrollo</span>
-                <h2 class="hero-carousel__title">Pompes Hydrauliques & Surpresseurs</h2>
-                <p class="hero-carousel__subtitle">Électropompes centrifuges, pompes immergées de forage d'origine garantie.</p>
-              </div>
-            </div>
-
-            <!-- SLIDE 3 -->
-            <div class="hero-carousel__slide">
-              <img src="assets/caroussel3.png" alt="Groupes Électrogènes Diesel" loading="lazy">
-              <div class="hero-carousel__overlay"></div>
-              <div class="hero-carousel__caption">
-                <span class="hero-carousel__badge-tag">⚡ Autonomie Énergétique</span>
-                <h2 class="hero-carousel__title">Groupes Électrogènes & Inverseurs ATS</h2>
-                <p class="hero-carousel__subtitle">Groupes électrogènes diesel insonorisés et armoires d'inverseur automatique ATS.</p>
-              </div>
-            </div>
-
-            <!-- SLIDE 4 -->
-            <div class="hero-carousel__slide">
-              <img src="assets/caroussel4.png" alt="Composants et Pièces Détachées" loading="lazy">
-              <div class="hero-carousel__overlay"></div>
-              <div class="hero-carousel__caption">
-                <span class="hero-carousel__badge-tag">🔧 Pièces d'Origine Garanties</span>
-                <h2 class="hero-carousel__title">Composants & Pièces Détachées</h2>
-                <p class="hero-carousel__subtitle">Alternateurs, régulateurs AVR, filtres et pièces de rechange d'origine.</p>
-              </div>
-            </div>
-
-            <!-- SLIDE 5 -->
-            <div class="hero-carousel__slide">
-              <img src="assets/caroussel5.png" alt="Service Après-Vente VFM" loading="lazy">
-              <div class="hero-carousel__overlay"></div>
-              <div class="hero-carousel__caption">
-                <span class="hero-carousel__badge-tag">🤝 Support Technique Abidjan</span>
-                <h2 class="hero-carousel__title">Installation & Support Technique VFM</h2>
-                <p class="hero-carousel__subtitle">Équipe d'ingénieurs qualifiés en Côte d'Ivoire pour l'installation et le SAV.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Boutons Précédent / Suivant -->
-          <button class="hero-carousel__btn hero-carousel__btn--prev" id="heroPrevBtn" aria-label="Précédent">❮</button>
-          <button class="hero-carousel__btn hero-carousel__btn--next" id="heroNextBtn" aria-label="Suivant">❯</button>
-
-          <!-- Pagination Puces -->
-          <div class="hero-carousel__dots" id="heroDots">
-            <span class="hero-carousel__dot active" data-slide="0"></span>
-            <span class="hero-carousel__dot" data-slide="1"></span>
-            <span class="hero-carousel__dot" data-slide="2"></span>
-            <span class="hero-carousel__dot" data-slide="3"></span>
-            <span class="hero-carousel__dot" data-slide="4"></span>
-          </div>
-        </div>
-
-        <!-- BARRE DE RECHERCHE ULTRA-PRO ET CLAIRE EN DESSOUS DU CARROUSEL -->
-        <div class="hero-search-overlay">
-          <div class="search-bar-container">
-            <div class="search-bar-wrapper">
-              <svg class="search-bar-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="searchInput" class="search-bar-input"
-                placeholder="Rechercher un matériel (surpresseur, forage, groupe diesel, batterie...)"
-                autocomplete="off">
-              <button type="button" id="searchClearBtn" class="search-clear-btn" title="Effacer la recherche" aria-label="Effacer">&times;</button>
-            </div>
-            <span class="search-count-badge" id="searchCountBadge">61 équipements disponibles</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECTION PRODUITS -->
-    <section class="section">
-      <div class="container">
-        <!-- FILTRES -->
-        <div class="catalogue__filters">
-          <button class="filter-btn active" data-filter="all">Tous les matériels (61)</button>
-          <button class="filter-btn" data-filter="pompes">Pompes Pedrollo (8)</button>
-          <button class="filter-btn" data-filter="groupes">Groupes Électrogènes (6)</button>
-          <button class="filter-btn" data-filter="pieces">Pièces & Composants (16)</button>
-          <button class="filter-btn" data-filter="outillage">Outillage Professionnel (31)</button>
-        </div>
-
-        <!-- BLOC CONTENEUR DES CARROUSELS DE CATALOGUE -->
-        <div id="productGrid" style="width: 100%; display: block;">
-
-        <!-- === CARROUSEL 1 : POMPES HYDRAULIQUES PEDROLLO (8 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="pompes">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Partenaire Officiel Pedrollo</span>
-              <h2>Pompes Hydrauliques Pedrollo (8)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-pompes" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-pompes" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-pompes">
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe de surface.png" alt="Pompe de Surface Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Hydraulique</span>
-                  <h3 class="product-card__title">Pompe de Surface Centrifuge</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Moteur haute
-                    performance pour surpression et irrigation.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe immergée.png" alt="Pompe Immergée Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Forage</span>
-                  <h3 class="product-card__title">Pompe Immergée de Forage</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Extraction d'eau en
-                    grande profondeur pour puits et forages.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Surpresseur.png" alt="Groupe Surpresseur Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Pression</span>
-                  <h3 class="product-card__title">Groupe Surpresseur Automatique</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Maintien de pression
-                    constante dans les réseaux résidentiels et industriels.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe de relevage.png" alt="Pompe de Relevage Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Assainissement</span>
-                  <h3 class="product-card__title">Pompe de Relevage & Vide-cave</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Évacuation et
-                    assainissement des eaux usées et chargées.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe de forage.png" alt="Pompe de Forage Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Forage Profond</span>
-                  <h3 class="product-card__title">Électropompe de Forage Profond</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Conçue pour
-                    l'adduction d'eau en milieu agricole et municipal.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe multicellulaire.png"
-                    alt="Pompe Multicellulaire Pedrollo" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Haute Pression</span>
-                  <h3 class="product-card__title">Pompe Multicellulaire Verticale</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Rendement élevé pour
-                    surpression industrielle et lavage haut débit.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/Pompe vide-cave.png" alt="Pompe Vide-Cave Pedrollo"
-                    class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Évacuation</span>
-                  <h3 class="product-card__title">Pompe Vide-Cave Submersible</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Drainage rapide des
-                    eaux d'inondation et bassins.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="pompes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Pompes hydrauliques/pompe centrifuge.png"
-                    alt="Pompe Centrifuge Industrielle Pedrollo" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Pedrollo • Industrie</span>
-                  <h3 class="product-card__title">Pompe Centrifuge Industrielle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Circulation de
-                    liquides industriels et systèmes de refroidissement.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Pedrollo Origine</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 2 : GROUPES ÉLECTROGÈNES (6 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="groupes">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--red">Autonomie & Puissance</span>
-              <h2>Groupes Électrogènes & Énergie (6)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-groupes" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-groupes" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-groupes">
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes diesel.png"
-                    alt="Groupe Électrogène Diesel" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Diesel</span>
-                  <h3 class="product-card__title">Groupe Électrogène Diesel</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Source d'énergie
-                    autonome et continue de forte puissance.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Diesel Haute Puissance</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes silencieux.png"
-                    alt="Groupe Électrogène Silencieux" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Insonorisé</span>
-                  <h3 class="product-card__title">Groupe Électrogène Silencieux</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Insonorisation
-                    supérieure pour hôpitaux, bureaux et résidences.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Capot Insonorisé</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes essence.png"
-                    alt="Groupe Électrogène Essence" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Essence</span>
-                  <h3 class="product-card__title">Groupe Électrogène Essence</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Alimentation de
-                    secours compacte et polyvalente pour chantiers.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Essence Polyvalent</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes automatiques (ATS).png"
-                    alt="Groupe Électrogène Automatique ATS" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Inverseur ATS</span>
-                  <h3 class="product-card__title">Groupe Électrogène Automatique (ATS)</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Basculement
-                    automatique instantané en cas de coupure de courant.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Inverseur Automatique</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes industriels.png"
-                    alt="Groupe Électrogène Industriel" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Grande Puissance</span>
-                  <h3 class="product-card__title">Groupe Électrogène Industriel</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Production d'énergie
-                    de forte capacité pour usines et mines.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Super Puissance</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="groupes">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes portables.png"
-                    alt="Groupe Électrogène Portable" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Énergie • Mobilité</span>
-                  <h3 class="product-card__title">Groupe Électrogène Portable</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Design compact et
-                    maniable pour interventions mobiles et chantiers.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--red">Maniable & Léger</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                      ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 3 : PIÈCES & COMPOSANTS ÉLECTROGÈNES (16 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="pieces">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Pièces d'Origine Garanties</span>
-              <h2>Pièces Detachées & Composants Industriels (16)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-pieces" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-pieces" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-pieces">
-
-              <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Alternateur.png"
-                alt="Alternateur pour Groupe Électrogène" class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Alternateur</span>
-              <h3 class="product-card__title">Alternateur de Puissance</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Générateur de courant
-                haute précision et stabilisé.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Batterie.png" alt="Batterie de Démarrage Industrielle"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Batterie</span>
-              <h3 class="product-card__title">Batterie de Démarrage Industrielle</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Forte capacité de
-                décharge à froid pour moteurs diesel.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Bougie.png" alt="Bougie d'Allumage Moteur"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Allumage</span>
-              <h3 class="product-card__title">Bougie d'Allumage Haute Performance</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Allumage fiable pour
-                moteurs à essence et groupes portables.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Courroie.png" alt="Courroie d'Entraînement Moteur"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Transmission</span>
-              <h3 class="product-card__title">Courroie d'Entraînement Renforcée</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Transmission synchrone
-                pour alternateur et ventilateur.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Démarreur.png" alt="Démarreur Électrique Moteur"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Démarreur</span>
-              <h3 class="product-card__title">Démarreur Électrique Moteur</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Démarrage instantané
-                pour moteurs diesel et essence heavy-duty.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à air.png" alt="Filtre à Air Industriel"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Filtration</span>
-              <h3 class="product-card__title">Filtre à Air Moteur Industriel</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Protection maximale
-                contre les poussières et impuretés ambiantes.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à carburant.png" alt="Filtre à Carburant Diesel"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Filtration</span>
-              <h3 class="product-card__title">Filtre à Carburant & Gasoil</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Purification du
-                carburant pour préserver l'injection du moteur.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à huile.png" alt="Filtre à Huile Moteur"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Lubrification</span>
-              <h3 class="product-card__title">Filtre à Huile Moteur High-Flow</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Maintien de l'huile
-                propre pour une longévité optimale du moteur.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Injecteur.png" alt="Injecteur Haute Pression"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Injection</span>
-              <h3 class="product-card__title">Injecteur Haute Pression Diesel</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Pulvérisation de
-                précision pour une combustion optimale et propre.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Pompe à injection.png" alt="Pompe à Injection Diesel"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Injection</span>
-              <h3 class="product-card__title">Pompe à Injection Moteur Diesel</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Alimentation sous
-                pression constante des cylindres moteur.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Radiateur.png" alt="Radiateur de Refroidissement Moteur"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Refroidissement</span>
-              <h3 class="product-card__title">Radiateur de Refroidissement Moteur</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Dissipation thermique
-                haute efficacité sous climat tropical.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Régulateur AVR.png" alt="Régulateur de Tension AVR"
-                class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Électronique</span>
-              <h3 class="product-card__title">Régulateur Automatique de Tension (AVR)</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Stabilité parfaite du
-                voltage pour préserver vos équipements électroniques.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Silencieux d'échappement.png"
-                alt="Silencieux d'Échappement Industriel" class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Échappement</span>
-              <h3 class="product-card__title">Silencieux d'Échappement Industriel</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Réduction maximale du
-                niveau sonore et des bruits de gaz.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Séparateur d'eau.png"
-                alt="Filtre Séparateur d'Eau Gasoil" class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Filtration</span>
-              <h3 class="product-card__title">Filtre Séparateur d'Eau pour Gasoil</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Élimination de la
-                condensation d'eau dans le réservoir à carburant.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Tableau de contrôle.png"
-                alt="Tableau de Contrôle Automatique Moteur" class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Contrôle</span>
-              <h3 class="product-card__title">Tableau de Contrôle Digital Moteur</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Affichage digital des
-                paramètres (tension, température, pression d'huile).</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card" data-category="pieces">
-            <div class="product-card__image-container">
-              <img src="assets/catalogue/PieceGroupeElectrogene/Ventilateur.png"
-                alt="Ventilateur de Refroidissement Moteur" class="product-card__image" loading="lazy">
-            </div>
-            <div class="product-card__body">
-              <span class="product-card__category">Pièces Électrogène • Refroidissement</span>
-              <h3 class="product-card__title">Ventilateur de Refroidissement Moteur</h3>
-              <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Flux d'air puissant
-                pour maintenir la température optimale du moteur.</p>
-              <div class="product-card__footer">
-                <span class="badge badge--blue">Pièce d'Origine</span>
-                <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis
-                  ✉️</a>
-              </div>
-            </div>
-          </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 4 : OUTILLAGE PROFESSIONNEL & CHANTIER (31 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="outillage">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Équipements & Outillage Pro</span>
-              <h2>Outillage Professionnel & Chantier (31)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-outillage" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-outillage" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-outillage">
-
-              <!-- Outillage Électroportatif (17) -->
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse filaire.png" alt="Perceuse Filaire Haute Puissance" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse Filaire Haute Puissance</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Moteur robuste pour perforations intensives dans le béton et le métal.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse sans fil.png" alt="Perceuse Sans-Fil Lithium" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse Sans-Fil Lithium</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Grande autonomie avec batterie interchangeable 18V.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse-visseuse.png" alt="Perceuse-Visseuse Ergonomique" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse-Visseuse Ergonomique</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Réglage de couple multiposition pour assemblages précis.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à percussion.png" alt="Perceuse à Percussion Industrielle" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse à Percussion Industrielle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Cadence de frappe élevée pour maçonnerie et pierre dure.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse d'angle.png" alt="Perceuse d'Angle Compacte" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse d'Angle Compacte</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Conception profilée pour accès dans les espaces restreints.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse pneumatique.png" alt="Perceuse Pneumatique Pro" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse Pneumatique Professionnelle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Entraînement à air comprimé pour ateliers industriels.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à colonne.png" alt="Perceuse à Colonne d'Atelier" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse à Colonne d'Atelier</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Précision de perçage fixe avec table réglable en hauteur.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse magnétique.png" alt="Perceuse Magnétique Charnière" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perceuse Magnétique Industrielle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Fixation par électro-aimant puissant pour structures métalliques.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à diamant (Carotteuse).png" alt="Carotteuse à Diamant Professionnelle" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Carotteuse à Diamant Professionnelle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Forage d'eau et percement propre de béton armé.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Perforateur burineur (Marteau perforateur).png" alt="Perforateur Burineur SDS-Max" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Perforateur Burineur SDS-Max</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Puissance de frappe extrême pour perçage et burinage lourd.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Marteaux-piqueurs.png" alt="Marteau-Piqueur Démolition" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Marteau-Piqueur de Démolition</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Décapage et démolition rapide des dalles et chaussées.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Meuleuses.png" alt="Meuleuse d'Angle Industrielle" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Meuleuse d'Angle Industrielle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Tronçonnage et ébarbage haute résistance des métaux.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Scies circulaires.png" alt="Scie Circulaire Portative" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Scie Circulaire Portative</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Découpes longitudinales précises dans le bois et coffrages.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Scies sauteuses.png" alt="Scie Sauteuse Électronique" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Scie Sauteuse Électronique</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Découpes curvilignes avec variateur de vitesse électronique.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Ponceuses.png" alt="Ponceuse Orbitale Vitesse Variable" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Ponceuse Orbitale Professionnelle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Finition parfaite sans rayures sur bois et surfaces peintes.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Visseuses.png" alt="Visseuse à Choc Haute Torsion" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Visseuse à Choc Haute Torsion</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Serrage puissant sans effort de retour pour vis longues.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage électroportatif/Clés plates.png" alt="Clés Plates Électroportatives" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Électroportatif</span>
-                  <h3 class="product-card__title">Clés Plates d'Assemblage Électrique</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Outillage assisté pour montages d'équipements répétitifs.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Outillage Manuel (9) -->
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Clés plates.png" alt="Jeu de Clés Plates en Acier Forgé" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Jeu de Clés Plates en Acier Forgé</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Résistance maximale à la torsion pour maintenance industrielle.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Clés à molette.png" alt="Clé à Molette Ajustable Chromée" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Clé à Molette Ajustable Chromée</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Mâchoires graduées et molette à roulement fluide.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Jeux de douilles.png" alt="Coffret Jeu de Douilles & Cliquets" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Coffret Jeu de Douilles & Cliquets</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Coffret complet en acier Chrome-Vanadium haute durabilité.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Tournevis.png" alt="Jeu de Tournevis Isolés 1000V" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Jeu de Tournevis Isolés 1000V</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Protection diélectrique certifiée pour électriciens.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Marteaux.png" alt="Marteau de Mécanicien Anti-Vibration" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Marteau de Mécanicien Anti-Vibration</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Tête en acier trempé et manche ergonomique trimatière.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Pinces.png" alt="Jeu de Pinces Multiprises & Coupantes" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Jeu de Pinces Multiprises & Coupantes</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Serrage puissant et tranchants trempés par induction.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Mètres ruban.png" alt="Mètre Ruban Professionnel Renforcé" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Mètre Ruban Professionnel Renforcé</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Boîtier antichoc avec ruban recouvert de protection nylon.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Niveaux.png" alt="Niveau à Bulle Aluminium Magnétique" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Niveau à Bulle Aluminium Magnétique</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Fioles haute précision incassables et semelle magnétique.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage manuel/Bétonnières.png" alt="Malaxeur & Bétonnière Manuelle" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Manuel</span>
-                  <h3 class="product-card__title">Malaxeur & Bétonnière Manuelle</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Outillage de gâchage pour mortiers et liants de chantier.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Outillage de Chantier (5) -->
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage de chantier/Bétonnières.png" alt="Bétonnière de Chantier Renforcée" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Chantier</span>
-                  <h3 class="product-card__title">Bétonnière de Chantier Résistante</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Grande capacité de cuve et couronne en fonte incassable.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage de chantier/Compresseurs d'air.png" alt="Compresseur d'Air Bicylindre" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Chantier</span>
-                  <h3 class="product-card__title">Compresseur d'Air Bicylindre</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Alimentation d'outils pneumatiques et gonflage haute pression.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage de chantier/Échelles.png" alt="Échelle Transformable Aluminium" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Chantier</span>
-                  <h3 class="product-card__title">Échelle Transformable Aluminium</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Polyvalente multi-positions avec patins antidérapants.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage de chantier/Échafaudages.png" alt="Échafaudage Roulant Securisé" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Chantier</span>
-                  <h3 class="product-card__title">Échafaudage Roulant Securisé</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Structure rigide avec garde-corps et roues à frein.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="product-card" data-category="outillage">
-                <div class="product-card__image-container">
-                  <img src="assets/catalogue/Outillage/Outillage de chantier/Brouettes.png" alt="Brouette de Chantier Renforcée" class="product-card__image" loading="lazy">
-                </div>
-                <div class="product-card__body">
-                  <span class="product-card__category">Outillage • Chantier</span>
-                  <h3 class="product-card__title">Brouette de Chantier Renforcée</h3>
-                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Cuve emboutie et roue gonflable grand diamètre.</p>
-                  <div class="product-card__footer">
-                    <span class="badge badge--blue">Matériel Garanti</span>
-                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
-                  </div>
-                </div>
-              </article>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  </main>
-
-  <!-- FOOTER CORPORATE ULTRA-PROFESSIONNEL -->
-  <footer class="footer">
-    <div class="footer__main">
-      <div class="container footer__grid">
-        <!-- Col 1: Branding & Mission -->
-        <div>
-          <div class="footer__logo-card">
-            <img src="assets/logo.png" alt="VFM Service Logo">
-          </div>
-          <p class="footer__brand-text">
-            Depuis plus de 20 ans, VFM Service est votre partenaire de référence en Côte d'Ivoire pour la fourniture,
-            l'installation et la maintenance de pompes Pedrollo et groupes électrogènes.
-          </p>
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <span class="badge badge--red">Partenaire Pedrollo</span>
-          </div>
-        </div>
-
-        <!-- Col 2: Navigation Rapide -->
-        <div>
-          <h4 class="footer__title">Navigation</h4>
-          <ul class="footer__links">
-            <li><a href="index.html" class="footer__link">Accueil</a></li>
-            <li><a href="apropos.html" class="footer__link">À Propos & Vision</a></li>
-            <li><a href="catalogue.html" class="footer__link">Catalogue Produits</a></li>
-            <li><a href="contact.html" class="footer__link">Contact</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Expertises & Départements -->
-        <div>
-          <h4 class="footer__title">Nos Expertises</h4>
-          <ul class="footer__links">
-            <li><a href="catalogue.html" class="footer__link">Pompes Pedrollo</a></li>
-            <li><a href="catalogue.html" class="footer__link">Groupes Électrogènes</a></li>
-            <li><a href="catalogue.html" class="footer__link">Outillage & Pièces</a></li>
-            <li><a href="contact.html" class="footer__link">Installation & SAV 24/7</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Siège & Contact -->
-        <div>
-          <h4 class="footer__title">Siège & Contact</h4>
-
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon">📍</div>
-            <div>
-              <small style="display: block; color: rgba(255,255,255,0.5);">Adresse du Siège</small>
-              <span class="footer__contact-value">Abidjan ; Riviera 3, Cité ARTCI</span>
-            </div>
-          </div>
-
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon">📞</div>
-            <div>
-              <small style="display: block; color: rgba(255,255,255,0.5);">Téléphone Fixe</small>
-              <a href="tel:+2252522013724" class="footer__contact-value">+225 25 22 01 37 24</a>
-            </div>
-          </div>
-
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon">📱</div>
-            <div>
-              <small style="display: block; color: rgba(255,255,255,0.5);">WhatsApp Direct</small>
-              <a href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer"
-                class="footer__contact-value" style="color: var(--color-primary);">+225 07 15 41 68 31</a>
-            </div>
-          </div>
-
-          <div class="footer__contact-item">
-            <div class="footer__contact-icon">✉️</div>
-            <div>
-              <small style="display: block; color: rgba(255,255,255,0.5);">Email Officiel</small>
-              <a href="mailto:infos@vfmservices.net" class="footer__contact-value">infos@vfmservices.net</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container footer__bottom">
-      <p>&copy; 2026 <strong>VFM Service</strong>. Tous droits réservés. Directrice Générale : Mme Virginie Konan.</p>
-      <p style="color: rgba(255, 255, 255, 0.6);">Spécialiste en Pompes Hydrauliques & Groupes Électrogènes à Abidjan
-      </p>
-    </div>
-  </footer>
-
-  <script src="js/app.js"></script>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8f9ff; }
+        ::-webkit-scrollbar-thumb { background: #c0c7d3; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #717783; }
+    </style>
+</head>
+<body class="bg-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- Top Navigation Bar -->
+<header class="bg-white/95 backdrop-blur-sm border-b border-outline-variant/50 sticky top-0 z-50 transition-all duration-300">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto h-20">
+<!-- Brand -->
+<a class="flex items-center gap-4" href="index.html">
+<img alt="VFM Services Logo" class="h-14 md:h-16 object-contain" src="assets/logo.png"/>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="nav__link text-on-surface-variant font-button text-button hover:text-primary transition-colors duration-200 font-semibold" href="index.html">Accueil</a>
+<a class="nav__link text-on-surface-variant font-button text-button hover:text-primary transition-colors duration-200 font-semibold" href="apropos.html">À Propos</a>
+<a class="nav__link text-primary font-button text-button border-b-2 border-primary pb-1 font-bold" href="catalogue.html">Catalogue</a>
+<a class="nav__link text-on-surface-variant font-button text-button hover:text-primary transition-colors duration-200 font-semibold" href="contact.html">Contact</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button id="navCartBtn" class="hidden md:flex items-center gap-2 bg-surface-container text-primary border border-primary/20 px-5 py-2 font-button rounded-full hover:bg-primary-fixed transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm">shopping_cart</span> Panier <span id="navCartCount" class="bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
+</button>
+<a href="contact.html#devisForm" class="bg-brand-red text-white font-button text-button px-6 py-2.5 rounded-full hover:bg-secondary transition-colors shadow-sm hover:shadow-md font-bold">Soumettre une Demande</a>
+<button class="nav-toggle md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-16">
+<!-- Page Header -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-sm text-label-sm text-brand-red font-bold uppercase tracking-wider block mb-2">Matériel Certifié & Support Technique Abidjan</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-3 font-bold">Catalogue Équipements Industriels</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Distributeur officiel Pompes Pedrollo, Groupes Électrogènes Diesel et Outillages Professionnels de précision.</p>
+</div>
+<a href="assets/Pedrollo_Catalogue_Complet.pdf" target="_blank" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-button font-bold shadow-md hover:bg-primary-container transition-all whitespace-nowrap">
+  <span class="material-symbols-outlined">download</span> Télécharger Catalogue PDF
+</a>
+</div>
+
+<div class="flex flex-col lg:flex-row gap-10">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-72 flex-shrink-0 space-y-6">
+<!-- Search -->
+<div class="group">
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-2 font-bold uppercase tracking-wider">Recherche Équipement</label>
+<div class="relative">
+<input id="searchInput" class="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-lg px-4 py-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm" placeholder="Modèle, référence (ex: CP 160, Diesel...)" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3.5 text-outline-variant">search</span>
+</div>
+</div>
+
+<!-- Catégorie -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-5 shadow-sm">
+<h3 class="font-headline-md text-lg font-bold text-on-surface mb-4 flex items-center justify-between">
+    Catégories
+    <span class="material-symbols-outlined text-outline-variant text-sm">filter_list</span>
+</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="filter-btn form-checkbox w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox" data-filter="all" checked/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary font-medium">Tous les équipements</span>
+<span class="ml-auto text-xs text-outline-variant bg-surface-container px-2 py-0.5 rounded-full font-bold">61</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="filter-btn form-checkbox w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox" data-filter="pompes"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary font-medium">Pompes Pedrollo</span>
+<span class="ml-auto text-xs text-outline-variant bg-surface-container px-2 py-0.5 rounded-full font-bold">8</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="filter-btn form-checkbox w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox" data-filter="groupes"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary font-medium">Groupes Électrogènes</span>
+<span class="ml-auto text-xs text-outline-variant bg-surface-container px-2 py-0.5 rounded-full font-bold">6</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="filter-btn form-checkbox w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox" data-filter="pieces"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary font-medium">Pièces & Composants</span>
+<span class="ml-auto text-xs text-outline-variant bg-surface-container px-2 py-0.5 rounded-full font-bold">16</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="filter-btn form-checkbox w-5 h-5 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox" data-filter="outillage"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary font-medium">Outillage Professionnel</span>
+<span class="ml-auto text-xs text-outline-variant bg-surface-container px-2 py-0.5 rounded-full font-bold">31</span>
+</label>
+</div>
+</div>
+
+<!-- Marque -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-5 shadow-sm">
+<h3 class="font-headline-md text-lg font-bold text-on-surface mb-4">Marques Garanties</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-sm font-semibold text-primary">
+  <span>🇮🇹 Pedrollo (Italie)</span>
+  <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded">Partenaire</span>
+</div>
+<div class="flex items-center justify-between text-sm font-semibold text-on-surface-variant">
+  <span>⚡ VFM Power Gensets</span>
+  <span class="text-xs bg-surface-container px-2 py-0.5 rounded">Agrée</span>
+</div>
+<div class="flex items-center justify-between text-sm font-semibold text-on-surface-variant">
+  <span>🛠️ Professional Tools</span>
+  <span class="text-xs bg-surface-container px-2 py-0.5 rounded">Pro</span>
+</div>
+</div>
+</div>
+
+<!-- Assistance directe Card -->
+<div class="bg-brand-red text-white p-6 rounded-xl shadow-md space-y-4">
+<h4 class="font-headline-md text-lg font-bold flex items-center gap-2">
+  <span class="material-symbols-outlined">headset_mic</span> Support Devis
+</h4>
+<p class="text-xs opacity-90 leading-relaxed">Vous cherchez un modèle spécifique de pompe ou une puissance de groupe électrogène sur-mesure ?</p>
+<a href="https://wa.me/2250715416831" target="_blank" class="block text-center bg-white text-brand-red py-2.5 rounded-lg font-bold text-sm hover:bg-surface-bright transition-colors shadow">
+  💬 Demander sur WhatsApp
+</a>
+</div>
+</aside>
+
+<!-- Product Grid Area -->
+<div class="flex-grow">
+<!-- Active Filters & Sorting -->
+<div class="flex flex-wrap justify-between items-center mb-6 gap-4 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/40 shadow-sm">
+<div class="flex flex-wrap gap-2 items-center">
+<span class="text-sm text-on-surface-variant mr-2 font-medium">Disponibilité :</span>
+<span class="bg-green-100 border border-green-300 text-green-800 font-label-sm text-[11px] px-3 py-1 rounded-full font-bold flex items-center gap-1.5">
+    <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Stock permanent Abidjan
+</span>
+</div>
+<div class="flex items-center gap-3">
+<span id="searchCountBadge" class="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">61 équipements en catalogue</span>
+</div>
+</div>
+
+<!-- Grid Product Display -->
+<div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+<!-- Produit 1 : Pompe de Surface -->
+<div class="product-card bg-surface-container-lowest rounded-xl flex flex-col overflow-hidden border border-outline-variant/40 transition-all duration-300 hover:shadow-xl hover:border-primary/40 group" data-category="pompes" data-id="ped-surf-1" data-title="Pompe de Surface Centrifuge Pedrollo" data-price="Sur devis">
+<div class="p-6 bg-surface-container-low flex justify-center items-center h-64 relative group-hover:bg-surface-container-highest/20 transition-colors">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-green-100 text-green-800 border border-green-200 font-label-sm text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> En Stock Abidjan
+</span>
+</div>
+<img alt="Pompe de Surface Centrifuge Pedrollo" class="max-h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="assets/catalogue/Pompes hydrauliques/Pompe de surface.png"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-sm text-[12px] text-primary bg-primary/10 px-2 py-0.5 rounded font-bold tracking-widest uppercase">Pedrollo Italia</div>
+<span class="text-on-surface-variant text-sm font-medium">Réf: PED-SURF-01</span>
+</div>
+<h3 class="font-headline-md text-xl font-bold text-on-surface leading-tight mb-4 group-hover:text-primary transition-colors">Pompe de Surface Centrifuge</h3>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Idéale pour l'approvisionnement en eau propre, l'irrigation agricole et les systèmes d'augmentation de pression résidentiels et industriels.</p>
+<div class="grid grid-cols-2 gap-y-3 gap-x-2 mb-6 text-sm">
+<div class="border-l-2 border-primary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Usage</span>
+<span class="font-semibold text-on-surface">Surface / Distribution</span>
+</div>
+<div class="border-l-2 border-primary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Garantie</span>
+<span class="font-semibold text-on-surface">2 Ans Pedrollo</span>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<a href="contact.html#devisForm" class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface font-button text-sm py-3 px-3 rounded-lg hover:border-primary hover:text-primary transition-all font-bold text-center">Fiche Tech</a>
+<button class="btn-add-devis-pill flex-1 bg-primary text-white font-button text-sm py-3 px-3 rounded-lg hover:bg-primary-container transition-all shadow-sm font-bold flex justify-center items-center gap-1.5 cursor-pointer" data-id="ped-surf-1" data-title="Pompe de Surface Centrifuge Pedrollo" data-category="Pompes Pedrollo" data-price="Sur Devis" data-image="assets/catalogue/Pompes hydrauliques/Pompe de surface.png">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> + Devis
+</button>
+</div>
+</div>
+</div>
+
+<!-- Produit 2 : Pompe de Forage -->
+<div class="product-card bg-surface-container-lowest rounded-xl flex flex-col overflow-hidden border border-outline-variant/40 transition-all duration-300 hover:shadow-xl hover:border-primary/40 group" data-category="pompes" data-id="ped-for-2" data-title="Pompe Immergée de Forage Pedrollo" data-price="Sur devis">
+<div class="p-6 bg-surface-container-low flex justify-center items-center h-64 relative group-hover:bg-surface-container-highest/20 transition-colors">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-green-100 text-green-800 border border-green-200 font-label-sm text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> En Stock
+</span>
+</div>
+<img alt="Pompe Immergée de Forage Pedrollo" class="max-h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="assets/catalogue/Pompes hydrauliques/Pompe de forage.png"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-sm text-[12px] text-primary bg-primary/10 px-2 py-0.5 rounded font-bold tracking-widest uppercase">Pedrollo Italia</div>
+<span class="text-on-surface-variant text-sm font-medium">Réf: PED-FOR-04</span>
+</div>
+<h3 class="font-headline-md text-xl font-bold text-on-surface leading-tight mb-4 group-hover:text-primary transition-colors">Pompe Immergée de Forage 4"</h3>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Pompe submersible conçue pour la récupération d'eau dans les puits profonds et forages agricoles à haut rendement.</p>
+<div class="grid grid-cols-2 gap-y-3 gap-x-2 mb-6 text-sm">
+<div class="border-l-2 border-primary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Profondeur</span>
+<span class="font-semibold text-on-surface">Jusqu'à 150m</span>
+</div>
+<div class="border-l-2 border-primary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Inox</span>
+<span class="font-semibold text-on-surface">Corps AISI 304</span>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<a href="contact.html#devisForm" class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface font-button text-sm py-3 px-3 rounded-lg hover:border-primary hover:text-primary transition-all font-bold text-center">Fiche Tech</a>
+<button class="btn-add-devis-pill flex-1 bg-primary text-white font-button text-sm py-3 px-3 rounded-lg hover:bg-primary-container transition-all shadow-sm font-bold flex justify-center items-center gap-1.5 cursor-pointer" data-id="ped-for-2" data-title="Pompe Immergée de Forage Pedrollo" data-category="Pompes Pedrollo" data-price="Sur Devis" data-image="assets/catalogue/Pompes hydrauliques/Pompe de forage.png">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> + Devis
+</button>
+</div>
+</div>
+</div>
+
+<!-- Produit 3 : Groupe Électrogène Diesel -->
+<div class="product-card bg-surface-container-lowest rounded-xl flex flex-col overflow-hidden border border-outline-variant/40 transition-all duration-300 hover:shadow-xl hover:border-primary/40 group" data-category="groupes" data-id="ge-diesel-1" data-title="Groupe Électrogène Insonorisé Diesel VFM" data-price="Sur devis">
+<div class="p-6 bg-surface-container-low flex justify-center items-center h-64 relative group-hover:bg-surface-container-highest/20 transition-colors">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-green-100 text-green-800 border border-green-200 font-label-sm text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Dispo Sur Commande
+</span>
+</div>
+<img alt="Groupe Électrogène Diesel Insonorisé" class="max-h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="assets/catalogue/Groupes électrogènes/Groupe 1.png"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-sm text-[12px] text-brand-red bg-brand-red/10 px-2 py-0.5 rounded font-bold tracking-widest uppercase">VFM Power</div>
+<span class="text-on-surface-variant text-sm font-medium">Réf: GE-DSL-100</span>
+</div>
+<h3 class="font-headline-md text-xl font-bold text-on-surface leading-tight mb-4 group-hover:text-primary transition-colors">Groupe Électrogène Diesel Insonorisé</h3>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Alimentation de secours fiable pour usines, stations-services et hôpitaux. Capotage insonorisé et démarrage automatique ATS.</p>
+<div class="grid grid-cols-2 gap-y-3 gap-x-2 mb-6 text-sm">
+<div class="border-l-2 border-brand-red/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Puissance</span>
+<span class="font-semibold text-on-surface">50 kVA - 500 kVA</span>
+</div>
+<div class="border-l-2 border-brand-red/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Moteur</span>
+<span class="font-semibold text-on-surface">Diesel Heavy-Duty</span>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<a href="contact.html#devisForm" class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface font-button text-sm py-3 px-3 rounded-lg hover:border-primary hover:text-primary transition-all font-bold text-center">Fiche Tech</a>
+<button class="btn-add-devis-pill flex-1 bg-brand-red text-white font-button text-sm py-3 px-3 rounded-lg hover:bg-secondary transition-all shadow-sm font-bold flex justify-center items-center gap-1.5 cursor-pointer" data-id="ge-diesel-1" data-title="Groupe Électrogène Insonorisé Diesel VFM" data-category="Groupes Électrogènes" data-price="Sur Devis" data-image="assets/catalogue/Groupes électrogènes/Groupe 1.png">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> + Devis
+</button>
+</div>
+</div>
+</div>
+
+<!-- Produit 4 : Outillage de Précision -->
+<div class="product-card bg-surface-container-lowest rounded-xl flex flex-col overflow-hidden border border-outline-variant/40 transition-all duration-300 hover:shadow-xl hover:border-primary/40 group" data-category="outillage" data-id="out-pro-1" data-title="Coffret Outillage Industriel de Précision" data-price="Sur devis">
+<div class="p-6 bg-surface-container-low flex justify-center items-center h-64 relative group-hover:bg-surface-container-highest/20 transition-colors">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-green-100 text-green-800 border border-green-200 font-label-sm text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> En Stock Abidjan
+</span>
+</div>
+<img alt="Coffret Outillage Industriel VFM" class="max-h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="assets/catalogue/Outillages/Outillage 1.png"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-sm text-[12px] text-tertiary bg-tertiary/10 px-2 py-0.5 rounded font-bold tracking-widest uppercase">Pro Tools</div>
+<span class="text-on-surface-variant text-sm font-medium">Réf: OUT-PRO-88</span>
+</div>
+<h3 class="font-headline-md text-xl font-bold text-on-surface leading-tight mb-4 group-hover:text-primary transition-colors">Coffret Outillage Industriel Pro</h3>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Outillage professionnel haute résistance pour le serrage hydraulique, le câblage et la maintenance d'ateliers de précision.</p>
+<div class="grid grid-cols-2 gap-y-3 gap-x-2 mb-6 text-sm">
+<div class="border-l-2 border-tertiary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Composition</span>
+<span class="font-semibold text-on-surface">88 Pièces Chrome V.</span>
+</div>
+<div class="border-l-2 border-tertiary/50 pl-3">
+<span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider block">Norme</span>
+<span class="font-semibold text-on-surface">ISO 9001 Pro</span>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<a href="contact.html#devisForm" class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface font-button text-sm py-3 px-3 rounded-lg hover:border-primary hover:text-primary transition-all font-bold text-center">Fiche Tech</a>
+<button class="btn-add-devis-pill flex-1 bg-primary text-white font-button text-sm py-3 px-3 rounded-lg hover:bg-primary-container transition-all shadow-sm font-bold flex justify-center items-center gap-1.5 cursor-pointer" data-id="out-pro-1" data-title="Coffret Outillage Industriel de Précision" data-category="Outillage Professionnel" data-price="Sur Devis" data-image="assets/catalogue/Outillages/Outillage 1.png">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> + Devis
+</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-inverse-surface text-on-primary-fixed pt-16 pb-10 border-t border-outline/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-margin-mobile md:px-margin-desktop py-8 max-w-max-width mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-4 mb-4 bg-white p-3 rounded-xl w-max">
+<img alt="VFM Services Logo" class="h-10 object-contain" src="assets/logo.png"/>
+</div>
+<p class="font-body-md text-sm text-surface-dim opacity-80 max-w-xs leading-relaxed">
+    VFM Services Abidjan (Riviera 3, Cité ARTCI). Fourniture, installation et maintenance d'équipements hydrauliques et générateurs.
+</p>
+</div>
+<div class="flex flex-col gap-3 text-sm">
+<h4 class="font-headline-md text-base font-bold text-white uppercase tracking-wider mb-2">Navigation</h4>
+<a class="text-surface-dim hover:text-white transition-colors" href="index.html">Accueil</a>
+<a class="text-surface-dim hover:text-white transition-colors" href="apropos.html">À Propos & Vision</a>
+<a class="text-surface-dim hover:text-white transition-colors" href="catalogue.html">Catalogue Produits</a>
+<a class="text-surface-dim hover:text-white transition-colors" href="contact.html">Contact & Siège</a>
+</div>
+<div class="flex flex-col gap-3 text-sm">
+<h4 class="font-headline-md text-base font-bold text-white uppercase tracking-wider mb-2">Contact Direct</h4>
+<a class="text-brand-red font-bold hover:underline" href="tel:+2252522013724">📞 +225 25 22 01 37 24</a>
+<a class="text-surface-dim hover:text-white transition-colors" href="https://wa.me/2250715416831" target="_blank">💬 WhatsApp +225 07 15 41 68 31</a>
+<a class="text-surface-dim hover:text-white transition-colors" href="contact.html#devisForm">✉️ Demande de Cotation</a>
+</div>
+</div>
+<div class="border-t border-surface-variant/10 px-margin-mobile md:px-margin-desktop py-6 text-center text-xs text-surface-dim opacity-70">
+<p>© 2026 VFM Services. Tous Droits Réservés. Directrice Générale : Mme Virginie Konan.</p>
+</div>
+</footer>
+
+<script src="js/app.js"></script>
 </body>
-
 </html>

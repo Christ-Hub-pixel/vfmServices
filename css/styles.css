@@ -2360,3 +2360,38 @@ body.cart-drawer-open .floating-cart-btn {
     font-size: 0.8rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   SURCHARGES GLOBALES & DESIGN EXTRAORDINAIRE
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f9ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c7d3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #022b6b;
+}
+
+.product-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(2, 43, 107, 0.12) !important;
+}
+
+button:active, a:active {
+  transform: scale(0.98);
+}
+

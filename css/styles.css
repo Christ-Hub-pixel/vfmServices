@@ -2652,3 +2652,95 @@ body.cart-drawer-open .floating-cart-btn {
     font-size: 0.8rem;
   }
 }
+
+/* ==========================================================================
+   SUITE RESPONSIVE INTEGRALE (MOBILE, TABLETTE, LAPTOP, ECRAINS 2K & 4K)
+   ========================================================================== */
+
+/* ÉCRANS 2K & 4K ULTRA-LARGES (>= 1800px & >= 2560px) */
+@media (min-width: 1800px) {
+  :root {
+    --container-max-width: 1550px;
+  }
+  .container {
+    max-width: 1550px !important;
+  }
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --container-max-width: 1800px;
+  }
+  .container {
+    max-width: 1800px !important;
+  }
+  body {
+    font-size: 1.25rem;
+  }
+  .vfm-footer__container,
+  .dept-card-grid,
+  .values-grid-luxury {
+    gap: 3rem;
+  }
+}
+
+/* LAPTOPS ET DOCKING STATIONS (1200px - 1799px) */
+@media (min-width: 1200px) and (max-width: 1799px) {
+  .container {
+    max-width: 1350px;
+  }
+}
+
+/* TABLETTES ET HYBRIDES (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    max-width: 96%;
+    padding: 0 1.5rem;
+  }
+  .vfm-footer__container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .dept-card-grid,
+  .values-grid-luxury {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILES ET SMARTPHONES (320px - 767px) */
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+  .vfm-footer__container {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    text-align: center;
+  }
+  .vfm-footer__col--brand {
+    align-items: center;
+    text-align: center;
+  }
+  .vfm-footer__contact-list li {
+    justify-content: center;
+  }
+  .vfm-footer__socials {
+    justify-content: center;
+  }
+  .dept-card-grid,
+  .values-grid-luxury {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .whatsapp-float-btn {
+    bottom: 1.25rem;
+    left: 1.25rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+}

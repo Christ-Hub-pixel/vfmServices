@@ -175,25 +175,22 @@ const VFMApp = {
     const navList = document.querySelector('.nav__list');
     const navLinks = document.querySelectorAll('.nav__link');
 
-    if (!navToggle || !navList) return;
-
-    navToggle.addEventListener('click', () => {
-      const isOpen = navList.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-    });
+    if (navToggle && navList) {
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navList.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
 
     navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const linkPath = link.getAttribute('href')?.split('#')[0];
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
-        if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html') || (currentPath === 'index.html' && linkPath === 'index.html')) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+      link.addEventListener('click', () => {
+        if (navList) {
+          navList.classList.remove('open');
         }
-
-        navList.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
+        if (navToggle) {
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
       });
     });
   },

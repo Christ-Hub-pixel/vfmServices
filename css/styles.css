@@ -2868,3 +2868,73 @@ body.cart-drawer-open .floating-cart-btn {
     object-fit: cover;
   }
 }
+
+/* ADAPTATION DE LA BARRE DE NAVIGATION (HEADER & LOGO) PAR APPAREIL */
+@media (min-width: 2560px) {
+  :root {
+    --header-height: 145px;
+  }
+  .header.scrolled {
+    --header-height: 105px;
+  }
+  .header__logo-img,
+  img[alt*="Logo"] {
+    max-height: 85px !important;
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 2559px) {
+  :root {
+    --header-height: 135px;
+  }
+  .header__logo-img,
+  img[alt*="Logo"] {
+    max-height: 75px !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1799px) {
+  :root {
+    --header-height: 120px;
+  }
+  .header.scrolled {
+    --header-height: 90px;
+  }
+  .header__logo-img,
+  img[alt*="Logo"] {
+    max-height: 65px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root {
+    --header-height: 95px;
+  }
+  .header.scrolled {
+    --header-height: 80px;
+  }
+  .header__logo-img,
+  img[alt*="Logo"] {
+    max-height: 52px !important;
+  }
+  .nav__list {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-height: 75px;
+  }
+  .header.scrolled {
+    --header-height: 65px;
+  }
+  .header__logo-img,
+  img[alt*="Logo"] {
+    max-height: 44px !important;
+  }
+  .nav-toggle {
+    width: 42px;
+    height: 42px;
+  }
+}

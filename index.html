@@ -132,24 +132,26 @@
 <header class="bg-gradient-to-r from-white via-[#f4faff] to-[#e0f2ff] sticky top-0 z-50 border-b border-outline-variant/30 shadow-sm">
 <nav class="flex justify-between items-center w-full px-margin-desktop max-w-max-width mx-auto py-3">
 <div class="flex items-center gap-4">
-<img alt="Logo VFM Services" class="h-14 md:h-20 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvJDJevXy3Ulp43FF_k4TLlITvYFXEdvtkrRXyxFvnjoyQAQmU8zXdeT56B5giYr6b5o0X7uM5eD2xhyJsk4X7lSH2gX-btXHzVTEqpB-wVqJj_VLrW3_bMHFVIW9OD_q9ssZqxX0sUcCaYgHxBnUFeFT3fCnUv4JcSJOYiqGvM3cNOZ7bxZXic-oRmPosVz8pGT6xWnBBjiIvHB16MegQX-H0fPjAt7ZKiAkuY-jMrKSexvLE-uxyPng"/>
+<a href="index.html" class="flex items-center">
+  <img alt="Logo VFM Services" class="h-14 md:h-20 w-auto object-contain" src="assets/logo.png"/>
+</a>
 </div>
 <div class="hidden md:flex items-center gap-10">
-<a class="font-button text-button text-primary border-b-2 border-primary pb-1 transition-all font-bold" href="#">Accueil</a>
-<a class="font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="#">À Propos</a>
-<a class="font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="#">Catalogue</a>
-<a class="font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="#">Contact</a>
+<a class="nav__link font-button text-button text-primary border-b-2 border-primary pb-1 transition-all font-bold" href="index.html">Accueil</a>
+<a class="nav__link font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="apropos.html">À Propos</a>
+<a class="nav__link font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="catalogue.html">Catalogue</a>
+<a class="nav__link font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="contact.html">Contact</a>
 </div>
 <div class="flex items-center gap-4">
-<button class="hidden lg:flex items-center gap-2 font-button text-button bg-brand-blue-light text-primary border border-primary/20 px-5 py-2.5 rounded-full transition-all hover:bg-primary-fixed shadow-sm">
+<button id="navCartBtn" class="btn-cart-trigger hidden lg:flex items-center gap-2 font-button text-button bg-brand-blue-light text-primary border border-primary/20 px-5 py-2.5 rounded-full transition-all hover:bg-primary-fixed shadow-sm" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
 <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
                     Panier
-                    <span class="bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
+                    <span id="navCartCount" class="cart-trigger-count bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
 </button>
-<button class="font-button text-button bg-brand-red text-white px-7 py-2.5 rounded-full shadow-md hover:bg-secondary transition-all flex items-center gap-2">
+<a href="contact.html#devisForm" class="font-button text-button bg-brand-red text-white px-7 py-2.5 rounded-full shadow-md hover:bg-secondary transition-all flex items-center gap-2">
                     Soumettre une Demande
-                </button>
-<button class="md:hidden text-on-surface">
+</a>
+<button class="nav-toggle md:hidden text-on-surface" aria-label="Ouvrir le menu" aria-expanded="false">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>

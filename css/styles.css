@@ -2395,3 +2395,124 @@ button:active, a:active {
   transform: scale(0.98);
 }
 
+/* --------------------------------------------------------------------------
+   STYLE WORKFLOW D'INTERVENTION INDUSTRIELLE EN 4 ÉTAPES
+   -------------------------------------------------------------------------- */
+.workflow-section {
+  position: relative;
+  background: linear-gradient(180deg, #F8FAFF 0%, #EFF4FF 100%);
+  padding: 5rem 1.5rem;
+}
+
+.workflow-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  margin-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .workflow-timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .workflow-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workflow-step-card {
+  background: #FFFFFF;
+  border: 1px solid #C0C7D3;
+  border-top: 4px solid #005797;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(11, 28, 48, 0.04);
+}
+
+.workflow-step-card:hover {
+  transform: translateY(-6px);
+  border-top-color: #C01823;
+  box-shadow: 0 16px 30px rgba(11, 28, 48, 0.1);
+}
+
+.workflow-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(0, 87, 151, 0.1);
+  color: #005797;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  margin-bottom: 1.25rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.workflow-step-card:hover .workflow-step-badge {
+  background: #C01823;
+  color: #FFFFFF;
+}
+
+.workflow-step-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #0B1C30;
+  margin-bottom: 0.75rem;
+}
+
+.workflow-step-desc {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #414751;
+  line-height: 1.5;
+}
+
+.workflow-connector {
+  position: absolute;
+  top: 50%;
+  right: -0.75rem;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 2px;
+  background: #005797;
+  z-index: 2;
+}
+
+/* Badge Pulsant d'Astreinte */
+.pulse-badge-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(19, 115, 51, 0.1);
+  color: #137333;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  border: 1px solid rgba(19, 115, 51, 0.3);
+}
+
+.pulse-dot-green {
+  width: 8px;
+  height: 8px;
+  background: #137333;
+  border-radius: 50%;
+  animation: green-pulse-glow 1.8s infinite;
+}
+
+@keyframes green-pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(19, 115, 51, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(19, 115, 51, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(19, 115, 51, 0); }
+}
+
+

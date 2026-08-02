@@ -138,13 +138,14 @@
   height: 58px;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(0, 150, 214, 0.1) 0%, rgba(11, 76, 140, 0.12) 100%);
-  border: 1px solid rgba(0, 150, 214, 0.2);
+  border: 1px solid rgba(0, 150, 214, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.65rem;
+  color: #0096D6;
+  font-size: 1.85rem;
   margin-bottom: 1.25rem;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, color 0.35s ease;
 }
 
 .value-card-item:hover {
@@ -161,6 +162,7 @@
 .value-card-item:hover .value-icon-box {
   transform: scale(1.1) rotate(-4deg);
   background: linear-gradient(135deg, #0096D6 0%, #0B4C8C 100%);
+  color: #FFFFFF;
 }
 
 .dept-card-grid {

@@ -47,8 +47,33 @@ const VFMApp = {
       const dots = heroCarousel.querySelectorAll('.hero-carousel__dot');
       const prevBtn = document.getElementById('heroPrevBtn');
       const nextBtn = document.getElementById('heroNextBtn');
-      let currentIndex = 0;
-      let timer = null;
+      const slideCaptions = [
+        {
+          badge: '🛠️ Matériel Professionnel Certifié',
+          title: 'Outillage & Équipements de Chantier',
+          sub: 'Outillage & matériels industriels haute résistance pour le forage et le BTP.'
+        },
+        {
+          badge: '🌊 Partenaire Officiel Pedrollo',
+          title: 'Pompes Hydrauliques & Surpresseurs',
+          sub: 'Électropompes centrifuges, pompes immergées de forage d\'origine garantie.'
+        },
+        {
+          badge: '⚡ Autonomie Énergétique',
+          title: 'Groupes Électrogènes & Inverseurs ATS',
+          sub: 'Groupes électrogènes diesel insonorisés et armoires d\'inverseur automatique ATS.'
+        },
+        {
+          badge: '🔧 Pièces d\'Origine Garanties',
+          title: 'Composants & Pièces Détachées',
+          sub: 'Alternateurs, régulateurs AVR, filtres et pièces de rechange d\'origine.'
+        },
+        {
+          badge: '🤝 Support Technique Abidjan',
+          title: 'Installation & Support Technique VFM',
+          sub: 'Équipe d\'ingénieurs qualifiés en Côte d\'Ivoire pour l\'installation et le SAV.'
+        }
+      ];
 
       const goToSlide = (index) => {
         currentIndex = (index + slides.length) % slides.length;
@@ -66,6 +91,15 @@ const VFMApp = {
         dots.forEach((dot, idx) => {
           dot.classList.toggle('active', idx === currentIndex);
         });
+
+        const infoBadge = document.getElementById('heroInfoBadge');
+        const infoTitle = document.getElementById('heroInfoTitle');
+        const infoSubtitle = document.getElementById('heroInfoSubtitle');
+        if (infoBadge && infoTitle && infoSubtitle && slideCaptions[currentIndex]) {
+          infoBadge.innerHTML = slideCaptions[currentIndex].badge;
+          infoTitle.textContent = slideCaptions[currentIndex].title;
+          infoSubtitle.textContent = slideCaptions[currentIndex].sub;
+        }
       };
 
       const startAutoPlay = () => {

@@ -102,8 +102,21 @@
           <button class="hero-carousel__btn hero-carousel__btn--next" id="heroNextBtn" aria-label="Suivant">❯</button>
         </div>
 
-        <!-- BARRE DE PAGINATION NORMALE EN DESSOUS SANS CHEVAUCHEMENT -->
-        <div class="hero-carousel__bottom-bar">
+        <!-- BANDEAU D'INFORMATION DYNAMIQUE INGENIEUX SOUS L'IMAGE (TEXTE + BADGE + DYNAMIC SYNCHRO) -->
+        <div class="hero-carousel__info-card">
+          <div class="hero-carousel__info-content" id="heroInfoContent">
+            <span class="badge badge--red" id="heroInfoBadge" style="margin-bottom: 0.35rem; display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem;">
+              🛠️ Matériel Professionnel Certifié
+            </span>
+            <h2 id="heroInfoTitle" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin: 0.2rem 0;">
+              Outillage & Équipements de Chantier
+            </h2>
+            <p id="heroInfoSubtitle" style="color: rgba(255, 255, 255, 0.82); font-size: 0.85rem; margin: 0;">
+              Outillage & matériels industriels haute résistance pour le forage et le BTP.
+            </p>
+          </div>
+
+          <!-- PAGINATION PUCES INTÉGRÉES SANS AUCUN CHEVAUCHEMENT -->
           <div class="hero-carousel__dots" id="heroDots">
             <span class="hero-carousel__dot active" data-slide="0"></span>
             <span class="hero-carousel__dot" data-slide="1"></span>

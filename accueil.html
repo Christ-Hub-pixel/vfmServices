@@ -142,10 +142,10 @@
 <a class="nav__link font-button text-button text-tertiary hover:text-primary transition-colors duration-200 font-semibold" href="contact.html">Contact</a>
 </div>
 <div class="flex items-center gap-4">
-<button class="hidden lg:flex items-center gap-2 font-button text-button bg-brand-blue-light text-primary border border-primary/20 px-5 py-2.5 rounded-full transition-all hover:bg-primary-fixed shadow-sm">
+<button id="navCartBtn" class="btn-cart-trigger hidden lg:flex items-center gap-2 font-button text-button bg-brand-blue-light text-primary border border-primary/20 px-5 py-2.5 rounded-full transition-all hover:bg-primary-fixed shadow-sm" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
 <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
                     Panier
-                    <span class="bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
+                    <span id="navCartCount" class="cart-trigger-count bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">0</span>
 </button>
 <a href="contact.html#devisForm" class="hidden sm:inline-flex font-button text-button bg-brand-red text-white px-4 sm:px-6 py-2 rounded-full shadow-md hover:bg-secondary transition-all items-center gap-2 text-xs sm:text-sm">
                     Soumettre une Demande
@@ -549,4 +549,5 @@
             });
         });
     </script>
+    <script src="js/app.js"></script>
 </body></html>

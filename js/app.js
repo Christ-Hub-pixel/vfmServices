@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ==========================================================================
  * VFM SERVICE - MODULE JAVASCRIPT PRINCIPAL (SYSTÈME DE PANIER & EMAIL DEVIS)
  * Auteur: Antigravity AI - Expert Engineering

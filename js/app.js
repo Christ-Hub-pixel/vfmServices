@@ -231,9 +231,21 @@ const VFMApp = {
     });
 
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
         navLists.forEach(navList => navList.classList.remove('open'));
         navToggles.forEach(navToggle => navToggle.setAttribute('aria-expanded', 'false'));
+
+        const targetHref = link.getAttribute('href');
+        if (targetHref && !targetHref.startsWith('#') && !targetHref.startsWith('mailto:') && !targetHref.startsWith('tel:') && !targetHref.startsWith('javascript:')) {
+          const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+          if (targetHref !== currentPath) {
+            e.preventDefault();
+            document.body.classList.add('page-transition-out');
+            setTimeout(() => {
+              window.location.href = targetHref;
+            }, 250);
+          }
+        }
       });
     });
   },

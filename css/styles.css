@@ -3678,3 +3678,89 @@ body.cart-drawer-open .floating-cart-btn {
   }
 }
 
+
+/* ==========================================================================
+   ANIMATIONS HIGH-PERFORMANCE & MICRO-INTERACTIONS EXPERT (VFM SUITE)
+   ========================================================================== */
+
+/* 1. PULSATION DU BADGE DEVIS EXPRESS ET SÉCURITÉ */
+@keyframes badgePulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(227, 30, 36, 0.4); }
+  70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(227, 30, 36, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(227, 30, 36, 0); }
+}
+
+.badge--red {
+  animation: badgePulse 2.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. SURVOL DYNAMIQUE DES CARTES PRODUITS ET SERVICES (ELEVATION & GLOW) */
+.product-card, .service-card, .vfm-feature-card, .catalogue-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
+}
+
+.product-card:hover, .service-card:hover, .vfm-feature-card:hover, .catalogue-card:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  box-shadow: 0 20px 40px -10px rgba(11, 76, 140, 0.18), 0 0 20px rgba(0, 150, 214, 0.12) !important;
+}
+
+/* 3. EFFET DE GLISSEMENT DE L'ICÔNE DANS LES BOUTONS SURVOLÉS */
+.btn-submit-devis, .btn--accent, .btn--primary, .btn-cart-trigger {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-submit-devis .material-symbols-outlined,
+.btn--accent .material-symbols-outlined,
+.btn--primary .material-symbols-outlined {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-submit-devis:hover .material-symbols-outlined,
+.btn--accent:hover .material-symbols-outlined,
+.btn--primary:hover .material-symbols-outlined {
+  transform: translateX(4px) scale(1.1);
+}
+
+/* 4. TRANSITION DE ZOOMS DOUX SUR LES IMAGES PRODUIT AU SURVOL */
+.product-card__img-wrapper img, .catalogue-card__img-wrapper img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover .product-card__img-wrapper img,
+.catalogue-card:hover .catalogue-card__img-wrapper img {
+  transform: scale(1.07) rotate(0.5deg);
+}
+
+/* 5. FONDU & GLISSEMENT FLUIDE DU PANIER / DRAWER */
+@keyframes cartDrawerSlide {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.cart-drawer.active {
+  animation: cartDrawerSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 6. TRANSITION FLUIDE ET ÉLÉGANTE À CHAQUE CHARGEMENT DE PAGE (PAGE FADE-IN) */
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Transition de sortie douce sur les liens de navigation */
+.page-transition-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+

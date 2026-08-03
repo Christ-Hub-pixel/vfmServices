@@ -46,7 +46,8 @@ const VFMApp = {
       const slides = heroCarousel.querySelectorAll('.hero-carousel__slide');
       const dots = heroCarousel.querySelectorAll('.hero-carousel__dot');
       const prevBtn = document.getElementById('heroPrevBtn');
-      const nextBtn = document.getElementById('heroNextBtn');
+      let currentIndex = 0;
+      let timer = null;
       const slideCaptions = [
         {
           badge: '🛠️ Matériel Professionnel Certifié',

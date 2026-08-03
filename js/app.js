@@ -769,41 +769,16 @@ const VFMCart = {
           </div>
 
           <div id="cartFooter" class="cart-drawer__footer">
-            <form id="cartCheckoutForm">
-              <h4 class="cart-footer__title">
-                ✉️ Envoyer votre demande de devis
-              </h4>
-              <div class="cart-form-group">
-                <input type="text" id="cartClientName" class="cart-form-input" placeholder="Votre Nom complet *" required>
-              </div>
-              <div class="cart-form-group">
-                <div class="phone-input-group">
-                  <select id="cartCountryCode" class="phone-country-select" title="Indicatif pays">
-                    <option value="+225" selected>🇨🇮 +225</option>
-                    <option value="+226">🇧🇫 +226</option>
-                    <option value="+223">🇲🇱 +223</option>
-                    <option value="+221">🇸🇳 +221</option>
-                    <option value="+233">🇬🇭 +233</option>
-                    <option value="+228">🇹🇬 +228</option>
-                    <option value="+229">🇧🇯 +229</option>
-                  </select>
-                  <input type="tel" id="cartClientPhone" class="cart-form-input phone-with-select" placeholder="07 15 41 68 31 *" required>
-                </div>
-              </div>
-              <div class="cart-form-group">
-                <input type="email" id="cartClientEmail" class="cart-form-input" placeholder="Votre Email (facultatif)">
-              </div>
-              <div class="cart-form-group">
-                <textarea id="cartClientNotes" class="cart-form-input cart-form-textarea" placeholder="Remarques ou spécifications particulières..."></textarea>
-              </div>
-              
-              <button type="submit" class="btn-checkout-email">
-                ✉️ Valider mon Panier & Aller au Formulaire
-              </button>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+              <a href="contact.html#devisForm" id="cartValidateBtn" class="btn-checkout-email">
+                <span class="material-symbols-outlined text-[20px]">send</span>
+                Valider mon Panier & Demander mon Devis
+              </a>
               <button type="button" id="cartWhatsAppBtn" class="btn-whatsapp-devis">
-                💬 Demander par WhatsApp Direct
+                <span class="material-symbols-outlined text-[20px]">chat</span>
+                Commander par WhatsApp Direct
               </button>
-            </form>
+            </div>
           </div>
         </div>
 
@@ -1087,25 +1062,14 @@ const VFMCart = {
       return;
     }
 
-    const { name, phone, email, notes } = this.getCheckoutData();
-
-    if (!name || !phone) {
-      alert('Veuillez renseigner votre nom et votre numéro de téléphone avant d\'envoyer sur WhatsApp.');
-      return;
-    }
-
     let itemsList = this.items.map((item, index) => 
-      `• *${item.title}* (x${item.quantity})`
+      `• *${item.title}* (Quantité : ${item.quantity})`
     ).join('\n');
 
     const whatsappMessage = `*DEMANDE DE DEVIS VFM SERVICE*\n\n` +
-                            `Bonjour, je souhaite obtenir un devis pour :\n\n` +
+                            `Bonjour VFM Service, je souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n` +
                             `${itemsList}\n\n` +
-                            `*Client :* ${name}\n` +
-                            `*Téléphone :* ${phone}\n` +
-                            (email ? `*Email :* ${email}\n` : '') +
-                            (notes ? `*Remarques :* ${notes}\n` : '') +
-                            `\nMerci !`;
+                            `Merci de me recontacter avec votre meilleure offre tarifaire.`;
 
     const waUrl = `https://wa.me/2250715416831?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(waUrl, '_blank');

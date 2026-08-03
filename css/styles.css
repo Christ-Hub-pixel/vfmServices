@@ -980,18 +980,26 @@ ul, ol {
   }
 }
 
+.hero-carousel__bottom-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .hero-carousel__dots {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  inset: auto;
+  transform: none;
   display: flex;
   gap: 0.6rem;
   z-index: 10;
-  background: rgba(7, 18, 30, 0.45);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);
   padding: 0.4rem 0.85rem;
   border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .hero-carousel__dot {

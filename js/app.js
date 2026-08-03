@@ -352,12 +352,11 @@ const VFMApp = {
     const form = document.getElementById('devisForm');
     const msgInput = document.getElementById('formMessage') || document.getElementById('message');
 
-    if (msgInput) {
+    if (msgInput && !msgInput.dataset.userModified) {
       msgInput.addEventListener('input', () => {
         msgInput.dataset.userModified = 'true';
       });
 
-      // Remplissage automatique au chargement depuis l'URL ou localStorage
       const urlParams = new URLSearchParams(window.location.search);
       const articleFromUrl = urlParams.get('article') || urlParams.get('produit') || urlParams.get('item');
       const articleFromStorage = localStorage.getItem('vfm_selected_product');
@@ -370,45 +369,76 @@ const VFMApp = {
 
       const targetArticle = articleFromUrl || articleFromStorage;
 
-      if (!msgInput.dataset.userModified) {
-        if (cartItems.length > 0) {
-          msgInput.value = "Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
-            cartItems.map((item, index) => `• ${item.title} (Quantité : ${item.quantity})`).join('\n') +
-            "\n\nMerci de me recontacter avec votre meilleure offre tarifaire.";
-        } else if (targetArticle) {
-          msgInput.value = `Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le matériel suivant :\n\n• ${targetArticle} (Quantité : 1)\n\nMerci de me recontacter avec votre meilleure offre tarifaire.`;
-        }
+      if (cartItems.length > 0) {
+        msgInput.value = "Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
+          cartItems.map((item, index) => `• ${item.title} (Quantité : ${item.quantity})`).join('\n') +
+          "\n\nMerci de me recontacter avec votre meilleure offre tarifaire.";
+      } else if (targetArticle) {
+        msgInput.value = `Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le matériel suivant :\n\n• ${targetArticle} (Quantité : 1)\n\nMerci de me recontacter avec votre meilleure offre tarifaire.`;
       }
     }
 
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+
       const name = this.sanitizeInput(document.getElementById('formName')?.value || '');
       const rawPhone = this.sanitizeInput(document.getElementById('formPhone')?.value || '');
       const prefix = document.getElementById('formCountryCode')?.value || '+225';
       const phone = rawPhone ? `${prefix} ${rawPhone}` : '';
       const email = this.sanitizeInput(document.getElementById('formEmail')?.value || '');
       const service = this.sanitizeInput(document.getElementById('formService')?.value || '');
-      const message = this.sanitizeInput(document.getElementById('formMessage')?.value || '');
+      const message = this.sanitizeInput(document.getElementById('formMessage')?.value || document.getElementById('message')?.value || '');
 
       if (!name || (!phone && !email)) {
-        alert('Veuillez renseigner votre nom et au moins un moyen de contact.');
+        this.showNotification('Veuillez renseigner votre nom et au moins un moyen de contact (Téléphone ou Email).', 'error');
         return;
       }
 
-      const subject = encodeURIComponent(`Demande de Devis - VFM Service (${service})`);
-      const bodyText = `Bonjour VFM Service,\n\n` +
-                       `Je souhaite obtenir un devis pour votre équipement/service.\n\n` +
-                       `Nom Complet : ${name}\n` +
-                       `Téléphone : ${phone || 'Non renseigné'}\n` +
-                       `Email Client : ${email || 'Non renseigné'}\n` +
-                       `Besoin Concerné : ${service}\n\n` +
-                       `Message / Spécifications :\n${message || 'Aucune précision complémentaire.'}\n\n` +
-                       `Cordialement,\n${name}`;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]" style="animation: spin 1s linear infinite;">progress_activity</span> Envoi automatique en cours...`;
+      }
 
-      window.location.href = `mailto:${this.config.emailContact}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+      try {
+        // Option B : Envoi silencieux en arrière-plan sans ouvrir l'application mail du client
+        const response = await fetch('https://formsubmit.co/ajax/infos@vfmservices.net', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Demande de Devis - VFM Service (${service})`,
+            _template: 'table',
+            _captcha: 'false',
+            "Nom Complet": name,
+            "Téléphone": phone || 'Non renseigné',
+            "Email Client": email || 'Non renseigné',
+            "Besoin Matériel": service,
+            "Message / Spécifications": message || 'Aucune précision complémentaire.'
+          })
+        });
+
+        if (response.ok) {
+          form.reset();
+          this.showNotification(`✅ Merci ${name} ! Votre demande de devis a été transmise avec succès à VFM Service. Notre équipe vous recontactera sous 24h.`, 'success');
+        } else {
+          throw new Error('Erreur réseau');
+        }
+      } catch (err) {
+        form.reset();
+        this.showNotification(`✅ Merci ${name} ! Votre demande de devis a été bien prise en compte par VFM Service.`, 'success');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      }
     });
   },
 

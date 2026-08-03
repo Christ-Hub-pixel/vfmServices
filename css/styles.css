@@ -493,10 +493,12 @@ ul, ol {
   letter-spacing: 0.05em;
 }
 
-.badge--red {
-  background: rgba(227, 30, 36, 0.1);
-  color: var(--color-accent);
-  border: 1px solid rgba(227, 30, 36, 0.2);
+.badge--red,
+#heroInfoBadge {
+  background: linear-gradient(135deg, #E31E24 0%, #C4151A 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(227, 30, 36, 0.4) !important;
 }
 
 .badge--blue {

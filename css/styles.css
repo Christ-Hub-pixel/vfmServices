@@ -2903,6 +2903,35 @@ body.cart-drawer-open .floating-cart-btn {
   color: #0F172A;
 }
 
+.contact-info-card {
+  background: linear-gradient(135deg, #0B1928 0%, #07121E 100%) !important;
+  border-radius: 22px !important;
+  padding: 2.25rem !important;
+  border: 1px solid rgba(0, 150, 214, 0.3) !important;
+  box-shadow: 0 25px 50px rgba(7, 18, 30, 0.25) !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-info-card h2 {
+  color: #FFFFFF !important;
+}
+
+.contact-info-card .contact-item__label {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.contact-info-card .contact-item__value,
+.contact-info-card .contact-item__value a {
+  color: #FFFFFF !important;
+}
+
+.contact-info-card .contact-item__value a:hover {
+  color: #0096D6 !important;
+}
+
 .contact-form {
   background: linear-gradient(135deg, #0B1928 0%, #07121E 100%) !important;
   border-radius: 22px !important;

@@ -2673,6 +2673,8 @@ body.cart-drawer-open .floating-cart-btn {
     flex-direction: column;
     text-align: center;
   }
+}
+
 /* --------------------------------------------------------------------------
    FORMULAIRE DE DEVIS EXECUTIVE PREMIUM
    -------------------------------------------------------------------------- */
@@ -3384,3 +3386,4 @@ body.cart-drawer-open .floating-cart-btn {
     font-size: 0.8rem !important;
   }
 }
+

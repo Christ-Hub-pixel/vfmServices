@@ -2676,19 +2676,81 @@ body.cart-drawer-open .floating-cart-btn {
 /* --------------------------------------------------------------------------
    FORMULAIRE DE DEVIS EXECUTIVE PREMIUM
    -------------------------------------------------------------------------- */
-.contact-form {
-  background: #FFFFFF !important;
-  border-radius: 22px !important;
-  padding: 2.25rem !important;
-  border: 1px solid rgba(0, 150, 214, 0.2) !important;
-  box-shadow: 0 20px 45px rgba(7, 18, 30, 0.08) !important;
-  position: relative;
+/* BADGES D'ICÔNES DE CONTACT HAUTE DÉFINITION */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
 }
 
-.form-row-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+.contact-item__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-item__icon .material-symbols-outlined {
+  font-size: 1.4rem;
+}
+
+.contact-item__icon--location {
+  background: linear-gradient(135deg, rgba(0, 150, 214, 0.12) 0%, rgba(11, 76, 140, 0.18) 100%) !important;
+  color: #0096D6 !important;
+  border: 1px solid rgba(0, 150, 214, 0.25) !important;
+}
+
+.contact-item__icon--phone {
+  background: linear-gradient(135deg, rgba(11, 76, 140, 0.12) 0%, rgba(7, 18, 30, 0.18) 100%) !important;
+  color: #0B4C8C !important;
+  border: 1px solid rgba(11, 76, 140, 0.25) !important;
+}
+
+.contact-item__icon--whatsapp {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.14) 0%, rgba(18, 140, 126, 0.22) 100%) !important;
+  color: #25D366 !important;
+  border: 1px solid rgba(37, 211, 102, 0.3) !important;
+}
+
+.contact-item__icon--email {
+  background: linear-gradient(135deg, rgba(227, 30, 36, 0.12) 0%, rgba(196, 21, 26, 0.18) 100%) !important;
+  color: #E31E24 !important;
+  border: 1px solid rgba(227, 30, 36, 0.25) !important;
+}
+
+.contact-item:hover .contact-item__icon {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.contact-item__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+  margin-bottom: 0.15rem;
+}
+
+.contact-item__value {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0B1928;
+}
+
+.contact-item__value a {
+  color: #0B1928;
+  transition: color 0.2s ease;
+}
+
+.contact-item__value a:hover {
+  color: #0096D6;
 }
 
 .form-input-wrapper {

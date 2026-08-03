@@ -119,22 +119,32 @@
           </div>
 
           <!-- Formulaire de Devis Express (Email & WhatsApp) -->
-          <form id="devisForm" class="contact-form" style="background: #FFFFFF; border: 1px solid var(--color-border);"
-            aria-label="Formulaire de Devis">
-            <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 1.5rem;">
-              Demander un Devis Gratuit
-            </h3>
-
-            <div class="form-group">
-              <label for="formName" class="form-label" style="color: var(--color-text-main);">Nom Complet *</label>
-              <input type="text" id="formName" class="form-input"
-                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
-                placeholder="Ex: Kouassi Yao" required>
+          <form id="devisForm" class="contact-form" aria-label="Formulaire de Devis">
+            <div style="margin-bottom: 1.5rem;">
+              <span class="badge badge--red" style="margin-bottom: 0.5rem;">
+                <span class="material-symbols-outlined text-[15px]">electric_bolt</span> Devis Express
+              </span>
+              <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--color-primary-dark); margin: 0.2rem 0;">
+                Demander un Devis Gratuit
+              </h3>
+              <p style="color: var(--color-text-muted); font-size: 0.88rem; margin: 0;">
+                Recevez votre proposition tarifaire détaillée sous 24h.
+              </p>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <!-- CHAMP NOM -->
+            <div class="form-group">
+              <label for="formName" class="form-label" style="color: var(--color-text-main); font-weight: 700;">Nom Complet *</label>
+              <div class="form-input-wrapper">
+                <span class="material-symbols-outlined">person</span>
+                <input type="text" id="formName" class="form-input" placeholder="Ex: Kouassi Yao" required>
+              </div>
+            </div>
+
+            <!-- TÉLÉPHONE & EMAIL -->
+            <div class="form-row-2col">
               <div class="form-group">
-                <label for="formPhone" class="form-label" style="color: var(--color-text-main);">Téléphone *</label>
+                <label for="formPhone" class="form-label" style="color: var(--color-text-main); font-weight: 700;">Téléphone *</label>
                 <div class="phone-input-group">
                   <select id="formCountryCode" class="phone-country-select" title="Indicatif pays">
                     <option value="+225" selected>🇨🇮 +225</option>
@@ -145,42 +155,50 @@
                     <option value="+228">🇹🇬 +228</option>
                     <option value="+229">🇧🇯 +229</option>
                   </select>
-                  <input type="tel" id="formPhone" class="form-input phone-with-select"
-                    style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
-                    placeholder="07 15 41 68 31" required>
+                  <div class="form-input-wrapper" style="flex: 1;">
+                    <span class="material-symbols-outlined">call</span>
+                    <input type="tel" id="formPhone" class="form-input phone-with-select" placeholder="07 15 41 68 31" required>
+                  </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="formEmail" class="form-label" style="color: var(--color-text-main);">Votre Email</label>
-                <input type="email" id="formEmail" class="form-input"
-                  style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
-                  placeholder="Ex: contact@client.com">
+                <label for="formEmail" class="form-label" style="color: var(--color-text-main); font-weight: 700;">Votre Email</label>
+                <div class="form-input-wrapper">
+                  <span class="material-symbols-outlined">mail</span>
+                  <input type="email" id="formEmail" class="form-input" placeholder="Ex: contact@client.com">
+                </div>
               </div>
             </div>
 
+            <!-- BESOIN MATÉRIEL -->
             <div class="form-group">
-              <label for="formService" class="form-label" style="color: var(--color-text-main);">Besoin Matériel</label>
-              <select id="formService" class="form-select"
-                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);">
-                <option value="Pompe Hydraulique Pedrollo">Pompe Hydraulique Pedrollo</option>
-                <option value="Groupe Électrogène">Groupe Électrogène</option>
-                <option value="Outillage & Pièces détachées">Outillage & Pièces détachées</option>
-                <option value="Installation / Maintenance">Installation / Maintenance</option>
-              </select>
+              <label for="formService" class="form-label" style="color: var(--color-text-main); font-weight: 700;">Besoin Matériel</label>
+              <div class="form-input-wrapper">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <select id="formService" class="form-select">
+                  <option value="Pompe Hydraulique Pedrollo">Pompe Hydraulique Pedrollo</option>
+                  <option value="Groupe Électrogène">Groupe Électrogène</option>
+                  <option value="Outillage & Pièces détachées">Outillage & Pièces détachées</option>
+                  <option value="Installation / Maintenance">Installation / Maintenance</option>
+                </select>
+              </div>
             </div>
 
+            <!-- MESSAGE -->
             <div class="form-group">
-              <label for="formMessage" class="form-label" style="color: var(--color-text-main);">Message /
-                Spécifications</label>
-              <textarea id="formMessage" class="form-textarea"
-                style="color: var(--color-text-main); border-color: var(--color-border); background: var(--color-bg);"
-                placeholder="Précisez votre besoin (puissance, débit, urgence...)"></textarea>
+              <label for="formMessage" class="form-label" style="color: var(--color-text-main); font-weight: 700;">Message / Spécifications</label>
+              <div class="form-input-wrapper" style="align-items: flex-start;">
+                <span class="material-symbols-outlined" style="margin-top: 0.75rem;">description</span>
+                <textarea id="formMessage" class="form-textarea" rows="3" placeholder="Précisez votre besoin (puissance, débit, urgence...)"></textarea>
+              </div>
             </div>
 
-            <div style="margin-top: 1.25rem;">
-              <button type="submit" class="btn btn--primary" style="width: 100%; font-size: 1.05rem; padding: 0.9rem;">
-                ✉️ Soumettre la demande
+            <!-- BOUTON DE SOUMISSION RED VFM -->
+            <div style="margin-top: 1.5rem;">
+              <button type="submit" class="btn-submit-devis">
+                <span class="material-symbols-outlined text-[20px]">send</span>
+                Soumettre la demande
               </button>
             </div>
           </form>

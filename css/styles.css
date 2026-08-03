@@ -2673,6 +2673,121 @@ body.cart-drawer-open .floating-cart-btn {
     flex-direction: column;
     text-align: center;
   }
+/* --------------------------------------------------------------------------
+   FORMULAIRE DE DEVIS EXECUTIVE PREMIUM
+   -------------------------------------------------------------------------- */
+.contact-form {
+  background: #FFFFFF !important;
+  border-radius: 22px !important;
+  padding: 2.25rem !important;
+  border: 1px solid rgba(0, 150, 214, 0.2) !important;
+  box-shadow: 0 20px 45px rgba(7, 18, 30, 0.08) !important;
+  position: relative;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.form-input-wrapper .material-symbols-outlined {
+  position: absolute;
+  left: 0.9rem;
+  color: #0096D6;
+  font-size: 1.2rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.form-input-wrapper .form-input,
+.form-input-wrapper .form-select,
+.form-input-wrapper .form-textarea {
+  padding-left: 2.75rem !important;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+.phone-country-select {
+  width: 100% !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #CBD5E1 !important;
+  background: #F8FAFC !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 0.92rem !important;
+  color: #0F172A !important;
+  transition: all 0.25s ease !important;
+  font-family: inherit !important;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+.phone-country-select:focus {
+  border-color: #0096D6 !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 0 0 4px rgba(0, 150, 214, 0.15) !important;
+  outline: none !important;
+}
+
+.phone-input-group {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.phone-country-select {
+  width: 110px !important;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.btn-submit-devis {
+  width: 100%;
+  background: linear-gradient(135deg, #E31E24 0%, #C4151A 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 0.9rem 1.75rem !important;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  box-shadow: 0 8px 25px rgba(227, 30, 36, 0.35) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-submit-devis:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 14px 32px rgba(227, 30, 36, 0.48) !important;
+}
+
+@media (max-width: 640px) {
+  .contact-form {
+    padding: 1.35rem 1rem !important;
+    border-radius: 16px !important;
+  }
+  .form-row-2col {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .phone-country-select {
+    width: 98px !important;
+    padding: 0.65rem 0.4rem !important;
+    font-size: 0.85rem !important;
+  }
 }
 
 /* --------------------------------------------------------------------------

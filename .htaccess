@@ -1,0 +1,43 @@
+# ==============================================================================
+# SÉCURITÉ & PERFORMANCE OPTIMALE - VFM SERVICES
+# ==============================================================================
+
+# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 2. EN-TÊTES DE SÉCURITÉ AVANCÉS (PROTECTION ANTI-HACKING / ANTI-XSS)
+<IfModule mod_headers.c>
+  # Empêcher l'intégration du site dans un iframe externe (Anti-Clickjacking)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Forcer la vérification du type de contenu MIME (Anti-Sniffing)
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Protection active contre le Scripting Inter-site (Anti-XSS Filter)
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Règle de transmission sécurisée du Referrer
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Désactiver la divulgation d'informations du serveur
+  Header unset Server
+  Header unset X-Powered-By
+</IfModule>
+
+# 3. MASQUER L'EXPLORATION DES DOSSIERS (ANTI-ESPIONNAGE)
+Options -Indexes
+
+# 4. SÉCURITÉ DES FICHIERS SENSIBLES
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# 5. COMPRESSION GZIP POUR UN CHARGEMENT ULTRA-RAPIDE
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>

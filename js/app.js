@@ -394,6 +394,14 @@ const VFMApp = {
       const service = this.sanitizeInput(document.getElementById('formService')?.value || '');
       const message = this.sanitizeInput(document.getElementById('formMessage')?.value || document.getElementById('message')?.value || '');
 
+      // Sécurité Anti-Spam Honeypot : Bloquer les robots automatiques
+      const honey = document.getElementById('formHoney')?.value || '';
+      if (honey) {
+        form.reset();
+        this.showSuccessModal({ name, phone, email, service, message });
+        return;
+      }
+
       if (!name || (!phone && !email)) {
         this.showNotification('Veuillez renseigner votre nom et au moins un moyen de contact (Téléphone ou Email).', 'error');
         return;

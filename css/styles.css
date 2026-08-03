@@ -2904,11 +2904,13 @@ body.cart-drawer-open .floating-cart-btn {
 }
 
 .contact-info-card {
-  background: linear-gradient(135deg, #0B4C8C 0%, #083765 100%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(238, 246, 255, 0.75) 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   border-radius: 22px !important;
   padding: 2.25rem !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 20px 45px rgba(11, 76, 140, 0.3) !important;
+  border: 1.5px solid rgba(0, 150, 214, 0.25) !important;
+  box-shadow: 0 20px 45px rgba(0, 150, 214, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2916,20 +2918,22 @@ body.cart-drawer-open .floating-cart-btn {
 }
 
 .contact-info-card h2 {
-  color: #FFFFFF !important;
+  color: #0B4C8C !important;
 }
 
 .contact-info-card .contact-item__label {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: #64748B !important;
+  font-weight: 600 !important;
 }
 
 .contact-info-card .contact-item__value,
 .contact-info-card .contact-item__value a {
-  color: #FFFFFF !important;
+  color: #0B1928 !important;
+  font-weight: 700 !important;
 }
 
 .contact-info-card .contact-item__value a:hover {
-  color: #60A5FA !important;
+  color: #0096D6 !important;
 }
 
 .contact-form {

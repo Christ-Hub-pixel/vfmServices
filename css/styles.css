@@ -2718,10 +2718,29 @@ body.cart-drawer-open .floating-cart-btn {
   border: 1px solid rgba(37, 211, 102, 0.3) !important;
 }
 
-.contact-item__icon--email {
-  background: linear-gradient(135deg, rgba(227, 30, 36, 0.12) 0%, rgba(196, 21, 26, 0.18) 100%) !important;
-  color: #E31E24 !important;
-  border: 1px solid rgba(227, 30, 36, 0.25) !important;
+.contact-form {
+  background: linear-gradient(135deg, #0B1928 0%, #07121E 100%) !important;
+  border-radius: 22px !important;
+  padding: 2.25rem !important;
+  border: 1px solid rgba(0, 150, 214, 0.3) !important;
+  box-shadow: 0 25px 50px rgba(7, 18, 30, 0.25) !important;
+  position: relative;
+}
+
+.contact-form h3 {
+  color: #FFFFFF !important;
+}
+
+.contact-form p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.contact-form .form-label {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  margin-bottom: 0.4rem !important;
+  display: block !important;
 }
 
 .contact-item:hover .contact-item__icon {

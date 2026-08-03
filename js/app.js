@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 const VFMApp = {
   config: {
-    emailContact: 'globaltechsynergie@gmail.com',
+    emailContact: 'infos@vfmservices.net',
     whatsappNumber: '2250715416831',
   },
 

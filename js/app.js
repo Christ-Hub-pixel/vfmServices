@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 const VFMApp = {
   config: {
-    emailContact: 'infos@vfmservices.net',
+    emailContact: 'globaltechsynergie@gmail.com',
     whatsappNumber: '2250715416831',
   },
 
@@ -406,7 +406,7 @@ const VFMApp = {
 
       try {
         // Option B : Envoi silencieux en arrière-plan sans ouvrir l'application mail du client
-        const response = await fetch('https://formsubmit.co/ajax/infos@vfmservices.net', {
+        const response = await fetch(`https://formsubmit.co/ajax/${this.config.emailContact}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

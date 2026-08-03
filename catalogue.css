@@ -3,11 +3,12 @@
    ========================================================================== */
 @import url('css/styles.css');
 
-.catalogue-header {
-  background: radial-gradient(circle at 50% 0%, rgba(0, 150, 214, 0.15) 0%, transparent 70%),
-              var(--color-primary-dark);
+.catalogue-header,
+.catalogue-hero-header {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 150, 214, 0.25) 0%, transparent 70%),
+              linear-gradient(180deg, #07121E 0%, #0B4C8C 100%);
   color: #FFFFFF;
-  padding: 6rem 0 3.5rem 0;
+  padding: 8.5rem 0 3.5rem 0;
   text-align: center;
 }
 

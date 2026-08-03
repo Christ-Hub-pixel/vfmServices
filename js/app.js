@@ -199,12 +199,15 @@ const VFMApp = {
   },
 
   setActiveNavLink() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav__link');
+    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    if (currentPath === '' || currentPath === 'accueil.html') {
+      currentPath = 'index.html';
+    }
 
+    const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
       const linkPath = link.getAttribute('href').split('#')[0];
-      if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html') || (currentPath === 'accueil.html' && linkPath === 'accueil.html')) {
+      if (linkPath === currentPath) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -711,7 +714,13 @@ const VFMApp = {
 const VFMCart = {
   items: [],
 
+  // Pages autorisées à afficher le panier de devis
+  _cartPages: ['index.html', 'accueil.html', 'catalogue.html', ''],
+
   init() {
+    const page = window.location.pathname.split('/').pop() || 'index.html';
+    // Ne pas initialiser le panier sur les pages institutionnelles
+    if (!this._cartPages.includes(page)) return;
     this.loadCart();
     this.injectCartDOM();
     this.bindEvents();
@@ -787,18 +796,6 @@ const VFMCart = {
   },
 
   injectCartDOM() {
-    // 1. Bouton Panier dans le Nav s'il n'existe pas
-    const navList = document.querySelector('.nav__list');
-    if (navList && !document.getElementById('navCartBtn')) {
-      const cartLi = document.createElement('li');
-      cartLi.innerHTML = `
-        <button id="navCartBtn" class="nav__cart-btn" aria-label="Voir le panier de devis">
-          🛒 Panier <span id="cartBadge" class="cart-count-badge">0</span>
-        </button>
-      `;
-      navList.appendChild(cartLi);
-    }
-
     // Supprimer tout bouton flottant s'il existe déjà dans le DOM
     const existingFloatBtn = document.getElementById('floatingCartBtn');
     if (existingFloatBtn) {
@@ -937,7 +934,7 @@ const VFMCart = {
 
           localStorage.setItem('vfm_selected_product', title);
           this.addItem(title, img, cat);
-          this.openDrawer(); // Ouvre immédiatement le panier latéral pour validation
+          // Le panier s'ouvre uniquement si l'utilisateur clique sur le bouton Panier dans la navigation
           return;
         }
       }

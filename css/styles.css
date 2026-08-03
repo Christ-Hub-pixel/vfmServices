@@ -1408,15 +1408,15 @@ header nav a:hover img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background: rgba(7, 18, 30, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 1000;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 10000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--transition-normal);
 }
 
 .cart-overlay.open {
@@ -1432,7 +1432,7 @@ header nav a:hover img {
   max-width: 92vw;
   height: 100vh;
   background: #FFFFFF;
-  z-index: 1001;
+  z-index: 10005;
   display: flex;
   flex-direction: column;
   box-shadow: -15px 0 45px rgba(0, 0, 0, 0.25);
@@ -1459,7 +1459,7 @@ body.cart-drawer-open .floating-cart-btn {
 .cart-drawer__header {
   background: linear-gradient(135deg, #07121E 0%, #0B4C8C 100%);
   color: #FFFFFF;
-  padding: 1.35rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2220,39 +2220,7 @@ body.cart-drawer-open .floating-cart-btn {
   transition: opacity var(--transition-normal);
 }
 
-.cart-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cart-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: 440px;
-  background: #FFFFFF;
-  z-index: 1200;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  transform: translateX(100%);
-  transition: transform var(--transition-normal);
-}
-
-.cart-drawer.open {
-  transform: translateX(0);
-}
-
-.cart-drawer__header {
-  padding: 1.5rem;
-  background: var(--color-primary-dark);
-  color: #FFFFFF;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Tiroir de panier géré au-dessus */
 
 .cart-drawer__title {
   font-family: var(--font-heading);

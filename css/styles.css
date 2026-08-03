@@ -988,7 +988,7 @@ ul, ol {
   margin-bottom: 0.5rem;
 }
 
-/* BANDEAU COMPACT ULTRA-FIN INTÉGRÉ AU BAS DU CARROUSEL (HAUTEUR CONFORTABLE & POLICE DU TITRE OPTIMISÉE) */
+/* BANDEAU EN 2 LIGNES DU CARROUSEL (LIGNE 1: BADGE, LIGNE 2: TITRE) */
 .hero-carousel__caption-seamless {
   position: absolute;
   bottom: 0;
@@ -1006,15 +1006,18 @@ ul, ol {
 
 .hero-carousel__caption-text {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
   width: 100%;
-  overflow: hidden;
 }
 
 #heroInfoTitle {
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin-left: 0 !important;
+  display: block !important;
 }
 
 @media (max-width: 768px) {
@@ -1022,12 +1025,14 @@ ul, ol {
     padding: 0.6rem 1rem;
   }
   .hero-carousel__caption-text {
-    flex-wrap: nowrap;
-    gap: 0.45rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
   #heroInfoTitle {
-    font-size: 0.78rem !important;
-    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    font-weight: 800 !important;
+    white-space: normal !important;
   }
 }
 

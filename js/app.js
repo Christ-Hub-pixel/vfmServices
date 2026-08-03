@@ -394,6 +394,14 @@ const VFMApp = {
       const service = this.sanitizeInput(document.getElementById('formService')?.value || '');
       const message = this.sanitizeInput(document.getElementById('formMessage')?.value || document.getElementById('message')?.value || '');
 
+      // Sécurité Anti-Flooding / Rate Limiting (Protection DoS)
+      const now = Date.now();
+      if (this.lastSubmitTime && (now - this.lastSubmitTime) < 10000) {
+        this.showNotification('Veuillez patienter 10 secondes entre deux demandes de devis.', 'error');
+        return;
+      }
+      this.lastSubmitTime = now;
+
       // Sécurité Anti-Spam Honeypot : Bloquer les robots automatiques
       const honey = document.getElementById('formHoney')?.value || '';
       if (honey) {

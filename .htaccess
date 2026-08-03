@@ -1,5 +1,5 @@
 # ==============================================================================
-# SÉCURITÉ & PERFORMANCE OPTIMALE - VFM SERVICES
+# SÉCURITÉ & FIREWALL ANTI-HACKING MILITAIRE (WAF) - VFM SERVICES
 # ==============================================================================
 
 # 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS
@@ -9,35 +9,60 @@
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# 2. EN-TÊTES DE SÉCURITÉ AVANCÉS (PROTECTION ANTI-HACKING / ANTI-XSS)
+# 2. FIREWALL ANTI-HACKING WAF (BLOCAGE SQL INJECTION, RCE, XSS & PATH TRAVERSAL)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # A. BLOCAGE INJECTION SQL (SQLi)
+  RewriteCond %{QUERY_STRING} (select|insert|update|delete|drop|union|concat|alter|exec|create|truncate|benchmark|waitfor|sleep) [NC]
+  RewriteRule .* - [F,L]
+
+  # B. BLOCAGE ATTAQUES XSS DANS L'URL
+  RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} (javascript:|eval\(|onload=|onerror=|onclick=) [NC]
+  RewriteRule .* - [F,L]
+
+  # C. BLOCAGE TRAVERSÉE DE RÉPERTOIRES (PATH TRAVERSAL / LFI / RFI)
+  RewriteCond %{QUERY_STRING} (\.\./|\.\.\\|/etc/passwd|win\.ini|proc/self/environ) [NC]
+  RewriteRule .* - [F,L]
+
+  # D. BLOCAGE EXÉCUTION DE CODE A DISTANCE (RCE)
+  RewriteCond %{QUERY_STRING} (base64_encode|base64_decode|passthru|shell_exec|system|phpinfo|popen) [NC]
+  RewriteRule .* - [F,L]
+
+  # E. BLOCAGE DES SCANNERS DE VULNÉRABILITÉS & ROBOTS PIRATES
+  RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|acunetix|wpscan|havij|nmap|netsparker|dirbuster|burpsuite|grabber) [NC]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# 3. BLOCAGE DES MÉTHODES HTTP SUSPECTES (SEULS GET, POST, HEAD SONT AUTORISÉS)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} !(GET|POST|HEAD) [NC]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# 4. EN-TÊTES DE SÉCURITÉ AVANCÉS (HARDENING HEADERS)
 <IfModule mod_headers.c>
-  # Empêcher l'intégration du site dans un iframe externe (Anti-Clickjacking)
   Header always set X-Frame-Options "SAMEORIGIN"
-
-  # Forcer la vérification du type de contenu MIME (Anti-Sniffing)
   Header always set X-Content-Type-Options "nosniff"
-
-  # Protection active contre le Scripting Inter-site (Anti-XSS Filter)
   Header always set X-XSS-Protection "1; mode=block"
-
-  # Règle de transmission sécurisée du Referrer
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-
-  # Désactiver la divulgation d'informations du serveur
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   Header unset Server
   Header unset X-Powered-By
 </IfModule>
 
-# 3. MASQUER L'EXPLORATION DES DOSSIERS (ANTI-ESPIONNAGE)
+# 5. MASQUER L'EXPLORATION DES DOSSIERS (ANTI-ESPIONNAGE)
 Options -Indexes
 
-# 4. SÉCURITÉ DES FICHIERS SENSIBLES
+# 6. PROTECTION INTERDICTION FICHIERS CACHÉS & CONFIGURATION
 <FilesMatch "^\.">
   Order allow,deny
   Deny from all
 </FilesMatch>
 
-# 5. COMPRESSION GZIP POUR UN CHARGEMENT ULTRA-RAPIDE
+# 7. COMPRESSION GZIP PERFORMANCE
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>

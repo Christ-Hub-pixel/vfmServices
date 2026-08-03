@@ -3062,15 +3062,15 @@ body.cart-drawer-open .floating-cart-btn {
 /* ADAPTATION DU CTA DU HEADER SUR MOBILE (ANTI-COLLISION LOGO/BOUTON) */
 @media (max-width: 640px) {
   .header .btn--accent,
-  .header a[href*="contact"],
-  header a[href*="contact.html#devisForm"] {
+  header a[href*="devisForm"],
+  .header__actions a[href*="contact.html#devisForm"] {
     display: none !important;
   }
 }
 @media (min-width: 641px) and (max-width: 991px) {
   .header .btn--accent,
-  .header a[href*="contact"],
-  header a[href*="contact.html#devisForm"] {
+  header a[href*="devisForm"],
+  .header__actions a[href*="contact.html#devisForm"] {
     padding: 0.45rem 0.9rem !important;
     font-size: 0.8rem !important;
   }

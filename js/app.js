@@ -174,26 +174,27 @@ const VFMApp = {
   },
 
   initNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('.nav__list');
+    const navToggles = document.querySelectorAll('.nav-toggle');
+    const navLists = document.querySelectorAll('.nav__list');
     const navLinks = document.querySelectorAll('.nav__link');
 
-    if (navToggle && navList) {
+    navToggles.forEach(navToggle => {
       navToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = navList.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', isOpen);
+        navLists.forEach(navList => {
+          const isOpen = navList.classList.toggle('open');
+          if (navList.classList.contains('hidden')) {
+            navList.classList.remove('hidden');
+          }
+          navToggle.setAttribute('aria-expanded', isOpen);
+        });
       });
-    }
+    });
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (navList) {
-          navList.classList.remove('open');
-        }
-        if (navToggle) {
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
+        navLists.forEach(navList => navList.classList.remove('open'));
+        navToggles.forEach(navToggle => navToggle.setAttribute('aria-expanded', 'false'));
       });
     });
   },

@@ -37,6 +37,7 @@ const VFMApp = {
     this.initWhatsAppWidget();
     this.initAnimatedCounters();
     this.initScrollReveal();
+    this.initHoneypotMatrix();
   },
 
   initCarousels() {
@@ -348,6 +349,37 @@ const VFMApp = {
     }
   },
 
+  initHoneypotMatrix() {
+    this.isBotSession = false;
+    const trapNames = [
+      'website_url', 'confirm_user_email', 'sec_check_code', 'company_fax_num',
+      'user_middle_name', 'address_line_2', 'verify_token_str', 'zip_check_code',
+      'tax_registration_id', 'promo_validation_code', 'sec_phone_contact', 'human_captcha_val'
+    ];
+
+    document.querySelectorAll('form').forEach(form => {
+      const container = document.createElement('div');
+      container.className = 'vfm-honeypot-trap';
+      container.setAttribute('aria-hidden', 'true');
+      container.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0;width:0;height:0;pointer-events:none;';
+
+      trapNames.forEach(name => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = name;
+        input.id = `hp_${name}_${Math.floor(Math.random() * 1000)}`;
+        input.className = 'hp-matrix-field';
+        input.tabIndex = -1;
+        input.autocomplete = 'off';
+        input.addEventListener('input', () => { this.isBotSession = true; });
+        input.addEventListener('change', () => { this.isBotSession = true; });
+        container.appendChild(input);
+      });
+
+      form.appendChild(container);
+    });
+  },
+
   initDevisForm() {
     const form = document.getElementById('devisForm');
     const msgInput = document.getElementById('formMessage') || document.getElementById('message');
@@ -402,9 +434,11 @@ const VFMApp = {
       }
       this.lastSubmitTime = now;
 
-      // Sécurité Anti-Spam Honeypot : Bloquer les robots automatiques
+      // Sécurité Matrice de Pièges Honeypot : Neutraliser les robots d'attaque
+      const matrixFilled = Array.from(form.querySelectorAll('.hp-matrix-field')).some(input => input.value !== '');
       const honey = document.getElementById('formHoney')?.value || '';
-      if (honey) {
+      
+      if (this.isBotSession || matrixFilled || honey) {
         form.reset();
         this.showSuccessModal({ name, phone, email, service, message });
         return;

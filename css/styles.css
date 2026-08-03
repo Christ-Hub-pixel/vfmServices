@@ -2994,6 +2994,23 @@ body.cart-drawer-open .floating-cart-btn {
   justify-content: space-between;
 }
 
+/* MATRICE DE PIÈGES INVISIBLES ANTI-BOT (HONEYPOT MATRIX) */
+.vfm-honeypot-trap,
+.hp-matrix-field {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  z-index: -9999 !important;
+}
+
 .contact-form {
   background: linear-gradient(135deg, #0B1928 0%, #07121E 100%) !important;
   border-radius: 22px !important;

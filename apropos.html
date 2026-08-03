@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -191,15 +191,36 @@
       <div class="container">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3.5rem; align-items: center;">
           
-          <!-- IMAGE DU SHOWROOM -->
-          <div style="position: relative;">
-            <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
-              <img src="assets/showroom.jpeg" alt="Showroom VFM Service & Distributeur Agréé Pedrollo à Abidjan" style="width: 100%; height: 420px; object-fit: cover; display: block;">
+          <!-- IMAGES : SHOWROOM + CERTIFICAT -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+            <!-- Photo showroom -->
+            <div style="position: relative;">
+              <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
+                <img src="assets/showroom.jpeg" alt="Showroom VFM Service & Distributeur Agréé Pedrollo à Abidjan" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+              </div>
+              <div style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(7, 18, 30, 0.92); backdrop-filter: blur(12px); padding: 0.6rem 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
+                <span style="font-weight: 700; color: var(--color-primary); display: block; font-size: 0.85rem;">📍 Showroom Riviera - Cité ATCI</span>
+                <small style="color: rgba(255, 255, 255, 0.85);">Exposition permanente d'équipements</small>
+              </div>
             </div>
-            <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; background: rgba(7, 18, 30, 0.92); backdrop-filter: blur(12px); padding: 0.85rem 1.35rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF;">
-              <span style="font-weight: 700; color: var(--color-primary); display: block; font-size: 0.92rem;">📍 Showroom Riviera - Cité ATCI</span>
-              <small style="color: rgba(255, 255, 255, 0.85);">Exposition d'équipements & Attestation d'Agrément Pedrollo Italia</small>
+
+            <!-- Certificat Pedrollo -->
+            <div style="position: relative;">
+              <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.18); border: 3px solid #D4AF37;">
+                <img src="assets/showroom/certificat_pedrollo.jpg"
+                     alt="Certificat Distributeur Agréé Officiel Pedrollo Italia — VFM Services SARL"
+                     style="width: 100%; height: auto; display: block; object-fit: contain;">
+              </div>
+              <!-- Badge "Document Officiel" -->
+              <div style="position: absolute; top: -1rem; right: 1rem; background: linear-gradient(135deg, #B8960C, #D4AF37, #F5E06E); color: #1a1200; padding: 0.4rem 1rem; border-radius: 2rem; font-weight: 800; font-size: 0.75rem; box-shadow: 0 4px 12px rgba(212,175,55,0.5); letter-spacing: 0.04em; text-transform: uppercase;">
+                ✅ Document Officiel
+              </div>
+              <div style="background: linear-gradient(135deg, #07121E, #0B4C8C); color: #FFFFFF; text-align: center; padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em;">
+                🏅 Attestation d'Agrément — Pedrollo S.p.A. Italie
+              </div>
             </div>
+
           </div>
 
           <!-- TEXTE D'ACCOMPAGNEMENT -->

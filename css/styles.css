@@ -988,42 +988,39 @@ ul, ol {
   margin-bottom: 0.5rem;
 }
 
-/* BANDEAU D'INFORMATION DYNAMIQUE INGENIEUX SOUS L'IMAGE */
-.hero-carousel__info-card {
-  max-width: 1280px;
-  margin: 1.25rem auto 0 auto;
-  background: rgba(11, 25, 40, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(0, 150, 214, 0.25);
-  border-radius: 18px;
-  padding: 1.25rem 2rem;
+/* BANDEAU COMPACT ULTRA-FIN INTÉGRÉ AU BAS DU CARROUSEL (ZÉRO SÉPARATION, PHOTO 85% DÉGAGÉE) */
+.hero-carousel__caption-seamless {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(7, 18, 30, 0.2) 0%, rgba(7, 18, 30, 0.85) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.6rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  gap: 1rem;
+  z-index: 10;
 }
 
-.hero-carousel__info-content {
-  text-align: left;
+.hero-carousel__caption-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
   flex: 1;
 }
 
 @media (max-width: 768px) {
-  .hero-carousel__info-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1rem 1.25rem;
-    gap: 1rem;
-    border-radius: 14px;
-  }
-  .hero-carousel__info-content {
-    text-align: center;
+  .hero-carousel__caption-seamless {
+    padding: 0.45rem 0.85rem;
+    gap: 0.5rem;
   }
   #heroInfoTitle {
-    font-size: 1.1rem !important;
+    font-size: 0.88rem !important;
   }
 }
 

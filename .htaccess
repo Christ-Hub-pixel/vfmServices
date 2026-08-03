@@ -12,34 +12,34 @@
 # 2. FIREWALL ANTI-HACKING WAF (BLOCAGE SQL INJECTION, RCE, XSS & PATH TRAVERSAL)
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  
+
   # A. BLOCAGE INJECTION SQL (SQLi)
   RewriteCond %{QUERY_STRING} (select|insert|update|delete|drop|union|concat|alter|exec|create|truncate|benchmark|waitfor|sleep) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 
   # B. BLOCAGE ATTAQUES XSS DANS L'URL
   RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
   RewriteCond %{QUERY_STRING} (javascript:|eval\(|onload=|onerror=|onclick=) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 
   # C. BLOCAGE TRAVERSÉE DE RÉPERTOIRES (PATH TRAVERSAL / LFI / RFI)
   RewriteCond %{QUERY_STRING} (\.\./|\.\.\\|/etc/passwd|win\.ini|proc/self/environ) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 
   # D. BLOCAGE EXÉCUTION DE CODE A DISTANCE (RCE)
   RewriteCond %{QUERY_STRING} (base64_encode|base64_decode|passthru|shell_exec|system|phpinfo|popen) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 
   # E. BLOCAGE DES SCANNERS DE VULNÉRABILITÉS & ROBOTS PIRATES
   RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|acunetix|wpscan|havij|nmap|netsparker|dirbuster|burpsuite|grabber) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 </IfModule>
 
 # 3. BLOCAGE DES MÉTHODES HTTP SUSPECTES (SEULS GET, POST, HEAD SONT AUTORISÉS)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{REQUEST_METHOD} !(GET|POST|HEAD) [NC]
-  RewriteRule .* - [F,L]
+  RewriteRule ^ - [F,L]
 </IfModule>
 
 # 4. EN-TÊTES DE SÉCURITÉ AVANCÉS (HARDENING HEADERS)
@@ -56,10 +56,15 @@
 # 5. MASQUER L'EXPLORATION DES DOSSIERS (ANTI-ESPIONNAGE)
 Options -Indexes
 
-# 6. PROTECTION INTERDICTION FICHIERS CACHÉS & CONFIGURATION
+# 6. PROTECTION INTERDICTION FICHIERS CACHÉS & CONFIGURATION (COMPATIBILITÉ APACHE 2.4 / 2.2)
 <FilesMatch "^\.">
-  Order allow,deny
-  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
 </FilesMatch>
 
 # 7. COMPRESSION GZIP PERFORMANCE

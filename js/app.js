@@ -426,13 +426,13 @@ const VFMApp = {
 
         if (response.ok) {
           form.reset();
-          this.showNotification(`✅ Merci ${name} ! Votre demande de devis a été transmise avec succès à VFM Service. Notre équipe vous recontactera sous 24h.`, 'success');
+          this.showSuccessModal({ name, phone, email, service, message });
         } else {
           throw new Error('Erreur réseau');
         }
       } catch (err) {
         form.reset();
-        this.showNotification(`✅ Merci ${name} ! Votre demande de devis a été bien prise en compte par VFM Service.`, 'success');
+        this.showSuccessModal({ name, phone, email, service, message });
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -440,6 +440,90 @@ const VFMApp = {
         }
       }
     });
+  },
+
+  showSuccessModal(data) {
+    let modal = document.getElementById('devisSuccessModal');
+    if (!modal) {
+      const modalHTML = `
+        <div id="devisSuccessModal" class="devis-success-modal" aria-hidden="true">
+          <div class="devis-success-backdrop"></div>
+          <div class="devis-success-card">
+            <button type="button" class="devis-success-close" aria-label="Fermer">&times;</button>
+            <div class="devis-success-icon-badge">
+              <span class="material-symbols-outlined">check_circle</span>
+            </div>
+            <span class="badge badge--red" style="margin-bottom: 0.5rem;">🎉 Transmission Confirmée</span>
+            <h3 class="devis-success-title">Demande Transmise avec Succès !</h3>
+            <p class="devis-success-subtitle">
+              Merci <strong id="successClientName" style="color: #0096D6;"></strong> ! Votre demande de devis express a bien été reçue par l'équipe VFM Service.
+            </p>
+            
+            <div class="devis-success-recap">
+              <div class="devis-recap-item">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <div>
+                  <small>Équipement Demandé</small>
+                  <strong id="successService"></strong>
+                </div>
+              </div>
+              <div class="devis-recap-item">
+                <span class="material-symbols-outlined">call</span>
+                <div>
+                  <small>Contact Client</small>
+                  <strong id="successContact"></strong>
+                </div>
+              </div>
+              <div class="devis-recap-item">
+                <span class="material-symbols-outlined">schedule</span>
+                <div>
+                  <small>Délai de Réponse</small>
+                  <strong>Sous 24h ouvrées</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="devis-success-actions">
+              <a id="successWhatsAppLink" href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer" class="btn-success-wa">
+                <span class="material-symbols-outlined text-[20px]">chat</span>
+                Suivi Accéléré sur WhatsApp
+              </a>
+              <button type="button" class="btn-success-close">Fermer la fenêtre</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
+      modal = document.getElementById('devisSuccessModal');
+
+      const closeBtns = modal.querySelectorAll('.devis-success-close, .btn-success-close, .devis-success-backdrop');
+      closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden', 'true');
+        });
+      });
+    }
+
+    const nameElem = modal.querySelector('#successClientName');
+    const serviceElem = modal.querySelector('#successService');
+    const contactElem = modal.querySelector('#successContact');
+    const waLink = modal.querySelector('#successWhatsAppLink');
+
+    if (nameElem) nameElem.textContent = data.name || 'Cher Client';
+    if (serviceElem) serviceElem.textContent = data.service || 'Matériel Spécifié';
+    if (contactElem) contactElem.textContent = data.phone || data.email || 'Contact Enregistré';
+
+    if (waLink) {
+      const waMsg = `*SUIVI DEMANDE DE DEVIS VFM*\n\n` +
+                    `Bonjour VFM Service, je viens d'envoyer une demande de devis pour : *${data.service}*\n` +
+                    `Nom : ${data.name}\n` +
+                    `Contact : ${data.phone || data.email}`;
+      waLink.href = `https://wa.me/2250715416831?text=${encodeURIComponent(waMsg)}`;
+    }
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
   },
 
   sanitizeInput(str) {

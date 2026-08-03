@@ -95,10 +95,12 @@ const VFMApp = {
         const infoBadge = document.getElementById('heroInfoBadge');
         const infoTitle = document.getElementById('heroInfoTitle');
         const infoSubtitle = document.getElementById('heroInfoSubtitle');
-        if (infoBadge && infoTitle && infoSubtitle && slideCaptions[currentIndex]) {
+        if (infoBadge && infoTitle && slideCaptions[currentIndex]) {
           infoBadge.innerHTML = slideCaptions[currentIndex].badge;
           infoTitle.textContent = slideCaptions[currentIndex].title;
-          infoSubtitle.textContent = slideCaptions[currentIndex].sub;
+          if (infoSubtitle) {
+            infoSubtitle.textContent = slideCaptions[currentIndex].sub;
+          }
         }
       };
 
@@ -106,7 +108,7 @@ const VFMApp = {
         stopAutoPlay();
         timer = setInterval(() => {
           goToSlide(currentIndex + 1);
-        }, 2000);
+        }, 3000);
       };
 
       const stopAutoPlay = () => {

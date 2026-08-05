@@ -11,6 +11,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   VFMApp.init();
   VFMCart.init();
+  VFMProductModal.init();
 });
 
 /**
@@ -538,7 +539,7 @@ const VFMApp = {
       } else {
         badge.innerHTML = `📦 <strong>${totalCards}</strong> équipements disponibles`;
       }
-      badge.style.color = '#1D3176';
+      badge.style.color = '#FFFFFF';
     }
   },
 
@@ -630,7 +631,7 @@ const VFMApp = {
     const badge = document.getElementById('searchCountBadge');
     if (badge) {
       badge.innerHTML = `⚡ <strong>${totalCards}</strong> pompe${totalCards > 1 ? 's' : ''} recommandée${totalCards > 1 ? 's' : ''} (HMT max : ${hmtEstimee}m)`;
-      badge.style.color = '#0096D6';
+      badge.style.color = '#FFFFFF';
     }
 
     // Faire défiler vers la grille
@@ -1207,7 +1208,8 @@ const VFMCart = {
       document.body.insertAdjacentHTML('beforeend', lightboxHTML);
     }
 
-    // 4. Attacher les écouteurs "Ajouter au Panier" et "Loupe" sur toutes les cartes
+    // 4. Attacher les écouteurs "Ajouter au Panier" sur toutes les cartes
+    // NOTE: le clic sur l'IMAGE est géré par VFMProductModal (modal fiche produit)
     this.bindProductButtons();
   },
 
@@ -1957,5 +1959,160 @@ window.directZoomChange = (delta) => {};
 window.directZoomReset = vfmResetZoom;
 
 
+/* ============================================================
+   MODULE MODAL FICHE PRODUIT — STYLE PEDROLLO OFFICIEL
+   ============================================================ */
+const VFMProductModal = {
 
+  overlay: null,
+  closeBtn: null,
+  img: null,
+  title: null,
+  category: null,
+  desc: null,
+  relatedGrid: null,
+  allCards: [],
+
+  init() {
+    this.overlay   = document.getElementById('productModal');
+    if (!this.overlay) return; // Pas sur cette page
+
+    this.closeBtn    = document.getElementById('pdrModalClose');
+    this.img         = document.getElementById('pdrModalImg');
+    this.title       = document.getElementById('pdrModalTitle');
+    this.category    = document.getElementById('pdrModalCategory');
+    this.desc        = document.getElementById('pdrModalDesc');
+    this.relatedGrid = document.getElementById('pdrRelatedGrid');
+
+    // Collecter toutes les cartes produit présentes dans la page
+    this.allCards = Array.from(document.querySelectorAll('.product-card'));
+
+    // Click sur les conteneurs d'image pour ouvrir la fiche produit
+    // stopImmediatePropagation empêche tout autre gestionnaire de clic de s'exécuter
+    document.querySelectorAll('.product-card__image-container').forEach(container => {
+      container.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const card = container.closest('.product-card');
+        if (card) this.open(card);
+      }, true); // capture phase = priorité maximale
+    });
+
+    // Bouton fermer
+    this.closeBtn.addEventListener('click', () => this.close());
+
+    // Clic sur l'overlay (dehors du container)
+    this.overlay.addEventListener('click', (e) => {
+      if (e.target === this.overlay) this.close();
+    });
+
+    // Touche Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.overlay.classList.contains('open')) {
+        this.close();
+      }
+    });
+
+    // Onglets du modal
+    document.querySelectorAll('.pdr-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pdr-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.pdr-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        const panel = document.getElementById(tab === 'tech' ? 'pdrTabTech' : 'pdrTabBuild');
+        if (panel) panel.classList.add('active');
+      });
+    });
+  },
+
+  open(card) {
+    if (!this.overlay) return;
+
+    // Récupérer les données depuis la carte
+    const imgEl    = card.querySelector('.product-card__image');
+    const titleEl  = card.querySelector('.product-card__title');
+    const catEl    = card.querySelector('.product-card__category');
+    const descEl   = card.querySelector('p');
+
+    const imgSrc   = imgEl  ? imgEl.src  : '';
+    const imgAlt   = imgEl  ? imgEl.alt  : '';
+    const titleTxt = titleEl ? titleEl.textContent.trim() : '';
+    const catTxt   = catEl  ? catEl.textContent.trim()  : '';
+    const descTxt  = descEl ? descEl.textContent.trim()  : '';
+    const category = card.dataset.category || 'all';
+
+    // Remplir le modal
+    this.img.src        = imgSrc;
+    this.img.alt        = imgAlt;
+    this.title.textContent    = titleTxt;
+    this.category.textContent = catTxt;
+    this.desc.textContent     = descTxt;
+
+    // Mettre à jour le lien devis avec le nom du produit
+    const devisBtn = document.getElementById('pdrModalDevisBtn');
+    if (devisBtn) {
+      devisBtn.href = `contact.html#devisForm?produit=${encodeURIComponent(titleTxt)}`;
+    }
+
+    // Charger les produits similaires (même catégorie, max 4, différent de l'actuel)
+    this.loadRelated(category, card);
+
+    // Réinitialiser sur le premier onglet
+    document.querySelectorAll('.pdr-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.pdr-tab-panel').forEach(p => p.classList.remove('active'));
+    const firstTab = document.querySelector('.pdr-tab-btn[data-tab="tech"]');
+    if (firstTab) firstTab.classList.add('active');
+    const firstPanel = document.getElementById('pdrTabTech');
+    if (firstPanel) firstPanel.classList.add('active');
+
+    // Afficher
+    this.overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  },
+
+  loadRelated(category, currentCard) {
+    if (!this.relatedGrid) return;
+    this.relatedGrid.innerHTML = '';
+
+    const similar = this.allCards
+      .filter(c => c !== currentCard && c.dataset.category === category)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4);
+
+    if (similar.length === 0) {
+      // Si pas de produits similaires, masquer la section
+      const relSection = document.querySelector('.pdr-modal-related');
+      if (relSection) relSection.style.display = 'none';
+      return;
+    }
+
+    const relSection = document.querySelector('.pdr-modal-related');
+    if (relSection) relSection.style.display = '';
+
+    similar.forEach(card => {
+      const imgEl   = card.querySelector('.product-card__image');
+      const titleEl = card.querySelector('.product-card__title');
+      const src     = imgEl   ? imgEl.src           : '';
+      const alt     = imgEl   ? imgEl.alt           : '';
+      const name    = titleEl ? titleEl.textContent : '';
+
+      const div = document.createElement('div');
+      div.className = 'pdr-related-card';
+      div.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy"><span>${name}</span>`;
+      div.addEventListener('click', () => this.open(card));
+      this.relatedGrid.appendChild(div);
+    });
+  },
+
+  close() {
+    if (!this.overlay) return;
+    this.overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    // Vider l'image pour libérer la mémoire
+    setTimeout(() => { this.img.src = ''; }, 300);
+  }
+};
+
+window.VFMProductModal = VFMProductModal;
 

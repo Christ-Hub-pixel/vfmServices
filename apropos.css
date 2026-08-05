@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    VFM SERVICES - DESIGN EXECUTIVE PAGE À PROPOS
    ========================================================================== */
 @import url('css/styles.css');
@@ -6,7 +6,7 @@
 .about-header {
   background: linear-gradient(135deg, #07121E 0%, #0B4C8C 50%, #0096D6 100%);
   color: #FFFFFF;
-  padding: 8.5rem 0 4rem 0;
+  padding: 9.5rem 0 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;

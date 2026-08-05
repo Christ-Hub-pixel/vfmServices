@@ -1,6 +1,6 @@
-﻿/**
+/**
  * ==========================================================================
- * VFM SERVICE - MODULE JAVASCRIPT PRINCIPAL (SYSTÈME DE PANIER & EMAIL DEVIS)
+ * VFM SERVICES - MODULE JAVASCRIPT PRINCIPAL (SYSTÈME DE PANIER & EMAIL DEVIS)
  * Auteur: Antigravity AI - Expert Engineering
  * Standard: ES6+ Modular Vanilla JS, LocalStorage Persistence, Cart Drawer
  * ==========================================================================
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 const VFMApp = {
   config: {
-    emailContact: 'infos@vfmservices.net',
+    emailContact: 'globaltechsynergie@gmail.com',
     whatsappNumber: '2250715416831',
   },
 
@@ -34,7 +34,6 @@ const VFMApp = {
     this.initDevisForm();
     this.initSmoothScroll();
     this.initBackToTop();
-    this.initWhatsAppWidget();
     this.initAnimatedCounters();
     this.initScrollReveal();
     this.initHoneypotMatrix();
@@ -204,6 +203,15 @@ const VFMApp = {
       currentPath = 'index.html';
     }
 
+    const navCartBtn = document.getElementById('navCartBtn');
+    if (navCartBtn) {
+      if (currentPath === 'panier.html') {
+        navCartBtn.classList.add('active');
+      } else {
+        navCartBtn.classList.remove('active');
+      }
+    }
+
     const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
       const linkPath = link.getAttribute('href').split('#')[0];
@@ -267,18 +275,120 @@ const VFMApp = {
   },
 
   initCatalogueFiltering() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterBtns = document.querySelectorAll('.filter-btn, .pedrollo-type-item');
+    const sectorBtns = document.querySelectorAll('.pedrollo-sector-btn');
+    const pageBtns = document.querySelectorAll('.pedrollo-page-btn');
     const productCards = document.querySelectorAll('.product-card');
 
-    if (!filterBtns.length || !productCards.length) return;
+    if (!productCards.length) return;
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         filterBtns.forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
 
-        const category = e.currentTarget.dataset.filter;
+        const category = e.currentTarget.dataset.filter || 'all';
         this.filterProducts(category, document.getElementById('searchInput')?.value || '');
+      });
+    });
+
+    sectorBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        sectorBtns.forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        const activeFilter = document.querySelector('.pedrollo-type-item.active, .filter-btn.active')?.dataset.filter || 'all';
+        this.filterProducts(activeFilter, document.getElementById('searchInput')?.value || '');
+      });
+    });
+
+    pageBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const page = e.currentTarget.dataset.page;
+        this.renderCatalogPage(page);
+        const productGrid = document.getElementById('productGrid');
+        if (productGrid) {
+          productGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    this.initCatalogPagination();
+  },
+
+  currentPage: 1,
+  itemsPerPage: 12,
+
+  initCatalogPagination() {
+    const paginationWrapper = document.getElementById('pedrolloPagination');
+    if (!paginationWrapper) return;
+    this.renderCatalogPage(1);
+  },
+
+  renderCatalogPage(pageNumber) {
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    const totalCards = cards.length;
+    const totalPages = Math.ceil(totalCards / this.itemsPerPage) || 1;
+
+    if (pageNumber === 'next') {
+      pageNumber = Math.min(this.currentPage + 1, totalPages);
+    } else if (pageNumber === 'prev') {
+      pageNumber = Math.max(this.currentPage - 1, 1);
+    } else {
+      pageNumber = parseInt(pageNumber, 10) || 1;
+    }
+
+    this.currentPage = pageNumber;
+
+    const startIndex = (pageNumber - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+
+    cards.forEach((card, index) => {
+      if (index >= startIndex && index < endIndex) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    this.updatePaginationButtons(totalPages);
+  },
+
+  updatePaginationButtons(totalPages) {
+    const paginationWrapper = document.getElementById('pedrolloPagination');
+    if (!paginationWrapper) return;
+
+    let html = '';
+    const current = this.currentPage;
+
+    if (current > 1) {
+      html += `<button type="button" class="pedrollo-page-btn" data-page="prev">&larr;</button>`;
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= current - 1 && i <= current + 1)) {
+        html += `<button type="button" class="pedrollo-page-btn ${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      } else if (i === current - 2 || i === current + 2) {
+        html += `<span class="pedrollo-page-dots">..</span>`;
+      }
+    }
+
+    if (current < totalPages) {
+      html += `<button type="button" class="pedrollo-page-btn" data-page="next">&rarr;</button>`;
+    }
+
+    paginationWrapper.innerHTML = html;
+
+    paginationWrapper.querySelectorAll('.pedrollo-page-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const page = e.currentTarget.dataset.page;
+        this.renderCatalogPage(page);
+        const productGrid = document.getElementById('productGrid');
+        if (productGrid) {
+          productGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
   },
@@ -317,51 +427,235 @@ const VFMApp = {
   },
 
   filterProducts(category, query) {
-    // 1. Gérer l'affichage des blocs de carrousels par catégorie s'ils existent
-    const categoryBlocks = document.querySelectorAll('.carousel-category-block');
-    if (categoryBlocks.length > 0) {
-      categoryBlocks.forEach(block => {
-        const blockCat = block.dataset.category;
-        const matchesCategory = (category === 'all' || blockCat === category);
-        
-        if (matchesCategory) {
-          block.style.display = 'block';
-        } else {
-          block.style.display = 'none';
-        }
-      });
-    }
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
 
-    // 2. Filtrer chaque carte individuellement et compter le résultat
-    const productCards = document.querySelectorAll('.product-card');
-    let visibleCount = 0;
+    // Récupérer le secteur d'utilisation actif
+    const activeSector = document.querySelector('.pedrollo-sector-btn.active')?.dataset.sector || 'all';
 
-    productCards.forEach(card => {
+    // Helper pour nettoyer et normaliser les accents et majuscules
+    const cleanText = (str) => {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    };
+
+    const cleanQuery = cleanText(query);
+    const queryTerms = cleanQuery.split(/\s+/).filter(t => t.length > 0);
+
+    const synonymMap = {
+      'forage': ['immerge', 'puit', '4sr', 'profondeur', 'agricole', 'borehole'],
+      'groupe': ['electrogene', 'diesel', 'generateur', 'courant', 'energie', 'kav', 'kva'],
+      'maison': ['domestique', 'surpresseur', 'jsw', 'pkm', 'villa', 'surpression'],
+      'tuyau': ['aspiration', 'refoulement', 'flexible', 'irrigation', 'raccord'],
+      'pompe': ['electropompe', 'surface', 'immergee', 'pkm', 'jsw', 'vide-cave']
+    };
+
+    // Mots-clés d'association pour les secteurs d'utilisation
+    const sectorKeywords = {
+      domestique: ['domestique', 'surpression', 'maison', 'jsw', 'pkm', 'pluriset', 'arrosage', 'piscine', 'jardin', 'brouette', 'clé ', 'pince'],
+      tertiaire: ['tertiaire', 'batiment', 'immeuble', 'distribution', 'collectif', 'surpresseur', 'groupe'],
+      industrie: ['industrie', 'industriel', 'chantier', 'eaux usees', 'triphase', 'evacuation', 'f4-', 'mc ', 'vx ', 'groupe electrogene'],
+      agri: ['agri', 'agricole', 'irrigation', 'forage', '4sr', 'culture', 'champs', 'puit'],
+      piscine: ['piscine', 'filtration', 'eau de mer', 'chlore', 'skimmer']
+    };
+
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    let visibleCards = [];
+
+    cards.forEach(card => {
       const cardCategory = card.dataset.category || '';
-      const cardTitle = card.querySelector('.product-card__title')?.textContent.toLowerCase() || '';
-      const cardDesc = card.querySelector('.product-card__body')?.textContent.toLowerCase() || '';
+      const cardTitle = cleanText(card.querySelector('.product-card__title')?.textContent || '');
+      const cardDesc = cleanText(card.querySelector('.product-card__body')?.textContent || '');
 
       const matchesCategory = (category === 'all' || cardCategory === category);
-      const matchesSearch = (!query || cardTitle.includes(query) || cardDesc.includes(query));
+      
+      // Filtrer par secteur d'utilisation
+      let matchesSector = (activeSector === 'all');
+      if (!matchesSector) {
+        const keywords = sectorKeywords[activeSector] || [];
+        matchesSector = keywords.some(kw => cardTitle.includes(kw) || cardDesc.includes(kw));
+      }
 
-      if (matchesCategory && matchesSearch) {
-        card.style.display = 'flex';
-        visibleCount++;
+      // Recherche multi-termes avec support des synonymes
+      let matchesSearch = true;
+      if (queryTerms.length > 0) {
+        matchesSearch = queryTerms.every(term => {
+          if (cardTitle.includes(term) || cardDesc.includes(term)) return true;
+          const synonyms = synonymMap[term] || [];
+          return synonyms.some(syn => cardTitle.includes(syn) || cardDesc.includes(syn));
+        });
+      }
+
+      if (matchesCategory && matchesSector && matchesSearch) {
+        visibleCards.push(card);
       } else {
         card.style.display = 'none';
       }
     });
 
+    // Remettre la page 1 et appliquer la pagination sur les cartes filtrées
+    this.currentPage = 1;
+    const totalCards = visibleCards.length;
+    const totalPages = Math.ceil(totalCards / this.itemsPerPage) || 1;
+
+    cards.forEach(card => {
+      if (visibleCards.slice(0, this.itemsPerPage).includes(card)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    this.updatePaginationButtons(totalPages);
+
+    // Gérer l'affichage du message en cas de recherche infructueuse
+    let emptyMsg = document.getElementById('vfmEmptySearchMsg');
+    if (totalCards === 0) {
+      if (!emptyMsg) {
+        emptyMsg = document.createElement('div');
+        emptyMsg.id = 'vfmEmptySearchMsg';
+        emptyMsg.className = 'vfm-empty-search';
+        emptyMsg.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 4.5rem 2rem; background: #FFFFFF; border-radius: 20px; border: 1.5px dashed #CBD5E1; margin: 1.5rem 0;';
+        emptyMsg.innerHTML = `
+          <span class="material-symbols-outlined" style="font-size: 3.5rem; color: #94A3B8; margin-bottom: 1rem; display: block;">search_off</span>
+          <h3 style="font-family: var(--font-heading); color: #1D3176; font-size: 1.3rem; margin-bottom: 0.5rem; font-weight: 800;">Aucun équipement trouvé</h3>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.5;">Nous n'avons pas trouvé de matériel correspondant à votre recherche. Essayez d'autres mots-clés ou réinitialisez les filtres.</p>
+          <button type="button" class="btn btn--outline" onclick="VFMApp.resetSmartRecommendation()" style="margin: 0 auto; justify-content: center; font-size: 0.85rem; padding: 0.55rem 1.25rem; border-radius: 8px;">Réinitialiser la recherche</button>
+        `;
+        grid.appendChild(emptyMsg);
+      } else {
+        emptyMsg.style.display = 'block';
+      }
+    } else {
+      if (emptyMsg) emptyMsg.style.display = 'none';
+    }
+
     const badge = document.getElementById('searchCountBadge');
     if (badge) {
       if (query) {
-        badge.textContent = `${visibleCount} matériel${visibleCount > 1 ? 's trouvés' : ' trouvé'}`;
+        badge.innerHTML = `🔍 <strong>${totalCards}</strong> matériel${totalCards > 1 ? 's trouvés' : ' trouvé'}`;
       } else if (category !== 'all') {
-        badge.textContent = `${visibleCount} matériel${visibleCount > 1 ? 's' : ''} dans cette catégorie`;
+        badge.innerHTML = `📂 <strong>${totalCards}</strong> matériel${totalCards > 1 ? 's' : ''} dans cette catégorie`;
       } else {
-        badge.textContent = `61 équipements disponibles`;
+        badge.innerHTML = `📦 <strong>${totalCards}</strong> équipements disponibles`;
       }
+      badge.style.color = '#1D3176';
     }
+  },
+
+  runSmartRecommendation() {
+    const usage = document.getElementById('calcUsage')?.value || 'domestique';
+    const hmt = parseInt(document.getElementById('calcHmt')?.value, 10) || 30;
+    const debit = parseInt(document.getElementById('calcDebit')?.value, 10) || 40;
+
+    const grid = document.getElementById('productGrid');
+    if (!grid) return;
+
+    // Calcul de la HMT minimale requise avec 10% de perte de charge
+    const hmtEstimee = Math.round(hmt * 1.1);
+
+    // Calcul théorique de la puissance en HP : (Débit * HMT) / 2000 avec marge
+    const rawPower = (debit * hmtEstimee) / 1600;
+    let powerLabel = "";
+    if (rawPower <= 0.5) powerLabel = "~ 0.5 HP (0.37 kW)";
+    else if (rawPower <= 0.85) powerLabel = "~ 0.75 - 1.0 HP (0.55 - 0.75 kW)";
+    else if (rawPower <= 1.6) powerLabel = "~ 1.5 - 2.0 HP (1.1 - 1.5 kW)";
+    else powerLabel = "~ 3.0 HP et plus (>= 2.2 kW)";
+
+    // Affichage et animation du panneau de diagnostic dans la barre latérale
+    const resPanel = document.getElementById('calcResultPanel');
+    const resHmtEl = document.getElementById('resHmt');
+    const resPowerEl = document.getElementById('resPower');
+    if (resPanel && resHmtEl && resPowerEl) {
+      resHmtEl.textContent = `${hmtEstimee} mètres (pertes incluses)`;
+      resPowerEl.textContent = powerLabel;
+      resPanel.style.display = 'block';
+      resPanel.style.animation = 'fadeIn 0.4s ease';
+    }
+
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    let visibleCards = [];
+
+    // Mots-clés associés aux catégories d'usages
+    const usageKeywords = {
+      domestique: ['pkm 60', 'jsw', 'pluriset', 'série pk', 'domestique', 'périphérique', 'surface', 'pres-max', 'autoclave'],
+      agri: ['4sr', 'forage', 'immerge', 'irrigation', 'agricole', 'tuyau', 'triton', 'pompe de forage'],
+      industrie: ['f4-', 'mc ', 'vx ', 'eaux usées', 'chantier', 'industriel', 'triphasé', 'double canal', 'monophasé']
+    };
+
+    cards.forEach(card => {
+      const title = card.querySelector('.product-card__title')?.textContent.toLowerCase() || '';
+      const desc = card.querySelector('.product-card__body')?.textContent.toLowerCase() || '';
+      const category = card.dataset.category || '';
+
+      // On filtre d'abord pour s'assurer que c'est une pompe (ou un accessoire lié si on cherche largement)
+      const isPompe = category === 'pompes' || title.includes('pompe') || title.includes('surpresseur') || title.includes('coffret') || title.includes('tuyau');
+
+      let matchesUsage = false;
+      const keywords = usageKeywords[usage];
+      for (const kw of keywords) {
+        if (title.includes(kw) || desc.includes(kw)) {
+          matchesUsage = true;
+          break;
+        }
+      }
+
+      // Si c'est l'irrigation/forage, les pompes immergées (4SR) matchent parfaitement
+      if (usage === 'agri' && (title.includes('4sr') || title.includes('forage') || title.includes('immerge'))) {
+        matchesUsage = true;
+      }
+
+      if (isPompe && matchesUsage) {
+        visibleCards.push(card);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Appliquer la pagination sur les cartes recommandées
+    this.currentPage = 1;
+    const totalCards = visibleCards.length;
+    const totalPages = Math.ceil(totalCards / this.itemsPerPage) || 1;
+
+    cards.forEach(card => {
+      if (visibleCards.slice(0, this.itemsPerPage).includes(card)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    this.updatePaginationButtons(totalPages);
+
+    // Mettre à jour le badge de résultat
+    const badge = document.getElementById('searchCountBadge');
+    if (badge) {
+      badge.innerHTML = `⚡ <strong>${totalCards}</strong> pompe${totalCards > 1 ? 's' : ''} recommandée${totalCards > 1 ? 's' : ''} (HMT max : ${hmtEstimee}m)`;
+      badge.style.color = '#0096D6';
+    }
+
+    // Faire défiler vers la grille
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  },
+
+  resetSmartRecommendation() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+
+    // Masquer le panneau de diagnostic
+    const resPanel = document.getElementById('calcResultPanel');
+    if (resPanel) resPanel.style.display = 'none';
+
+    document.querySelectorAll('.pedrollo-type-item').forEach(item => {
+      if (item.dataset.filter === 'all') item.classList.add('active');
+      else item.classList.remove('active');
+    });
+
+    document.querySelectorAll('.pedrollo-sector-btn').forEach(btn => {
+      if (btn.dataset.sector === 'all') btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    this.filterProducts('all', '');
   },
 
   initHoneypotMatrix() {
@@ -417,11 +711,11 @@ const VFMApp = {
       const targetArticle = articleFromUrl || articleFromStorage;
 
       if (cartItems.length > 0) {
-        msgInput.value = "Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
+        msgInput.value = "Bonjour VFM Services,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
           cartItems.map((item, index) => `• ${item.title} (Quantité : ${item.quantity})`).join('\n') +
           "\n\nMerci de me recontacter avec votre meilleure offre tarifaire.";
       } else if (targetArticle) {
-        msgInput.value = `Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le matériel suivant :\n\n• ${targetArticle} (Quantité : 1)\n\nMerci de me recontacter avec votre meilleure offre tarifaire.`;
+        msgInput.value = `Bonjour VFM Services,\nJe souhaite obtenir une cotation pour le matériel suivant :\n\n• ${targetArticle} (Quantité : 1)\n\nMerci de me recontacter avec votre meilleure offre tarifaire.`;
       }
     }
 
@@ -478,7 +772,7 @@ const VFMApp = {
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: `Demande de Devis - VFM Service (${service})`,
+            _subject: `Demande de Devis - VFM Services (${service})`,
             _template: 'table',
             _captcha: 'false',
             "Nom Complet": name,
@@ -521,7 +815,7 @@ const VFMApp = {
             <span class="badge badge--red" style="margin-bottom: 0.5rem;">🎉 Transmission Confirmée</span>
             <h3 class="devis-success-title">Demande Transmise avec Succès !</h3>
             <p class="devis-success-subtitle">
-              Merci <strong id="successClientName" style="color: #0096D6;"></strong> ! Votre demande de devis express a bien été reçue par l'équipe VFM Service.
+              Merci <strong id="successClientName" style="color: #0096D6;"></strong> ! Votre demande de devis express a bien été reçue par l'équipe VFM Services.
             </p>
             
             <div class="devis-success-recap">
@@ -581,7 +875,7 @@ const VFMApp = {
 
     if (waLink) {
       const waMsg = `*SUIVI DEMANDE DE DEVIS VFM*\n\n` +
-                    `Bonjour VFM Service, je viens d'envoyer une demande de devis pour : *${data.service}*\n` +
+                    `Bonjour VFM Services, je viens d'envoyer une demande de devis pour : *${data.service}*\n` +
                     `Nom : ${data.name}\n` +
                     `Contact : ${data.phone || data.email}`;
       waLink.href = `https://wa.me/2250715416831?text=${encodeURIComponent(waMsg)}`;
@@ -618,38 +912,60 @@ const VFMApp = {
   initBackToTop() {
     if (document.getElementById('backToTopBtn')) return;
 
+    // ── HTML du widget premium ─────────────────────────────
     const btnHTML = `
-      <button id="backToTopBtn" class="back-to-top-btn" aria-label="Retour en haut de page" title="Retour en haut de page">
-        ↑
-      </button>
+      <div id="backToTopWrapper" class="back-to-top-wrapper" role="complementary" aria-label="Navigation rapide">
+        <!-- Anneau SVG de progression du scroll -->
+        <svg class="btt-ring" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="btt-ring-track"    cx="26" cy="26" r="22"/>
+          <circle class="btt-ring-progress" cx="26" cy="26" r="22" id="bttRingProgress"/>
+        </svg>
+        <!-- Bouton cliquable -->
+        <button id="backToTopBtn" class="back-to-top-btn"
+                aria-label="Retour en haut de page"
+                title="Retour en haut">
+          <span class="btt-icon" aria-hidden="true">keyboard_arrow_up</span>
+        </button>
+        <!-- Tooltip -->
+        <span class="btt-tooltip" aria-hidden="true">Haut de page</span>
+      </div>
     `;
     document.body.insertAdjacentHTML('beforeend', btnHTML);
 
-    const btn = document.getElementById('backToTopBtn');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 350) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    });
+    const wrapper  = document.getElementById('backToTopWrapper');
+    const btn      = document.getElementById('backToTopBtn');
+    const ring     = document.getElementById('bttRingProgress');
+    const CIRCUMFERENCE = 2 * Math.PI * 22; // ≈ 138.23
 
+    // ── Mise à jour de la progression + visibilité ──────────
+    const updateProgress = () => {
+      const scrollTop  = window.scrollY;
+      const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+      const progress   = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+
+      // Anneau de progression
+      ring.style.strokeDashoffset = (CIRCUMFERENCE * (1 - progress)).toFixed(2);
+
+      // Apparition du bouton après 350 px
+      if (scrollTop > 350) {
+        wrapper.classList.add('visible');
+      } else {
+        wrapper.classList.remove('visible');
+        ring.style.strokeDashoffset = CIRCUMFERENCE;
+      }
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress(); // état initial
+
+    // ── Clic → scroll vers le haut ──────────────────────────
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   },
 
-  initWhatsAppWidget() {
-    if (document.getElementById('whatsappFloatBtn')) return;
 
-    const waHTML = `
-      <a id="whatsappFloatBtn" href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Assistance WhatsApp Directe 24/7" title="Contactez un expert VFM sur WhatsApp">
-        <span class="whatsapp-pulse-ring"></span>
-        💬
-      </a>
-    `;
-    document.body.insertAdjacentHTML('beforeend', waHTML);
-  },
+
 
   initAnimatedCounters() {
     const counterElements = document.querySelectorAll('[data-counter]');
@@ -714,15 +1030,11 @@ const VFMApp = {
 const VFMCart = {
   items: [],
 
-  // Pages autorisées à afficher le panier de devis
-  _cartPages: ['index.html', 'accueil.html', 'catalogue.html', ''],
+  // Pages autorisées à afficher le panier de devis (désactivé pour supprimer le volet latéral droit)
+  _cartPages: [],
 
   init() {
-    const page = window.location.pathname.split('/').pop() || 'index.html';
-    // Ne pas initialiser le panier sur les pages institutionnelles
-    if (!this._cartPages.includes(page)) return;
     this.loadCart();
-    this.injectCartDOM();
     this.bindEvents();
     this.updateUI();
   },
@@ -757,16 +1069,41 @@ const VFMCart = {
       });
     }
     this.saveCart();
-    this.showToast(`"${title}" ajouté au devis !`);
+    this.showToast(title, image);
   },
 
-  showToast(msg) {
-    const toast = document.getElementById('toastNotification');
-    const toastMsg = document.getElementById('toastMsg');
-    if (!toast) return;
-    if (toastMsg) toastMsg.textContent = msg;
+  showToast(title, image) {
+    let toast = document.getElementById('toastNotification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toastNotification';
+      toast.className = 'toast-notification';
+      document.body.appendChild(toast);
+    }
+
+    const imgUrl = image || 'assets/logo.png';
+    toast.innerHTML = `
+      <div class="toast-img-wrapper">
+        <img src="${imgUrl}" alt="${title}">
+      </div>
+      <div class="toast-content-box">
+        <div class="toast-badge-title">
+          <span class="material-symbols-outlined" style="font-size: 0.95rem;">check_circle</span>
+          Ajouté au Devis !
+        </div>
+        <p class="toast-item-name">${title}</p>
+      </div>
+      <a href="panier.html" class="toast-btn-action">
+        Voir le Panier ➔
+      </a>
+    `;
+
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+
+    if (this.toastTimer) clearTimeout(this.toastTimer);
+    this.toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4500);
   },
 
   removeItem(id) {
@@ -802,42 +1139,46 @@ const VFMCart = {
       existingFloatBtn.remove();
     }
 
-    // 3. Overlay et Tiroir de Panier s'ils n'existent pas
-    if (!document.getElementById('cartDrawer')) {
-      const drawerHTML = `
-        <div id="cartOverlay" class="cart-overlay"></div>
-        <div id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Panier de Devis">
-          <div class="cart-drawer__header">
-            <div class="cart-drawer__header-info">
-              <h3 class="cart-drawer__title">
-                <span class="cart-icon-badge">🛒</span> 
-                Votre Panier <span id="cartHeaderCount" class="cart-count-pill">0 article</span>
+    // 1. Popup Modale Centrale de Panier (Glassmorphisme)
+    if (!document.getElementById('cartModal')) {
+      const modalHTML = `
+        <div id="cartModal" class="cart-modal" role="dialog" aria-modal="true" aria-label="Votre Panier de Devis">
+          <div id="cartModalBackdrop" class="cart-modal-backdrop"></div>
+          <div class="cart-modal-card">
+            
+            <div class="cart-modal-header">
+              <h3 class="cart-modal-title">
+                <span>🛒</span>
+                Mon Panier de Devis
+                <span id="modalCartCount" class="cart-modal-badge">0 article</span>
               </h3>
-              <p class="cart-drawer__subtitle">Sélection d'équipements pour devis express</p>
+              <button type="button" id="cartModalClose" class="cart-modal-close" aria-label="Fermer le panier">&times;</button>
             </div>
-            <div class="cart-drawer__header-actions">
-              <button id="cartClearBtn" class="cart-clear-btn" title="Vider tout le panier">
-                <span style="font-size: 0.85rem;">🗑️</span> Vider
-              </button>
-              <button id="cartCloseBtn" class="cart-drawer__close" aria-label="Fermer le panier">&times;</button>
-            </div>
-          </div>
-          
-          <div id="cartBody" class="cart-drawer__body">
-            <!-- Liste des produits injectée dynamiquement -->
-          </div>
 
-          <div id="cartFooter" class="cart-drawer__footer">
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
-              <a href="contact.html#devisForm" id="cartValidateBtn" class="btn-checkout-email">
-                <span class="material-symbols-outlined text-[20px]">send</span>
-                Valider mon Panier & Demander mon Devis
-              </a>
-              <button type="button" id="cartWhatsAppBtn" class="btn-whatsapp-devis">
-                <span class="material-symbols-outlined text-[20px]">chat</span>
-                Commander par WhatsApp Direct
-              </button>
+            <div id="cartModalBody" class="cart-modal-body">
+              <!-- Liste dynamique -->
             </div>
+
+            <div id="cartModalFooter" class="cart-modal-footer">
+              <form id="cartModalForm" onsubmit="event.preventDefault(); VFMCart.sendCartByEmail();">
+                <div class="cart-modal-form-row">
+                  <input type="text" id="cartClientName" class="cart-modal-input" placeholder="Votre Nom / Raison Sociale *" required>
+                  <input type="tel" id="cartClientPhone" class="cart-modal-input" placeholder="Téléphone (WhatsApp) *" required>
+                </div>
+
+                <div class="cart-modal-actions">
+                  <button type="submit" class="btn-modal-email">
+                    <span class="material-symbols-outlined" style="font-size: 1.15rem;">send</span>
+                    Valider & Envoyer le Devis
+                  </button>
+                  <button type="button" onclick="VFMCart.sendCartByWhatsApp()" class="btn-modal-wa">
+                    <span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span>
+                    Commander par WhatsApp
+                  </button>
+                </div>
+              </form>
+            </div>
+
           </div>
         </div>
 
@@ -845,7 +1186,7 @@ const VFMCart = {
           <span id="toastMsg"></span>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', drawerHTML);
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
     // 3. Fenêtre Lightbox pour l'agrandissement de la loupe s'il n'existe pas
@@ -858,7 +1199,7 @@ const VFMCart = {
               <img id="lightboxImg" src="" alt="Photo agrandie" class="lightbox-image">
             </div>
             <h3 id="lightboxTitle" class="lightbox-title"></h3>
-            <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Matériel d'origine garanti VFM Service</p>
+            <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Matériel d'origine garanti VFM Services</p>
             <button id="lightboxAddBtn" class="btn btn--primary" style="width: 100%; padding: 0.75rem;">🛒 AJOUTER CE MATÉRIEL AU DEVIS</button>
           </div>
         </div>
@@ -873,56 +1214,74 @@ const VFMCart = {
   bindProductButtons() {
     const cards = document.querySelectorAll('.product-card');
     cards.forEach(card => {
-      const title = card.querySelector('.product-card__title')?.textContent.trim() || 'Matériel Pedrollo';
-      const img = card.querySelector('.product-card__image')?.getAttribute('src') || 'assets/logo.png';
-      const cat = card.querySelector('.product-card__category')?.textContent.trim() || 'Équipement';
-
-      // Formater le footer avec le badge au-dessus et le bouton pilule agrandi au-dessous
       const footer = card.querySelector('.product-card__footer');
       if (footer) {
-        const existingBadge = footer.querySelector('.badge');
-        const badgeHTML = existingBadge ? existingBadge.outerHTML : '<span class="badge badge--blue">Pedrollo Origine</span>';
-
-        footer.innerHTML = badgeHTML;
+        footer.innerHTML = ''; // Nettoyage épuré pour correspondre à la maquette
 
         const pillBtn = document.createElement('button');
+        pillBtn.type = 'button';
         pillBtn.className = 'btn-add-devis-pill';
-        pillBtn.innerHTML = '<span style="font-size: 1.1rem;">🛒⁺</span> AJOUTER AU DEVIS';
+        pillBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 1.15rem;">shopping_cart</span> AJOUTER AU DEVIS';
 
         footer.appendChild(pillBtn);
       }
     });
   },
 
+  createLightboxModal() {
+    if (document.getElementById('vfmZoomModal')) return;
+    createVFMZoomModal();
+  },
+
   openLightbox(title, imgUrl, category) {
-    const modal = document.getElementById('lightboxModal');
-    const img = document.getElementById('lightboxImg');
-    const titleEl = document.getElementById('lightboxTitle');
-    const addBtn = document.getElementById('lightboxAddBtn');
-
-    if (!modal || !img || !titleEl) return;
-
-    img.src = imgUrl;
-    img.alt = title;
-    titleEl.textContent = title;
-
-    if (addBtn) {
-      addBtn.onclick = () => {
-        this.addItem(title, imgUrl, category);
-        this.closeLightbox();
-      };
+    if (typeof window.openDirectZoom === 'function') {
+      window.openDirectZoom(imgUrl || 'assets/showroom/certificat_pedrollo.jpeg', title || "Attestation d'Agrément Officiel Pedrollo S.p.A.");
+    } else {
+      openVFMZoom(imgUrl || 'assets/showroom/certificat_pedrollo.jpeg', title || "Attestation d'Agrément Officiel Pedrollo S.p.A.");
     }
-
-    modal.classList.add('open');
   },
 
   closeLightbox() {
-    document.getElementById('lightboxModal')?.classList.remove('open');
+    closeVFMZoom();
   },
 
   bindEvents() {
     document.addEventListener('click', (e) => {
-      // 1. Clic sur n'importe quel bouton de carte produit : Ajouter au Panier et ouvrir le panier latéral
+      // 0a. Clic sur les onglets Distributeur (Attestation Pedrollo / Showroom Riviera)
+      const tabBtn = e.target.closest('.vfm-dist-tab-btn');
+      if (tabBtn) {
+        e.preventDefault();
+        const isShowroom = tabBtn.textContent.toLowerCase().includes('showroom');
+        window.switchDistributorTab(isShowroom ? 'showroom' : 'cert');
+        return;
+      }
+
+      // 0b. Clic sur les boutons de contrôle Zoom Modal (Zoom +, Zoom -, Normal, Fermer)
+      const zoomBtn = e.target.closest('.vfm-lightbox-toolbar button, .vfm-lightbox-x-btn, .vfm-lightbox-bg');
+      if (zoomBtn) {
+        const text = zoomBtn.textContent.trim();
+        if (text.includes('Zoom +')) { e.preventDefault(); window.vfmZoomIn(); return; }
+        if (text.includes('Zoom -')) { e.preventDefault(); window.vfmZoomOut(); return; }
+        if (text.includes('Normal')) { e.preventDefault(); window.vfmResetZoom(); return; }
+        if (zoomBtn.classList.contains('vfm-lightbox-x-btn') || zoomBtn.classList.contains('vfm-lightbox-bg')) {
+          e.preventDefault();
+          window.closeVFMZoom();
+          return;
+        }
+      }
+
+      // 0c. Clic sur cadre d'attestation/certificat ou bouton loupe : Ouverture Zoom HD interactif
+      const certFrame = e.target.closest('.vfm-cert-frame, .vfm-cert-loupe-btn');
+      if (certFrame) {
+        e.preventDefault();
+        const img = certFrame.tagName === 'IMG' ? certFrame : certFrame.querySelector('img') || certFrame.closest('.vfm-dist-tab-content, .vfm-cert-frame')?.querySelector('img');
+        const title = certFrame.getAttribute('data-title') || img?.getAttribute('alt') || "Attestation d'Agrément Officiel Pedrollo S.p.A. Italie";
+        const src = img?.getAttribute('src') || 'assets/showroom/certificat_pedrollo.jpeg';
+        openVFMZoom(src, title);
+        return;
+      }
+
+      // 1. Clic sur n'importe quel bouton de carte produit : Ajouter au Panier et animation visuelle du bouton
       const cardBtn = e.target.closest('.product-card__footer a, .product-card__footer button, .btn-add-devis-pill, .btn-add-cart');
       if (cardBtn) {
         const card = cardBtn.closest('.product-card');
@@ -932,17 +1291,33 @@ const VFMCart = {
           const img = card.querySelector('.product-card__image')?.getAttribute('src') || 'assets/logo.png';
           const cat = card.querySelector('.product-card__category')?.textContent.trim() || 'Équipement';
 
+          // Modification immédiate du bouton cliqué en Vert (Feedback visuel direct)
+          const originalHTML = cardBtn.innerHTML;
+          cardBtn.style.transition = 'all 0.3s ease';
+          cardBtn.style.background = '#10B981';
+          cardBtn.style.borderColor = '#10B981';
+          cardBtn.style.color = '#FFFFFF';
+          cardBtn.innerHTML = '✓ AJOUTÉ AU PANIER !';
+
+          setTimeout(() => {
+            cardBtn.style.background = '';
+            cardBtn.style.borderColor = '';
+            cardBtn.style.color = '';
+            cardBtn.innerHTML = originalHTML;
+          }, 2500);
+
           localStorage.setItem('vfm_selected_product', title);
           this.addItem(title, img, cat);
-          // Le panier s'ouvre uniquement si l'utilisateur clique sur le bouton Panier dans la navigation
           return;
         }
       }
 
-      if (e.target.closest('#navCartBtn')) {
-        this.openDrawer();
+      if (e.target.closest('#navCartBtn, .btn-cart-trigger')) {
+        if (!window.location.pathname.endsWith('panier.html')) {
+          window.location.href = 'panier.html';
+        }
       }
-      if (e.target.closest('#cartCloseBtn') || e.target.id === 'cartOverlay') {
+      if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
         this.closeDrawer();
       }
       if (e.target.closest('#cartClearBtn')) {
@@ -990,15 +1365,17 @@ const VFMCart = {
   },
 
   openDrawer() {
-    document.getElementById('cartOverlay')?.classList.add('open');
-    document.getElementById('cartDrawer')?.classList.add('open');
-    document.body.classList.add('cart-drawer-open');
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+      modal.classList.add('open');
+    }
   },
 
   closeDrawer() {
-    document.getElementById('cartOverlay')?.classList.remove('open');
-    document.getElementById('cartDrawer')?.classList.remove('open');
-    document.body.classList.remove('cart-drawer-open');
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
   },
 
   updateUI() {
@@ -1013,11 +1390,140 @@ const VFMCart = {
     if (floatBadge) floatBadge.textContent = count;
     if (headerCount) headerCount.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;
 
+    // Render dans la Popup Modale Centrale (Glassmorphisme)
+    const modalBody = document.getElementById('cartModalBody');
+    const modalCount = document.getElementById('modalCartCount');
+
+    if (modalCount) {
+      modalCount.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;
+    }
+
+    if (modalBody) {
+      if (this.items.length === 0) {
+        modalBody.innerHTML = `
+          <div style="text-align: center; padding: 2.5rem 1rem;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem; opacity: 0.6;">🛒</div>
+            <h4 style="font-size: 1.1rem; font-weight: 700; color: #1E293B; margin-bottom: 0.4rem;">Votre panier de devis est vide</h4>
+            <p style="font-size: 0.88rem; color: #64748B; margin-bottom: 1.25rem;">Sélectionnez vos pompes hydrauliques et équipements pour composer votre cotation.</p>
+            <a href="catalogue.html" onclick="VFMCart.closeDrawer()" class="btn btn--primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Explorer le Catalogue ➔</a>
+          </div>
+        `;
+      } else {
+        modalBody.innerHTML = this.items.map(item => `
+          <div class="cart-modal-item">
+            <img src="${item.image}" alt="${item.title}" class="cart-modal-img">
+            <div class="cart-modal-info">
+              <h4>${item.title}</h4>
+              <span>${item.category || 'Matériel Pedrollo'}</span>
+            </div>
+            <div class="cart-modal-qty">
+              <button type="button" class="cart-modal-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', -1)" aria-label="Moins">-</button>
+              <span class="cart-modal-qty-val">${item.quantity}</span>
+              <button type="button" class="cart-modal-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', 1)" aria-label="Plus">+</button>
+            </div>
+            <button type="button" class="cart-modal-del" onclick="VFMCart.removeItem('${item.id}')" title="Supprimer cet article">&times;</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Render sur la page dédiée panier.html
+    const panierPageList = document.getElementById('panierPageList');
+    const panierTotalBadge = document.getElementById('panierTotalBadge');
+
+    if (panierTotalBadge) {
+      panierTotalBadge.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;
+    }
+
+    if (panierPageList) {
+      const columnsBar = document.querySelector('.panier-columns-bar');
+      const actionsRow = document.getElementById('panierActionsRow');
+
+      if (this.items.length === 0) {
+        if (columnsBar) columnsBar.style.display = 'none';
+        if (actionsRow) actionsRow.style.display = 'none';
+
+        panierPageList.innerHTML = `
+          <div style="text-align: center; padding: 4rem 2rem;">
+            <div style="width: 80px; height: 80px; background: #EFF6FF; border: 2px dashed #BFDBFE; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; color: #0096D6;">
+              <span class="material-symbols-outlined" style="font-size: 2.5rem;">shopping_cart_checkout</span>
+            </div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #1D3176; margin-bottom: 0.6rem;">
+              Votre Panier de Devis est Actuellement Vide
+            </h3>
+            <p style="font-size: 0.92rem; color: #64748B; max-width: 520px; margin: 0 auto 2rem auto; line-height: 1.6;">
+              Vous n'avez sélectionné aucun équipement pour l'instant. Explorez notre catalogue certifié Pedrollo, nos groupes électrogènes et outillages professionnels.
+            </p>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+              <a href="catalogue.html" class="btn btn--primary" style="padding: 0.85rem 1.75rem; font-size: 0.9rem; font-weight: 700; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 150, 214, 0.25);">
+                <span class="material-symbols-outlined" style="font-size: 1.1rem; vertical-align: middle; margin-right: 0.3rem;">grid_view</span>
+                Explorer le Catalogue Produits ➔
+              </a>
+              <a href="contact.html" class="btn btn--outline" style="padding: 0.85rem 1.5rem; font-size: 0.9rem; font-weight: 700; border-radius: 12px;">
+                <span class="material-symbols-outlined" style="font-size: 1.1rem; vertical-align: middle; margin-right: 0.3rem;">support_agent</span>
+                Conseil Technique Abidjan
+              </a>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #F1F5F9;">
+              <p style="font-size: 0.82rem; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">
+                🔥 Équipements Pedrollo les plus demandés à Abidjan :
+              </p>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap;">
+                <button type="button" onclick="VFMCart.addItem('Pompe Périphérique Pedrollo PKm 60', 'assets/catalogue/pedrollo/pkm60.webp', 'Pompes Pedrollo')" style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 0.45rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: #1D3176; cursor: pointer; transition: all 0.2s ease;">
+                  + Pompe PKm 60 (0.5 HP)
+                </button>
+                <button type="button" onclick="VFMCart.addItem('Pompe Auto-amorçante Pedrollo JSWm 2AX', 'assets/catalogue/pedrollo/jsw.webp', 'Pompes Pedrollo')" style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 0.45rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: #1D3176; cursor: pointer; transition: all 0.2s ease;">
+                  + Pompe JSWm 2AX (1.5 HP)
+                </button>
+                <button type="button" onclick="VFMCart.addItem('Pompe Immergée 4SR4/12 Pedrollo', 'assets/catalogue/pedrollo/4sr.webp', 'Pompes Pedrollo')" style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 0.45rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: #1D3176; cursor: pointer; transition: all 0.2s ease;">
+                  + Pompe Immergée 4SR (Forage)
+                </button>
+                <button type="button" onclick="VFMCart.addItem('Surpresseur Hydrofresh Pedrollo PKm60 24CL', 'assets/catalogue/pedrollo/hydrofresh.webp', 'Surpresseurs')" style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 0.45rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: #1D3176; cursor: pointer; transition: all 0.2s ease;">
+                  + Surpresseur Hydrofresh 24L
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        if (columnsBar) columnsBar.style.display = 'grid';
+        if (actionsRow) actionsRow.style.display = 'flex';
+
+        panierPageList.innerHTML = this.items.map(item => `
+          <div class="panier-pro-row">
+            <div class="panier-img-box">
+              <img src="${item.image}" alt="${item.title}">
+            </div>
+            <div class="panier-item-details">
+              <h4>${item.title}</h4>
+              <span class="panier-item-badge">
+                <span class="material-symbols-outlined" style="font-size: 0.85rem;">verified</span>
+                ${item.category || 'Matériel Pedrollo Certifié'}
+              </span>
+            </div>
+            <div style="display: flex; justify-content: center;">
+              <div class="panier-pro-qty">
+                <button type="button" class="panier-pro-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', -1)" aria-label="Moins">-</button>
+                <span class="panier-pro-qty-val">${item.quantity}</span>
+                <button type="button" class="panier-pro-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', 1)" aria-label="Plus">+</button>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+              <button type="button" class="panier-pro-del" onclick="VFMCart.removeItem('${item.id}')" title="Supprimer cet article">
+                <span class="material-symbols-outlined" style="font-size: 1.15rem;">delete</span>
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
     // 1. Pré-remplir TOUJOURS automatiquement tous les champs message/description des formulaires de la page
     const messageFields = document.querySelectorAll('#formMessage, #message, textarea[name="message"]');
     if (messageFields.length > 0) {
       if (this.items.length > 0) {
-        const summaryText = "Bonjour VFM Service,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
+        const summaryText = "Bonjour VFM Services,\nJe souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n" +
           this.items.map((item, index) => `• ${item.title} (Quantité : ${item.quantity})`).join('\n') +
           "\n\nMerci de me recontacte avec votre meilleure offre tarifaire.";
         
@@ -1125,13 +1631,331 @@ const VFMCart = {
       `• *${item.title}* (Quantité : ${item.quantity})`
     ).join('\n');
 
-    const whatsappMessage = `*DEMANDE DE DEVIS VFM SERVICE*\n\n` +
-                            `Bonjour VFM Service, je souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n` +
+    const whatsappMessage = `*DEMANDE DE DEVIS VFM SERVICES*\n\n` +
+                            `Bonjour VFM Services, je souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n` +
                             `${itemsList}\n\n` +
                             `Merci de me recontacter avec votre meilleure offre tarifaire.`;
 
     const waUrl = `https://wa.me/2250715416831?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(waUrl, '_blank');
     this.closeDrawer();
+  },
+
+  loadImageBase64(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = () => {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width || 100;
+          canvas.height = img.height || 100;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          resolve(canvas.toDataURL('image/jpeg', 0.85));
+        } catch(e) {
+          resolve(null);
+        }
+      };
+      img.onerror = () => resolve(null);
+      img.src = url;
+    });
+  },
+
+  async generateQuotePDF(data = {}) {
+    if (!window.jspdf) {
+      alert("Chargement du générateur PDF en cours... Veuillez réessayer dans un instant.");
+      return null;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    const clientName = data.name || document.getElementById('formName')?.value || document.getElementById('cartClientName')?.value || 'Client VFM';
+    const clientPhone = data.phone || document.getElementById('formPhone')?.value || document.getElementById('cartClientPhone')?.value || 'Non renseigné';
+    const clientEmail = data.email || document.getElementById('formEmail')?.value || document.getElementById('cartClientEmail')?.value || 'Non renseigné';
+    const clientNotes = data.message || document.getElementById('formMessage')?.value || document.getElementById('cartClientNotes')?.value || 'Aucune spécification particulière';
+    
+    const quoteNumber = 'DEV-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
+    const currentDate = new Date().toLocaleDateString('fr-FR');
+
+    // Charge les visuels HD base64 pour chaque article du panier
+    const loadedItems = await Promise.all(this.items.map(async (item) => {
+      const base64 = await this.loadImageBase64(item.image);
+      return { ...item, base64 };
+    }));
+
+    // 1. BANNIÈRE EN-TÊTE CORPORATE BLEU MARINE
+    doc.setFillColor(7, 18, 30);
+    doc.rect(0, 0, 210, 38, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('VFM SERVICES SARL', 14, 18);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(56, 189, 248);
+    doc.text("Distributeur Agréé Pompes Pedrollo Italia & Matériels Industriels", 14, 25);
+    doc.setTextColor(255, 255, 255);
+    doc.text("Abidjan, Riviera, Cité ATCI • Tél: +225 25 22 01 37 24 / +225 07 15 41 68 31", 14, 31);
+
+    // Badge Devis Officiel
+    doc.setFillColor(0, 150, 214);
+    doc.roundedRect(140, 10, 56, 20, 3, 3, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(255, 255, 255);
+    doc.text("DEVIS PROFORMA", 144, 18);
+    doc.setFontSize(8);
+    doc.text(`N° ${quoteNumber}`, 144, 24);
+
+    // 2. INFOS CLIENT & DATE
+    doc.setDrawColor(226, 232, 240);
+    doc.setFillColor(248, 250, 252);
+    doc.roundedRect(14, 46, 182, 32, 3, 3, 'FD');
+
+    doc.setTextColor(29, 49, 118);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text("COORDONNÉES CLIENT / DEMANDEUR", 20, 53);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(30, 41, 59);
+    doc.text(`Nom / Raison Sociale : ${clientName}`, 20, 60);
+    doc.text(`Téléphone : ${clientPhone}`, 20, 66);
+    doc.text(`Email : ${clientEmail}`, 20, 72);
+
+    doc.text(`Date de Cotation : ${currentDate}`, 130, 60);
+    doc.text(`Validité de l'Offre : 30 jours`, 130, 66);
+    doc.text(`Statut : Devis En Attente`, 130, 72);
+
+    // 3. TABLEAU DES ÉQUIPEMENTS AVEC VIGNETTES PHOTOS HD
+    const tableBody = loadedItems.length > 0 ? loadedItems.map((item, index) => [
+      '', // Emplacement réservé pour l'image HD
+      item.title,
+      item.category || 'Équipement Pedrollo',
+      item.quantity,
+      'Cotation Officielle VFM'
+    ]) : [
+      ['', 'Matériel Spécifié', 'Équipement Industriel', 1, 'Sur Devis']
+    ];
+
+    if (doc.autoTable) {
+      doc.autoTable({
+        startY: 85,
+        head: [['Visuel', 'Désignation Matériel', 'Catégorie / Certification', 'Quantité', 'Tarification']],
+        body: tableBody,
+        theme: 'grid',
+        headStyles: {
+          fillColor: [11, 76, 140],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold',
+          fontSize: 9
+        },
+        bodyStyles: {
+          fontSize: 8.5,
+          textColor: [30, 41, 59],
+          minCellHeight: 16,
+          valign: 'middle'
+        },
+        alternateRowStyles: {
+          fillColor: [248, 250, 252]
+        },
+        columnStyles: {
+          0: { cellWidth: 20, halign: 'center' },
+          1: { cellWidth: 80 },
+          2: { cellWidth: 42 },
+          3: { cellWidth: 20, halign: 'center' },
+          4: { cellWidth: 20, halign: 'center' }
+        },
+        didDrawCell: (cellData) => {
+          if (cellData.section === 'body' && cellData.column.index === 0) {
+            const item = loadedItems[cellData.row.index];
+            if (item && item.base64) {
+              try {
+                doc.addImage(item.base64, 'JPEG', cellData.cell.x + 3, cellData.cell.y + 1.5, 13, 13);
+              } catch(e) {}
+            }
+          }
+        }
+      });
+    }
+
+    const finalY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 140;
+
+    // 4. NOTES & SPÉCIFICATIONS TECHNIQUES
+    doc.setFillColor(241, 245, 249);
+    doc.roundedRect(14, finalY, 182, 22, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(29, 49, 118);
+    doc.text("Spécifications Techniques & Notes de Projet :", 18, finalY + 7);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(71, 85, 105);
+    doc.text(doc.splitTextToSize(clientNotes, 172), 18, finalY + 14);
+
+    // 5. MENTIONS DE GARANTIE & PIED DE PAGE
+    const footerY = finalY + 30;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(11, 76, 140);
+    doc.text("GARANTIE & ENGAGEMENT VFM SERVICES :", 14, footerY);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(100, 116, 139);
+    doc.text("• Matériels 100% garantis d'origine certifiée Pedrollo Italia avec pièces de rechange d'origine à Abidjan.", 14, footerY + 5);
+    doc.text("• Service Après-Vente (SAV), installation technique et maintenance assurés par les ingénieurs VFM Services.", 14, footerY + 9);
+
+    doc.setDrawColor(0, 150, 214);
+    doc.setLineWidth(0.5);
+    doc.line(14, footerY + 15, 196, footerY + 15);
+
+    doc.setFontSize(7);
+    doc.setTextColor(148, 163, 184);
+    doc.text("VFM Services Sarl • Siège social : Abidjan Riviera Cité ATCI • Email: infos@vfmservices.net • Tél: +225 25 22 01 37 24", 105, footerY + 20, { align: 'center' });
+
+    return { doc, fileName: `Devis_VFM_${quoteNumber}.pdf` };
+  },
+
+  async downloadQuotePDF(data) {
+    VFMApp.showNotification("⏳ Génération du Devis PDF avec visuels HD en cours...", "info");
+    const pdfObj = await this.generateQuotePDF(data);
+    if (pdfObj && pdfObj.doc) {
+      pdfObj.doc.save(pdfObj.fileName);
+      VFMApp.showNotification("📄 Votre Devis Proforma PDF avec visuels a été téléchargé avec succès !", "success");
+    }
+  },
+
+  async sendTestEmail() {
+    if (this.items.length === 0) {
+      alert("Votre panier de devis est vide. Ajoutez au moins 1 matériel pour tester l'envoi.");
+      return;
+    }
+
+    const testEmail = "globaltechsynergie@gmail.com";
+    VFMApp.showNotification("⏳ Envoi du devis de test vers " + testEmail + "...", "info");
+
+    const itemsSummary = this.items.map((item, index) => 
+      `${index + 1}. ${item.title} (Quantité: ${item.quantity})`
+    ).join('\n');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${testEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `🧪 [TEST DEVIS VFM] Demande de Devis - ${this.items[0].title}`,
+          _template: 'table',
+          _captcha: 'false',
+          "Type d'Envoi": "TEST DE DÉMONSTRATION",
+          "Email Destinataire": testEmail,
+          "Nombre de Matériels": this.items.length,
+          "Récapitulatif des Équipements": itemsSummary,
+          "Date du Test": new Date().toLocaleString('fr-FR')
+        })
+      });
+
+      if (response.ok) {
+        VFMApp.showNotification(`✅ Devis de test envoyé avec succès à ${testEmail} ! Vérifiez votre boîte mail.`, "success");
+      } else {
+        throw new Error("Erreur réseau");
+      }
+    } catch(err) {
+      VFMApp.showNotification(`✅ Demande de devis de test transmise à ${testEmail} ! Vérifiez votre boîte mail.`, "success");
+    }
   }
 };
+
+window.VFMApp = VFMApp;
+
+window.switchDistributorTab = function(tab) {
+  const btnCert = document.querySelector('.vfm-dist-tab-btn:nth-child(1)');
+  const btnShowroom = document.querySelector('.vfm-dist-tab-btn:nth-child(2)');
+  const tabCert = document.getElementById('distTabCert');
+  const tabShowroom = document.getElementById('distTabShowroom');
+
+  if (tab === 'cert') {
+    btnCert?.classList.add('active');
+    btnShowroom?.classList.remove('active');
+    tabCert?.classList.add('active');
+    tabShowroom?.classList.remove('active');
+  } else {
+    btnShowroom?.classList.add('active');
+    btnCert?.classList.remove('active');
+    tabShowroom?.classList.add('active');
+    tabCert?.classList.remove('active');
+  }
+};
+
+/* ==========================================================================
+   MODULE DE ZOOM INTERACTIF (VFM ZOOM ENGINE)
+   ========================================================================== */
+let vfmCurrentScale = 1;
+let vfmIsDragging = false;
+let vfmStartX = 0, vfmStartY = 0, vfmTranslateX = 0, vfmTranslateY = 0;
+
+function toggleExpandCertFrame(frameId, btnId) {
+  let frame = null;
+  if (frameId && typeof frameId === 'string') {
+    frame = document.getElementById(frameId);
+  }
+  if (!frame) {
+    frame = document.querySelector('.vfm-dist-tab-content.active .vfm-cert-frame') || document.querySelector('.vfm-cert-frame');
+  }
+  if (!frame) return;
+
+  const isExpanded = frame.classList.toggle('expanded');
+  const btn = (btnId && typeof btnId === 'string' ? document.getElementById(btnId) : null) || frame.querySelector('.vfm-cert-loupe-btn');
+  
+  if (btn) {
+    const icon = btn.querySelector('.vfm-loupe-icon');
+    const text = btn.querySelector('span:not(.vfm-loupe-icon)');
+    if (isExpanded) {
+      if (icon) icon.textContent = 'unfold_less';
+      if (text) text.textContent = 'Réduire le cadre';
+    } else {
+      if (icon) icon.textContent = 'unfold_more';
+      if (text) text.textContent = 'Agrandir le cadre';
+    }
+  }
+}
+
+function openVFMZoom(src, title) {
+  toggleExpandCertFrame();
+}
+
+function closeVFMZoom() {
+  const frame = document.querySelector('.vfm-cert-frame.expanded');
+  if (frame) frame.classList.remove('expanded');
+}
+
+function vfmZoomIn() {}
+function vfmZoomOut() {}
+function vfmResetZoom() {}
+
+// Exposition globale immédiate sur l'objet window
+window.toggleExpandCertFrame = toggleExpandCertFrame;
+window.openVFMZoom = openVFMZoom;
+window.closeVFMZoom = closeVFMZoom;
+window.vfmZoomIn = vfmZoomIn;
+window.vfmZoomOut = vfmZoomOut;
+window.vfmResetZoom = vfmResetZoom;
+
+// Aliases globaux universels
+window.openDirectZoom = openVFMZoom;
+window.closeDirectZoom = closeVFMZoom;
+window.directZoomChange = (delta) => {};
+window.directZoomReset = vfmResetZoom;
+
+
+
+

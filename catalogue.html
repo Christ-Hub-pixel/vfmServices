@@ -38,11 +38,11 @@
       </nav>
 
       <div class="header__actions">
-        <button id="navCartBtn" class="btn-cart-trigger" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
+        <a href="panier.html" id="navCartBtn" class="btn-cart-trigger" aria-label="Voir le Panier de Devis" title="Mon Panier de Devis">
           <span class="cart-trigger-icon">🛒</span>
           <span class="cart-trigger-label">Panier</span>
           <span id="navCartCount" class="cart-trigger-count">0</span>
-        </button>
+        </a>
         <a href="contact.html#devisForm" class="btn btn--accent">
           Soumettre une Demande
         </a>
@@ -144,38 +144,139 @@
       </div>
     </section>
 
-    <!-- SECTION PRODUITS -->
-    <section class="section">
+    <!-- SECTION PRODUITS STYLE PEDROLLO OFFICIAL -->
+    <section class="section pedrollo-catalogue-bg" style="background: linear-gradient(180deg, rgba(0, 150, 214, 0.08) 0%, rgba(11, 76, 140, 0.12) 100%); padding: 3rem 0;">
       <div class="container">
-        <!-- FILTRES -->
-        <div class="catalogue__filters">
-          <button class="filter-btn active" data-filter="all">Tous les matériels (61)</button>
-          <button class="filter-btn" data-filter="pompes">Pompes Pedrollo (8)</button>
-          <button class="filter-btn" data-filter="groupes">Groupes Électrogènes (6)</button>
-          <button class="filter-btn" data-filter="pieces">Pièces & Composants (16)</button>
-          <button class="filter-btn" data-filter="outillage">Outillage Professionnel (31)</button>
-        </div>
 
-        <!-- BLOC CONTENEUR DES CARROUSELS DE CATALOGUE -->
-        <div id="productGrid" style="width: 100%; display: block;">
+        <!-- CONTENEUR GLOBAL SIDEBAR + GRILLE -->
+        <div class="pedrollo-catalogue-container">
 
-        <!-- === CARROUSEL 1 : POMPES HYDRAULIQUES PEDROLLO (12 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="pompes">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Partenaire Officiel Pedrollo Italia</span>
-              <h2>Pompes Hydrauliques Pedrollo (12)</h2>
+          <!-- SIDEBAR GAUCHE (SECTEURS & TYPES) -->
+          <aside class="pedrollo-sidebar">
+            <div class="pedrollo-sidebar-section">
+              <h3 class="pedrollo-sidebar-title">Secteurs d'utilisation</h3>
+              <div class="pedrollo-sectors-grid">
+                <button type="button" class="pedrollo-sector-btn active" data-sector="all">
+                  <span class="material-symbols-outlined">grid_view</span>
+                  Tous
+                </button>
+                <button type="button" class="pedrollo-sector-btn" data-sector="domestique">
+                  <span class="material-symbols-outlined">home</span>
+                  Domestique
+                </button>
+                <button type="button" class="pedrollo-sector-btn" data-sector="tertiaire">
+                  <span class="material-symbols-outlined">domain</span>
+                  Tertiaire
+                </button>
+                <button type="button" class="pedrollo-sector-btn" data-sector="industrie">
+                  <span class="material-symbols-outlined">factory</span>
+                  Industriel
+                </button>
+                <button type="button" class="pedrollo-sector-btn" data-sector="agri">
+                  <span class="material-symbols-outlined">grass</span>
+                  Agriculture
+                </button>
+                <button type="button" class="pedrollo-sector-btn" data-sector="piscine">
+                  <span class="material-symbols-outlined">pool</span>
+                  Piscines
+                </button>
+              </div>
             </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-pompes" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-pompes" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-pompes">
 
-              <!-- 1. PKm 60 / PK -->
-              <article class="product-card" data-category="pompes">
+            <div class="pedrollo-sidebar-section">
+              <h3 class="pedrollo-sidebar-title">Types de produit</h3>
+              <div class="pedrollo-type-list">
+                <div class="pedrollo-type-item active" data-filter="all">
+                  <span>Tous les matériels</span>
+                  <span class="count-badge">71</span>
+                </div>
+                <div class="pedrollo-type-item" data-filter="pompes">
+                  <span>Pompes Pedrollo</span>
+                  <span class="count-badge">18</span>
+                </div>
+                <div class="pedrollo-type-item" data-filter="groupes">
+                  <span>Groupes Électrogènes</span>
+                  <span class="count-badge">6</span>
+                </div>
+                <div class="pedrollo-type-item" data-filter="pieces">
+                  <span>Pièces & Composants</span>
+                  <span class="count-badge">16</span>
+                </div>
+                <div class="pedrollo-type-item" data-filter="outillage">
+                  <span>Outillage Professionnel</span>
+                  <span class="count-badge">31</span>
+                </div>
+            </div>
+
+            <!-- SÉLECTEUR DE POMPE INTELLIGENT -->
+            <div class="pedrollo-sidebar-section" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(11, 76, 140, 0.05) 0%, rgba(0, 150, 214, 0.05) 100%); border: 1.5px solid #D0DFEE; border-radius: 16px; padding: 1.25rem;">
+              <h3 class="pedrollo-sidebar-title" style="color: #1A365D; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem;">
+                <span class="material-symbols-outlined" style="color: #0096D6; font-size: 1.25rem;">query_stats</span>
+                Trouver ma Pompe Idéale
+              </h3>
+              <p style="font-size: 0.8rem; color: #475569; line-height: 1.4; margin-bottom: 1rem;">
+                Entrez vos paramètres pour trouver instantanément le modèle Pedrollo adapté.
+              </p>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <!-- Usage -->
+                <div>
+                  <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Usage souhaité</label>
+                  <select id="calcUsage" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #CBD5E1; font-size: 0.82rem; background: #FFFFFF; font-weight: 600; color: #1A365D;">
+                    <option value="domestique">Maison &amp; Surpression (Domestique)</option>
+                    <option value="agri">Irrigation &amp; Forage (Agricole)</option>
+                    <option value="industrie">Débit Élevé &amp; Chantiers (Industriel)</option>
+                  </select>
+                </div>
+                
+                <!-- Profondeur/Hauteur -->
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Hauteur / Profondeur</label>
+                    <span id="calcHmtVal" style="font-size: 0.8rem; font-weight: 800; color: #0096D6;">30 m</span>
+                  </div>
+                  <input type="range" id="calcHmt" min="5" max="120" value="30" step="5" style="width: 100%; accent-color: #0096D6;" oninput="document.getElementById('calcHmtVal').textContent = this.value + ' m'">
+                </div>
+                
+                <!-- Débit -->
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Débit souhaité</label>
+                    <span id="calcDebitVal" style="font-size: 0.8rem; font-weight: 800; color: #0096D6;">40 L/min</span>
+                  </div>
+                  <input type="range" id="calcDebit" min="10" max="250" value="40" step="10" style="width: 100%; accent-color: #0096D6;" oninput="document.getElementById('calcDebitVal').textContent = this.value + ' L/min'">
+                </div>
+
+                <!-- PANNEAU DE RÉSULTAT TECHNIQUE DYNAMIQUE -->
+                <div id="calcResultPanel" style="display: none; background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 0.85rem; margin: 0.25rem 0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);">
+                  <div style="font-size: 0.7rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.4rem; border-bottom: 1px solid #F1F5F9; padding-bottom: 0.25rem;">Diagnostic Technique</div>
+                  <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #1A365D;">
+                      <span>HMT Requise :</span>
+                      <strong id="resHmt" style="color: #0096D6;">--</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #1A365D;">
+                      <span>Puissance Estimée :</span>
+                      <strong id="resPower" style="color: #D4AF37;">--</strong>
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="button" class="btn btn--primary" style="width: 100%; padding: 0.6rem; font-size: 0.82rem; border-radius: 8px; justify-content: center;" onclick="VFMApp.runSmartRecommendation()">
+                  Calculer &amp; Filtrer ⚡
+                </button>
+                
+                <button type="button" class="btn btn--outline" style="width: 100%; padding: 0.5rem; font-size: 0.78rem; border-radius: 8px; justify-content: center; margin-top: -0.25rem;" onclick="VFMApp.resetSmartRecommendation()">
+                  Réinitialiser
+                </button>
+              </div>
+            </div>
+          </aside>
+
+          <!-- MAIN CONTENT AREA : GRILLE 4 COLONNES -->
+          <div class="pedrollo-main-content">
+            <div id="productGrid" class="pedrollo-grid">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/PKm-60.webp" alt="Pompe Périphérique Pedrollo PKm 60"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de surface.png';">
@@ -190,9 +291,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 2. JSW / FUTURE JET -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/JSW-1-2.webp" alt="Pompe Auto-amorçante Pedrollo JSW"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de surface.png';">
@@ -207,9 +306,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 3. 4SR / 4-BLOCK -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/4SR.webp" alt="Pompe Immergée Forage Pedrollo 4SR"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe immergée.png';">
@@ -224,9 +321,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 4. HYDROFRESH / PRESFLO -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/HYDROFRESH.webp" alt="Groupe Surpresseur Pedrollo Hydrofresh"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Surpresseur.png';">
@@ -241,9 +336,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 5. TOP / TOP-VORTEX / RX -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/TOP.webp" alt="Pompe Vide-cave Pedrollo TOP RX"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe vide-cave.png';">
@@ -258,9 +351,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 6. VX / BC / TRITUS -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/TRITUS.webp" alt="Pompe Eaux Usées Pedrollo TRITUS VX"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de relevage.png';">
@@ -275,9 +366,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 7. PLURIJET / MK / FCR -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/PLURIJET-80-100.webp" alt="Pompe Multicellulaire Pedrollo PLURIJET MK"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe multicellulaire.png';">
@@ -292,9 +381,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 8. 6SR / 6ST (Forage 6") -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/6SR.webp" alt="Pompe Forage 6 Pouces Pedrollo 6SR"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de forage.png';">
@@ -309,9 +396,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 9. FLUID SOLAR (Pompage Solaire) -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/FLUID-SOLAR.webp" alt="Pompe Solaire Pedrollo FLUID SOLAR"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe immergée.png';">
@@ -326,9 +411,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 10. SAR (Station de Relevage) -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/SAR-100.webp" alt="Station de Relevage Pedrollo SAR"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de relevage.png';">
@@ -343,9 +426,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 11. STEADYPRES / DG-BLU (Surpression Inverter) -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/STEADYPRES-4.0.webp" alt="Surpresseur Variateur Pedrollo STEADYPRES"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Surpresseur.png';">
@@ -360,9 +441,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- 12. CP / F-INOX (Centrifuge Industrielle Normalisée) -->
-              <article class="product-card" data-category="pompes">
+<article class="product-card" data-category="pompes">
                 <div class="product-card__image-container">
                   <img src="https://www.pedrollo.com/wp-content/uploads/products/CP.webp" alt="Pompe Centrifuge Pedrollo CP F-INOX"
                     class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/pompe centrifuge.png';">
@@ -377,27 +456,97 @@
                   </div>
                 </div>
               </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 2 : GROUPES ÉLECTROGÈNES (6 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="groupes">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--red">Autonomie & Puissance</span>
-              <h2>Groupes Électrogènes (6)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-groupes" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-groupes" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-groupes">
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/4PD.webp" alt="Moteur Immergé 4 Pouces Pedrollo 4PD"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de forage.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Moteurs Immergés 4PD & 4PS (4")</span>
+                  <h3 class="product-card__title">Moteur Immergé pour Puits 4PD / 4PS (4")</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Moteur submersible 4 pouces à bain d'huile réembobinable ou liquide non toxique pour forages.</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/QEM.webp" alt="Coffret de Commande Pedrollo QEM QET"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Surpresseur.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Armoires de Commande QEM / QET</span>
+                  <h3 class="product-card__title">Coffret de Démarrage & Protection QEM / QET</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Armoire de commande électrique avec disjoncteur thermique et condensateur pour pompes mono/triphasées.</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/EASYPRESS.webp" alt="Régulateur Électronique Pedrollo EASYPRESS"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Surpresseur.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Régulateurs EASYPRESS & EASYSMALL</span>
+                  <h3 class="product-card__title">Automate Électronique d'Automatisme EASYPRESS</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Régulateur de pression électronique protégeant l'électropompe contre le fonctionnement à sec.</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/NGA.webp" alt="Pompe Roue Ouverte Pedrollo NGA"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de surface.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Série NGA & NGA-PRO (Roue Ouverte)</span>
+                  <h3 class="product-card__title">Pompe Centrifuge Roue Ouverte NGA / NGA-PRO</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Électropompe centrifuge permettant le passage d'impuretés solides (eaux d'irrigation, jus, agro-industrie).</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/3SR.webp" alt="Pompe Immergée 3 Pouces Pedrollo 3SR"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe immergée.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Série 3SR Submersible (3")</span>
+                  <h3 class="product-card__title">Électropompe Immergée Ultra-Compacte 3SR (3")</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Pompe immergée 3 pouces haute performance conçue pour forages réduits et puits de petit diamètre.</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="pompes">
+                <div class="product-card__image-container">
+                  <img src="https://www.pedrollo.com/wp-content/uploads/products/MAGNIFICA.webp" alt="Pompe Piscine Pedrollo MAGNIFICA"
+                    class="product-card__image" loading="lazy" onerror="this.onerror=null;this.src='assets/catalogue/Pompes hydrauliques/Pompe de surface.png';">
+                </div>
+                <div class="product-card__body">
+                  <span class="product-card__category">Pedrollo • Série MAGNIFICA & PRIMA (Piscine)</span>
+                  <h3 class="product-card__title">Pompe Auto-Amorçante pour Piscines MAGNIFICA</h3>
+                  <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Électropompe silencieuse avec préfiltre haute capacité résistant au chlore et au sel pour bassins.</p>
+                  <div class="product-card__footer">
+                    <span class="badge badge--blue">Pedrollo Origine</span>
+                    <a href="contact.html" class="btn btn--outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Ajouter au Devis ✉️</a>
+                  </div>
+                </div>
+              </article>
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes diesel.png"
                     alt="Groupe Électrogène Diesel" class="product-card__image" loading="lazy">
@@ -414,8 +563,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes silencieux.png"
                     alt="Groupe Électrogène Silencieux" class="product-card__image" loading="lazy">
@@ -432,8 +580,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes essence.png"
                     alt="Groupe Électrogène Essence" class="product-card__image" loading="lazy">
@@ -450,8 +597,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes automatiques (ATS).png"
                     alt="Groupe Électrogène Automatique ATS" class="product-card__image" loading="lazy">
@@ -468,8 +614,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes industriels.png"
                     alt="Groupe Électrogène Industriel" class="product-card__image" loading="lazy">
@@ -486,8 +631,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="groupes">
+<article class="product-card" data-category="groupes">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Groupes électrogènes/Groupes électrogènes portables.png"
                     alt="Groupe Électrogène Portable" class="product-card__image" loading="lazy">
@@ -504,27 +648,7 @@
                   </div>
                 </div>
               </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 3 : PIÈCES & COMPOSANTS ÉLECTROGÈNES (16 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="pieces">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Pièces d'Origine Garanties</span>
-              <h2>Pièces Detachées & Composants Industriels (16)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-pieces" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-pieces" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-pieces">
-
-              <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Alternateur.png"
                 alt="Alternateur pour Groupe Électrogène" class="product-card__image" loading="lazy">
@@ -541,8 +665,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Batterie.png" alt="Batterie de Démarrage Industrielle"
                 class="product-card__image" loading="lazy">
@@ -559,15 +682,13 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Bougie.png" alt="Bougie d'Allumage Moteur"
                 class="product-card__image" loading="lazy">
             </div>
             <div class="product-card__body">
               <span class="product-card__category">Pièces Électrogène • Allumage</span>
-              <h3 class="product-card__title">Bougie d'Allumage Haute Performance</h3>
               <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Allumage fiable pour
                 moteurs à essence et groupes portables.</p>
               <div class="product-card__footer">
@@ -577,8 +698,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Courroie.png" alt="Courroie d'Entraînement Moteur"
                 class="product-card__image" loading="lazy">
@@ -595,8 +715,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Démarreur.png" alt="Démarreur Électrique Moteur"
                 class="product-card__image" loading="lazy">
@@ -613,8 +732,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à air.png" alt="Filtre à Air Industriel"
                 class="product-card__image" loading="lazy">
@@ -631,8 +749,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à carburant.png" alt="Filtre à Carburant Diesel"
                 class="product-card__image" loading="lazy">
@@ -649,8 +766,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Filtre à huile.png" alt="Filtre à Huile Moteur"
                 class="product-card__image" loading="lazy">
@@ -667,8 +783,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Injecteur.png" alt="Injecteur Haute Pression"
                 class="product-card__image" loading="lazy">
@@ -685,8 +800,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Pompe à injection.png" alt="Pompe à Injection Diesel"
                 class="product-card__image" loading="lazy">
@@ -703,8 +817,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Radiateur.png" alt="Radiateur de Refroidissement Moteur"
                 class="product-card__image" loading="lazy">
@@ -721,8 +834,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Régulateur AVR.png" alt="Régulateur de Tension AVR"
                 class="product-card__image" loading="lazy">
@@ -739,8 +851,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Silencieux d'échappement.png"
                 alt="Silencieux d'Échappement Industriel" class="product-card__image" loading="lazy">
@@ -757,8 +868,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Séparateur d'eau.png"
                 alt="Filtre Séparateur d'Eau Gasoil" class="product-card__image" loading="lazy">
@@ -775,8 +885,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Tableau de contrôle.png"
                 alt="Tableau de Contrôle Automatique Moteur" class="product-card__image" loading="lazy">
@@ -793,8 +902,7 @@
               </div>
             </div>
           </article>
-
-          <article class="product-card" data-category="pieces">
+<article class="product-card" data-category="pieces">
             <div class="product-card__image-container">
               <img src="assets/catalogue/PieceGroupeElectrogene/Ventilateur.png"
                 alt="Ventilateur de Refroidissement Moteur" class="product-card__image" loading="lazy">
@@ -811,28 +919,7 @@
               </div>
             </div>
           </article>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- === CARROUSEL 4 : OUTILLAGE PROFESSIONNEL & CHANTIER (31 PRODUITS) === -->
-        <div class="carousel-category-block" data-category="outillage">
-          <div class="carousel-header-row">
-            <div class="carousel-title-group">
-              <span class="badge badge--blue">Équipements & Outillage Pro</span>
-              <h2>Outillage Professionnel & Chantier (31)</h2>
-            </div>
-            <div class="carousel-nav-btns">
-              <button class="carousel-btn" data-carousel-target="carousel-outillage" data-direction="prev" aria-label="Précédent">‹</button>
-              <button class="carousel-btn" data-carousel-target="carousel-outillage" data-direction="next" aria-label="Suivant">›</button>
-            </div>
-          </div>
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carousel-outillage">
-
-              <!-- Outillage Électroportatif (17) -->
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse filaire.png" alt="Perceuse Filaire Haute Puissance" class="product-card__image" loading="lazy">
                 </div>
@@ -846,8 +933,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse sans fil.png" alt="Perceuse Sans-Fil Lithium" class="product-card__image" loading="lazy">
                 </div>
@@ -861,8 +947,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse-visseuse.png" alt="Perceuse-Visseuse Ergonomique" class="product-card__image" loading="lazy">
                 </div>
@@ -876,8 +961,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à percussion.png" alt="Perceuse à Percussion Industrielle" class="product-card__image" loading="lazy">
                 </div>
@@ -891,8 +975,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse d'angle.png" alt="Perceuse d'Angle Compacte" class="product-card__image" loading="lazy">
                 </div>
@@ -906,8 +989,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse pneumatique.png" alt="Perceuse Pneumatique Pro" class="product-card__image" loading="lazy">
                 </div>
@@ -921,8 +1003,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à colonne.png" alt="Perceuse à Colonne d'Atelier" class="product-card__image" loading="lazy">
                 </div>
@@ -936,8 +1017,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse magnétique.png" alt="Perceuse Magnétique Charnière" class="product-card__image" loading="lazy">
                 </div>
@@ -951,8 +1031,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perceuse à diamant (Carotteuse).png" alt="Carotteuse à Diamant Professionnelle" class="product-card__image" loading="lazy">
                 </div>
@@ -966,8 +1045,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Perforateur burineur (Marteau perforateur).png" alt="Perforateur Burineur SDS-Max" class="product-card__image" loading="lazy">
                 </div>
@@ -981,8 +1059,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Marteaux-piqueurs.png" alt="Marteau-Piqueur Démolition" class="product-card__image" loading="lazy">
                 </div>
@@ -996,8 +1073,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Meuleuses.png" alt="Meuleuse d'Angle Industrielle" class="product-card__image" loading="lazy">
                 </div>
@@ -1011,8 +1087,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Scies circulaires.png" alt="Scie Circulaire Portative" class="product-card__image" loading="lazy">
                 </div>
@@ -1026,8 +1101,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Scies sauteuses.png" alt="Scie Sauteuse Électronique" class="product-card__image" loading="lazy">
                 </div>
@@ -1041,8 +1115,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Ponceuses.png" alt="Ponceuse Orbitale Vitesse Variable" class="product-card__image" loading="lazy">
                 </div>
@@ -1056,8 +1129,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Visseuses.png" alt="Visseuse à Choc Haute Torsion" class="product-card__image" loading="lazy">
                 </div>
@@ -1071,8 +1143,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage électroportatif/Clés plates.png" alt="Clés Plates Électroportatives" class="product-card__image" loading="lazy">
                 </div>
@@ -1086,9 +1157,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- Outillage Manuel (9) -->
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Clés plates.png" alt="Jeu de Clés Plates en Acier Forgé" class="product-card__image" loading="lazy">
                 </div>
@@ -1102,8 +1171,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Clés à molette.png" alt="Clé à Molette Ajustable Chromée" class="product-card__image" loading="lazy">
                 </div>
@@ -1117,8 +1185,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Jeux de douilles.png" alt="Coffret Jeu de Douilles & Cliquets" class="product-card__image" loading="lazy">
                 </div>
@@ -1132,8 +1199,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Tournevis.png" alt="Jeu de Tournevis Isolés 1000V" class="product-card__image" loading="lazy">
                 </div>
@@ -1147,8 +1213,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Marteaux.png" alt="Marteau de Mécanicien Anti-Vibration" class="product-card__image" loading="lazy">
                 </div>
@@ -1162,8 +1227,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Pinces.png" alt="Jeu de Pinces Multiprises & Coupantes" class="product-card__image" loading="lazy">
                 </div>
@@ -1177,8 +1241,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Mètres ruban.png" alt="Mètre Ruban Professionnel Renforcé" class="product-card__image" loading="lazy">
                 </div>
@@ -1192,8 +1255,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Niveaux.png" alt="Niveau à Bulle Aluminium Magnétique" class="product-card__image" loading="lazy">
                 </div>
@@ -1207,8 +1269,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage manuel/Bétonnières.png" alt="Malaxeur & Bétonnière Manuelle" class="product-card__image" loading="lazy">
                 </div>
@@ -1222,9 +1283,7 @@
                   </div>
                 </div>
               </article>
-
-              <!-- Outillage de Chantier (5) -->
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage de chantier/Bétonnières.png" alt="Bétonnière de Chantier Renforcée" class="product-card__image" loading="lazy">
                 </div>
@@ -1238,8 +1297,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage de chantier/Compresseurs d'air.png" alt="Compresseur d'Air Bicylindre" class="product-card__image" loading="lazy">
                 </div>
@@ -1253,8 +1311,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage de chantier/Échelles.png" alt="Échelle Transformable Aluminium" class="product-card__image" loading="lazy">
                 </div>
@@ -1268,8 +1325,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage de chantier/Échafaudages.png" alt="Échafaudage Roulant Securisé" class="product-card__image" loading="lazy">
                 </div>
@@ -1283,8 +1339,7 @@
                   </div>
                 </div>
               </article>
-
-              <article class="product-card" data-category="outillage">
+<article class="product-card" data-category="outillage">
                 <div class="product-card__image-container">
                   <img src="assets/catalogue/Outillage/Outillage de chantier/Brouettes.png" alt="Brouette de Chantier Renforcée" class="product-card__image" loading="lazy">
                 </div>
@@ -1298,17 +1353,27 @@
                   </div>
                 </div>
               </article>
+            </div>
 
+            <!-- PAGINATION OFFICIELLE PEDROLLO -->
+            <div class="pedrollo-pagination-wrapper" id="pedrolloPagination">
+              <button type="button" class="pedrollo-page-btn active" data-page="1">1</button>
+              <button type="button" class="pedrollo-page-btn" data-page="2">2</button>
+              <button type="button" class="pedrollo-page-btn" data-page="3">3</button>
+              <button type="button" class="pedrollo-page-btn" data-page="4">4</button>
+              <span class="pedrollo-page-dots">..</span>
+              <button type="button" class="pedrollo-page-btn" data-page="6">6</button>
+              <button type="button" class="pedrollo-page-btn" data-page="next">&rarr;</button>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
   </main>
 
-  <!-- FOOTER CORPORATE ULTRA-PROFESSIONNEL -->
+<!-- FOOTER CORPORATE ULTRA-PROFESSIONNEL -->
   <!-- Footer Executive VFM Services (Conforme au visuel) -->
   <footer class="vfm-footer">
     <div class="container vfm-footer__container">
@@ -1366,7 +1431,7 @@
           </li>
           <li>
             <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">call</span></span>
-            <a href="tel:+2252522013724">+225 25 22 01 37 24</a>
+            <a href="tel:+2252722230392">+225 27 22 23 03 92</a>
           </li>
           <li>
             <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span></span>
@@ -1387,6 +1452,9 @@
     </div>
   </footer>
 
+    <!-- JSPDF & AUTOTABLE POUR GÉNÉRATION PDF DEVIS OFFICIEL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
   <script src="js/app.min.js"></script>
 </body>
 

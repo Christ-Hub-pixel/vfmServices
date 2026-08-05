@@ -1,5 +1,5 @@
-﻿/* ==========================================================================
-   VFM SERVICES - STYLES SPÉCIFIQUES PAGE CATALOGUE
+/* ==========================================================================
+   VFM SERVICES - STYLES SPÉCIFIQUES PAGE CATALOGUE (DESIGN PEDROLLO OFFICIAL)
    ========================================================================== */
 @import url('css/styles.css');
 
@@ -13,20 +13,27 @@
 }
 
 .search-bar-wrapper {
-  max-width: 600px;
+  max-width: 650px;
   margin: 2rem auto 0 auto;
   position: relative;
 }
 
 .search-input {
   width: 100%;
-  padding: 1rem 1.5rem 1rem 3rem;
+  padding: 1rem 1.5rem 1rem 3.2rem;
   background: #FFFFFF;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
   font-size: 1rem;
   color: var(--color-text-main);
   box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0B4C8C;
+  box-shadow: 0 0 0 4px rgba(11, 76, 140, 0.15);
 }
 
 .search-icon {
@@ -34,6 +41,376 @@
   left: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   LAYOUT PEDROLLO : SIDEBAR FILTRES GAUCHE + GRILLE 4 COLONNES
+   ========================================================================== */
+.pedrollo-catalogue-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* FOND BLEU TRANSPARENT ULTRA ÉLÉGANT */
+.pedrollo-catalogue-bg {
+  background: linear-gradient(180deg, rgba(0, 150, 214, 0.08) 0%, rgba(11, 76, 140, 0.12) 100%) !important;
+}
+
+/* SIDEBAR GAUCHE */
+.pedrollo-sidebar {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 22px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pedrollo-sidebar-section {
+  margin-bottom: 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pedrollo-sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+.pedrollo-sidebar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1D3176;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #EDF2F7;
+}
+
+/* SECTEURS D'UTILISATION (ICÔNES EN GRILLE) */
+.pedrollo-sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pedrollo-sector-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.25rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.pedrollo-sector-btn .material-symbols-outlined {
+  font-size: 1.35rem;
+  color: #0B4C8C;
+}
+
+.pedrollo-sector-btn:hover,
+.pedrollo-sector-btn.active {
+  background: #0B4C8C;
+  border-color: #0B4C8C;
+  color: #FFFFFF;
+}
+
+.pedrollo-sector-btn:hover .material-symbols-outlined,
+.pedrollo-sector-btn.active .material-symbols-outlined {
+  color: #FFFFFF;
+}
+
+/* TYPES DE PRODUIT (CHECKBOXES & ACCORDÉON) */
+.pedrollo-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pedrollo-type-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s ease;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.pedrollo-type-item:hover,
+.pedrollo-type-item.active {
+  background: #EFF6FF;
+  border-color: #3B82F6;
+  color: #1D3176;
+}
+
+.pedrollo-type-item .count-badge {
+  font-size: 0.75rem;
+  background: #E2E8F0;
+  color: #475569;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.pedrollo-type-item.active .count-badge {
+  background: #1D3176;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   GRILLE PRINCIPALE 4 COLONNES DE PRODUITS
+   ========================================================================== */
+.pedrollo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.pedrollo-grid .product-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+/* CARTE PRODUIT STYLE MODERNE SQUIRCLE (CONFORME À LA MAQUETTE USER) */
+.product-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 95, 164, 0.14);
+  border-color: #CBD5E1;
+}
+
+.product-card__image-container {
+  height: 195px;
+  background: radial-gradient(circle at 50% 50%, #FFFFFF 40%, #F8FAFC 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  position: relative;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.product-card__image {
+  max-height: 85%;
+  max-width: 85%;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.08);
+}
+
+.product-card__body {
+  padding: 1.25rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-card__category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #005FA4;
+  background: #EBF5FF;
+  padding: 0.22rem 0.65rem;
+  border-radius: 50px;
+  width: fit-content;
+  margin-bottom: 0.65rem;
+  display: inline-block;
+}
+
+.product-card__title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7rem;
+}
+
+.product-card__desc,
+.product-card p {
+  font-size: 0.83rem;
+  color: #64748B;
+  line-height: 1.45;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.6rem;
+  flex-grow: 1;
+}
+
+.product-card__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: none;
+}
+
+/* ==========================================================================
+   PAGINATION DESIGN PILULE OVALE (CONFORME À LA MAQUETTE USER)
+   ========================================================================== */
+.pedrollo-pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #E2E8F0;
+}
+
+.pedrollo-page-btn {
+  min-width: 54px;
+  height: 34px;
+  padding: 0 1rem;
+  border-radius: 50px;
+  border: 1.2px solid #D0DFEE;
+  background: #FFFFFF;
+  color: #1A365D;
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+}
+
+.pedrollo-page-btn:hover {
+  background: #F8FAFC;
+  border-color: #1A365D;
+  color: #1A365D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.12);
+}
+
+.pedrollo-page-btn.active {
+  background: #1A365D;
+  color: #FFFFFF;
+  border-color: #1A365D;
+  box-shadow: 0 6px 18px rgba(26, 54, 93, 0.35);
+}
+
+.pedrollo-page-dots {
+  color: #94A3B8;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0 0.35rem;
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .pedrollo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .pedrollo-catalogue-container {
+    grid-template-columns: 1fr;
+  }
+  .pedrollo-sidebar {
+    position: static;
+  }
+  .pedrollo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .pedrollo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  .pedrollo-sectors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pedrollo-pagination-wrapper {
+    gap: 0.35rem !important;
+    padding: 1.5rem 0.25rem 0 0.25rem !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+  }
+  .pedrollo-page-btn {
+    min-width: 36px !important;
+    height: 34px !important;
+    padding: 0 0.4rem !important;
+    font-size: 0.8rem !important;
+  }
+  .pedrollo-page-dots {
+    padding: 0 0.15rem !important;
+    font-size: 0.85rem !important;
+  }
 }

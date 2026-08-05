@@ -42,3 +42,16 @@
   height: 100%;
   border: 0;
 }
+
+/* Aperçu Visuel Produit dans le Formulaire de Devis */
+.devis-product-preview-box {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.devis-product-preview-box img {
+  transition: transform 0.3s ease;
+}
+.devis-product-preview-box img:hover {
+  transform: scale(1.05);
+}
+

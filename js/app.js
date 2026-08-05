@@ -1987,15 +1987,34 @@ const VFMProductModal = {
     // Collecter toutes les cartes produit présentes dans la page
     this.allCards = Array.from(document.querySelectorAll('.product-card'));
 
-    // Click sur les conteneurs d'image pour ouvrir la fiche produit
-    // stopImmediatePropagation empêche tout autre gestionnaire de clic de s'exécuter
-    document.querySelectorAll('.product-card__image-container').forEach(container => {
-      container.addEventListener('click', (e) => {
+    // Click sur les cartes produit pour ouvrir la fiche détaillée (affichedetail.html)
+    document.querySelectorAll('.product-card__image-container, .product-card__title').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-        const card = container.closest('.product-card');
-        if (card) this.open(card);
-      }, true); // capture phase = priorité maximale
+        const card = el.closest('.product-card');
+        if (card) {
+          const imgEl   = card.querySelector('.product-card__image');
+          const titleEl = card.querySelector('.product-card__title');
+          const catEl   = card.querySelector('.product-card__category');
+          const descEl  = card.querySelector('p');
+
+          const imgSrc   = imgEl   ? encodeURIComponent(imgEl.getAttribute('src')) : '';
+          const titleTxt = titleEl ? encodeURIComponent(titleEl.textContent.trim()) : '';
+          const catTxt   = catEl   ? encodeURIComponent(catEl.textContent.trim())   : '';
+          const descTxt  = descEl  ? encodeURIComponent(descEl.textContent.trim())  : '';
+
+          const iframe = document.getElementById('pdrModalIframe');
+          if (iframe) {
+            iframe.src = `affichedetail.html?nom=${titleTxt}&cat=${catTxt}&img=${imgSrc}&desc=${descTxt}`;
+          }
+          if (this.overlay) {
+            this.overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+      }, true);
     });
 
     // Bouton fermer

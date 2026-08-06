@@ -554,9 +554,34 @@ header nav a:hover img {
 /* ==========================================================================
    HEADER RESPONSIVE MOBILE DRAWER (ADAPTATION SMARTPHONE)
    ========================================================================== */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(7, 18, 30, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.menu-open {
+  overflow: hidden !important;
+}
+
 @media (max-width: 991px) {
   .nav-toggle {
-    display: flex !important;
+    display: inline-flex !important;
+    z-index: 10000;
   }
 
   .header__nav nav {
@@ -570,23 +595,33 @@ header nav a:hover img {
     background: #07121E;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
     z-index: 9999;
-    padding: 6rem 2rem 2rem 2rem;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+    padding: 5rem 1.75rem 2rem 1.75rem;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
     display: flex;
     flex-direction: column;
     visibility: hidden;
   }
 
-  .header__nav nav.nav-open {
-    transform: translateX(0);
-    visibility: visible;
+  .header__nav nav.nav-open,
+  .header__nav nav.open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
   }
 
   .nav__list {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
   }
 
   .nav__link {
@@ -4190,54 +4225,8 @@ body.cart-drawer-open .floating-cart-btn {
 }
 
 @media (max-width: 768px) {
-  /* Navigation Mobile Glassmorphism Premium */
-  .nav__list {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 1.75rem 1.5rem;
-    gap: 1rem;
-    box-shadow: 0 20px 45px rgba(7, 18, 30, 0.15);
-    border-bottom: 1px solid rgba(0, 150, 214, 0.15);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    transform: translateY(-150%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    z-index: 999;
-  }
-
-  .nav__list.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
   .nav-toggle {
     display: inline-flex !important;
-  }
-
-  .nav__link {
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    background: rgba(248, 250, 252, 0.8);
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    font-size: 1rem;
-  }
-
-  .nav__link.active,
-  .nav__link:hover {
-    background: linear-gradient(135deg, rgba(0, 150, 214, 0.1) 0%, rgba(11, 76, 140, 0.12) 100%);
-    border-color: rgba(0, 150, 214, 0.3);
-    color: var(--color-primary);
   }
 
   /* Hero & Carrousels */

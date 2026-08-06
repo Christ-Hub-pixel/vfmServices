@@ -225,28 +225,93 @@ const VFMApp = {
   },
 
   initNavigation() {
-    const navToggles = document.querySelectorAll('.nav-toggle');
+    const navToggles = document.querySelectorAll('.nav-toggle, #mobileNavToggleBtn');
+    const navElements = document.querySelectorAll('.header__nav nav, nav#mainMobileNav, nav[role="navigation"], nav');
     const navLists = document.querySelectorAll('.nav__list');
     const navLinks = document.querySelectorAll('.nav__link');
 
-    navToggles.forEach(navToggle => {
-      navToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLists.forEach(navList => {
-          const isOpen = navList.classList.toggle('open');
-          if (navList.classList.contains('hidden')) {
-            navList.classList.remove('hidden');
-          }
-          navToggle.setAttribute('aria-expanded', isOpen);
-        });
+    // Assurer l'existence d'un overlay pour fermer au clic à l'extérieur
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    const closeNav = () => {
+      navElements.forEach(nav => {
+        nav.classList.remove('nav-open', 'open');
       });
+      navLists.forEach(navList => {
+        navList.classList.remove('open');
+      });
+      navToggles.forEach(navToggle => {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.classList.remove('active');
+        const icon = navToggle.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = 'menu';
+      });
+      if (overlay) overlay.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    };
+
+    const openNav = () => {
+      navElements.forEach(nav => {
+        nav.classList.add('nav-open', 'open');
+      });
+      navLists.forEach(navList => {
+        navList.classList.add('open');
+      });
+      navToggles.forEach(navToggle => {
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.classList.add('active');
+        const icon = navToggle.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = 'close';
+      });
+      if (overlay) overlay.classList.add('active');
+      document.body.classList.add('menu-open');
+    };
+
+    const toggleNav = (e) => {
+      if (e) e.stopPropagation();
+      const firstNav = document.querySelector('.header__nav nav, nav');
+      const firstList = document.querySelector('.nav__list');
+      const isOpen = (firstNav && (firstNav.classList.contains('nav-open') || firstNav.classList.contains('open'))) ||
+                     (firstList && firstList.classList.contains('open'));
+
+      if (isOpen) {
+        closeNav();
+      } else {
+        openNav();
+      }
+    };
+
+    window.toggleMobileNav = toggleNav;
+
+    navToggles.forEach(navToggle => {
+      navToggle.removeAttribute('onclick');
+      navToggle.onclick = null;
+      navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleNav(e);
+      });
+    });
+
+    if (overlay) {
+      overlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeNav();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeNav();
     });
 
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        navLists.forEach(navList => navList.classList.remove('open'));
-        navToggles.forEach(navToggle => navToggle.setAttribute('aria-expanded', 'false'));
-
+        closeNav();
         const targetHref = link.getAttribute('href');
         if (targetHref && !targetHref.startsWith('#') && !targetHref.startsWith('mailto:') && !targetHref.startsWith('tel:') && !targetHref.startsWith('javascript:')) {
           const currentPath = window.location.pathname.split('/').pop() || 'index.html';

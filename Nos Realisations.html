@@ -248,7 +248,7 @@
         <a href="contact.html#devisForm" class="btn btn--accent hidden md:inline-flex">
           Soumettre une Demande
         </a>
-        <button id="mobileNavToggleBtn" onclick="toggleMobileNav()" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
           <span class="material-symbols-outlined">menu</span>
         </button>
       </div>
@@ -785,16 +785,7 @@
 </footer>
 
 <script>
-  function toggleMobileNav() {
-    const nav = document.getElementById('mainMobileNav');
-    const toggleBtn = document.getElementById('mobileNavToggleBtn');
-    if (nav) {
-      const isOpen = nav.classList.toggle('nav-open');
-      if (toggleBtn) {
-        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      }
-    }
-  }
+
 
   function filterMagItems(cat, btn) {
     document.querySelectorAll('.mag-filter-btn').forEach(b => b.classList.remove('active'));

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Arrivage &amp; Réception Produits Pedrollo d'Italie | VFM SERVICES</title>
+  <link rel="icon" type="image/png" href="assets/icone.png">
+  <link rel="shortcut icon" type="image/png" href="assets/icone.png">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&amp;family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Work+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    :root {
+      --vfm-navy: #07121E;
+      --vfm-blue: #022b6b;
+      --vfm-cyan: #0096D6;
+      --vfm-red: #E31E24;
+    }
+
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    .font-serif-mag {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .font-mono-mag {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .mag-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(7, 18, 30, 0.05);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .mag-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(7, 18, 30, 0.12);
+      border-color: #0096D6;
+    }
+
+    .mag-thumbnail {
+      position: relative;
+      overflow: hidden;
+      background: #07121E;
+    }
+
+    .mag-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+      filter: brightness(0.92);
+    }
+
+    .mag-card:hover .mag-thumbnail img {
+      transform: scale(1.08);
+      filter: brightness(0.98);
+    }
+
+    .mag-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(227, 30, 36, 0.92);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(227, 30, 36, 0.5), 0 0 0 8px rgba(255, 255, 255, 0.25);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+    }
+
+    .mag-card:hover .mag-play-btn {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: #E31E24;
+      box-shadow: 0 0 40px rgba(227, 30, 36, 0.7), 0 0 0 12px rgba(255, 255, 255, 0.35);
+    }
+
+    .mag-issue-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0096D6;
+      border-bottom: 2px solid #0096D6;
+      padding-bottom: 2px;
+      display: inline-block;
+    }
+
+    .mag-filter-btn {
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #FFFFFF;
+      color: #475569;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .mag-filter-btn.active, .mag-filter-btn:hover {
+      background: #022b6b;
+      color: #FFFFFF;
+      border-color: #022b6b;
+      box-shadow: 0 6px 20px rgba(2, 43, 107, 0.25);
+    }
+
+    /* LIGHTBOX MODAL */
+    .vfm-cinema-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 18, 30, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .vfm-cinema-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .vfm-cinema-container {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      max-width: 1000px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .vfm-cinema-modal.active .vfm-cinema-container {
+      transform: scale(1);
+    }
+
+    .vfm-cinema-header {
+      padding: 1.25rem 1.5rem;
+      background: #07121E;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #FFFFFF;
+    }
+
+    .vfm-cinema-body {
+      background: #000000;
+      position: relative;
+    }
+
+    .vfm-cinema-body video {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .vfm-cinema-footer {
+      padding: 1.25rem 1.5rem;
+      background: #0F172A;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .vfm-cinema-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header" role="banner">
+    <div class="container header__nav">
+      <a href="index.html" class="header__logo">
+        <img src="assets/logo.png" alt="VFM Services Logo">
+      </a>
+
+      <nav role="navigation" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="apropos.html" class="nav__link">À Propos</a></li>
+          <li><a href="Nos Realisations.html" class="nav__link nav__link--active">Nos Réalisations</a></li>
+          <li><a href="catalogue.html" class="nav__link">Catalogue</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="contact.html#devisForm" class="btn btn--accent">
+          Soumettre une Demande
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+<main>
+  <!-- BANNIÈRE MAGAZINE EN-TÊTE - ARRIVAGE PEDROLLO ITALIE -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-16 pb-24 relative overflow-hidden border-b border-slate-700">
+    <div class="container mx-auto max-w-6xl px-4 relative z-10 text-center space-y-6">
+      
+      <!-- En-tête Édition Magazine -->
+      <div class="flex items-center justify-center gap-3">
+        <span class="h-px w-12 bg-sky-400/60"></span>
+        <span class="font-mono-mag text-xs tracking-[0.25em] text-sky-300 uppercase font-bold">🚚 ARRIVAGE DIRECT USINE PEDROLLO S.P.A ITALIE</span>
+        <span class="h-px w-12 bg-sky-400/60"></span>
+      </div>
+
+      <!-- Grand Titre Magazine -->
+      <h1 class="font-serif-mag text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
+        Arrivage des Produits <span class="italic font-normal text-sky-400">Pedrollo d'Italie</span>
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-xl max-w-3xl mx-auto font-light leading-relaxed">
+        Suivez en vidéo la réception par conteneurs et camion de nos équipements hydrauliques authentiques Pedrollo, expédiés directement depuis l'Italie jusqu'à notre siège VFM Services à Abidjan Riviera (Côte d'Ivoire).
+      </p>
+
+      <!-- Métriques de la revue -->
+      <div class="pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center">
+          <span class="font-mono-mag text-2xl font-bold text-sky-400">100%</span>
+          <p class="text-xs text-slate-300 font-medium uppercase tracking-wider mt-1">Origine Pedrollo Italie</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center">
+          <span class="font-mono-mag text-2xl font-bold text-sky-400">Conteneurs</span>
+          <p class="text-xs text-slate-300 font-medium uppercase tracking-wider mt-1">Livraison par Camion</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center">
+          <span class="font-mono-mag text-2xl font-bold text-sky-400">Stock Riviera</span>
+          <p class="text-xs text-slate-300 font-medium uppercase tracking-wider mt-1">Disponible Immédiatement</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center">
+          <span class="font-mono-mag text-2xl font-bold text-sky-400">Garantie</span>
+          <p class="text-xs text-slate-300 font-medium uppercase tracking-wider mt-1">Service Agréé VFM</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FILTRES PAR ÉDITION -->
+  <section class="py-10 bg-slate-100 border-b border-slate-200">
+    <div class="container mx-auto max-w-7xl px-4 flex flex-wrap items-center justify-center gap-3">
+      <button onclick="filterMagItems('all', this)" class="mag-filter-btn active">Tous les Arrivages (14)</button>
+      <button onclick="filterMagItems('conteneur', this)" class="mag-filter-btn">Déchargement Conteneurs</button>
+      <button onclick="filterMagItems('pompes', this)" class="mag-filter-btn">Pompes &amp; Électropompes</button>
+      <button onclick="filterMagItems('surpresseurs', this)" class="mag-filter-btn">Surpresseurs &amp; Accessoires</button>
+    </div>
+  </section>
+
+  <!-- SECTION À LA UNE (ARTICLE COUVERTURE MAGAZINE) -->
+  <section class="py-16 bg-slate-50">
+    <div class="container mx-auto max-w-7xl px-4">
+
+      <!-- FEATURE STORY GRAND FORMAT -->
+      <div class="mag-card mb-16 grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden" onclick="openCinemaModal('assets/video/WhatsApp Video 2026-07-23 at 15.56.18.mp4', 'Réception du Conteneur Pedrollo Italia à Abidjan', 'Siège VFM Services Riviera ATCI', 'Vidéo exclusive du déchargement du camion de livraison Pedrollo venu d\'Italie.', 'ARRIVAGE À LA UNE')">
+        <div class="lg:col-span-7 mag-thumbnail min-h-[380px] lg:min-h-[460px] relative">
+          <span class="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-full bg-red-600 text-white font-mono-mag text-xs font-bold uppercase tracking-wider shadow-lg">🚚 ARRIVAGE À LA UNE</span>
+          <img src="assets/showroom/showroom_1.jpg" alt="Réception du Conteneur Pedrollo" class="w-full h-full object-cover">
+          <div class="mag-play-btn">
+            <span class="material-symbols-outlined text-4xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+          </div>
+        </div>
+        <div class="lg:col-span-5 p-8 lg:p-12 flex flex-col justify-between bg-white space-y-6">
+          <div>
+            <span class="mag-issue-badge mb-3">REPORTAGE N° 001 • EXPÉDITION D'ITALIE</span>
+            <h2 class="font-serif-mag text-3xl lg:text-4xl font-bold text-slate-900 leading-snug mt-2">
+              Réception du Conteneur Officiel Pedrollo à Abidjan
+            </h2>
+            <p class="text-slate-600 text-base leading-relaxed font-light mt-4">
+              Images exclusives du déchargement du camion de livraison transportant les pompes centrifuges, immergées et surpresseurs originaux Pedrollo, expédiés depuis l'usine en Italie vers le showroom VFM Riviera.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm">VFM</div>
+              <div>
+                <p class="text-xs font-bold text-slate-900">Arrivage Certifié Italia</p>
+                <p class="text-[11px] text-slate-500 font-mono-mag">Riviera ATCI • Abidjan</p>
+              </div>
+            </div>
+            <span class="px-4 py-2 rounded-full bg-sky-50 text-sky-700 font-mono-mag text-xs font-bold flex items-center gap-1 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+              <span>Lancer le Vidéo-Reportage</span>
+              <span class="material-symbols-outlined text-sm">play_circle</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRILLE DES ARTICLES MAGAZINE (MOSAÏQUE ÉDITORIALE) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="magGrid">
+
+        <!-- Article 2 -->
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3046.mov', 'Déchargement Camion Conteneur Pedrollo', 'Atelier VFM Riviera', 'Aperçu du déchargement des palettes de pompes Pedrollo venues directement d\'Italie.', 'Déchargement')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 002 • CAMION CONTENEUR</span>
+            <img src="assets/showroom/showroom_2.jpg" alt="Déchargement Camion Pedrollo" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">EXPÉDITION ITALIE</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Déchargement Camion Conteneur Pedrollo
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Déchargement des palettes scellées contenant les pompes et électropompes certifiées Pedrollo Italia.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3052.mov', 'Réception Électropompes de Surface CP & PK', 'VFM Riviera Abidjan', 'Inspection des cartons scellés Pedrollo d\'origine italienne.', 'Électropompes')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 003 • POMPES CP &amp; PK</span>
+            <img src="assets/dept/dept_maintenance.png" alt="Réception Pompes Surface" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">MATÉRIEL CERTIFIÉ</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Réception Électropompes CP &amp; PK
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Vérification des numéros de série et certificats d'authenticité Pedrollo à la réception.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3053.mov', 'Arrivage Pompes Immergées 4BLOCK & 4SR', 'Atelier Riviera', 'Déchargement des pompes de forage immergées inox livrées par camion.', 'Pompes Immergées')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 004 • FORAGE 4BLOCK</span>
+            <img src="assets/showroom/showroom_4.jpg" alt="Pompes Immergées 4BLOCK" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">GAMME FORAGE ITALIE</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Arrivage Pompes Immergées 4BLOCK
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Réception des moteurs sous-marins inox Pedrollo pour le pompage d'eau en puits profonds.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="mag-card mag-item" data-cat="surpresseurs" onclick="openCinemaModal('assets/video/IMG_3055.mov', 'Réception Réservoirs & Surpresseurs Varem', 'Atelier VFM Riviera', 'Arrivage des ballons de surpression Varem importés d\'Italie avec les pompes.', 'Surpresseurs')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 005 • VAREM ITALIA</span>
+            <img src="assets/showroom/showroom_5.jpg" alt="Surpresseurs Varem" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">ACCESSOIRES ITALIE</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Réception Réservoirs Surpresseurs Varem
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Ballons surpresseurs et automatismes reçus directement dans le même arrivage de camion.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3056.mov', 'Mise en Stock & Présentation Showroom', 'Showroom Riviera', 'Installation des nouveaux lots Pedrollo en rayon après déchargement.', 'Showroom')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 006 • MISE EN STOCK</span>
+            <img src="assets/showroom/showroom_6.jpg" alt="Mise en Stock Showroom" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">DISPONIBILITÉ IMMÉDIATE</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Mise en Stock &amp; Présentation Showroom
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Les équipements tout juste déchargés sont mis en stock et prêts pour livraison sur toute la Côte d'Ivoire.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 7 -->
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3059.mov', 'Inspection Qualité par les Techniciens VFM', 'Atelier VFM Riviera', 'Contrôle à la sortie du conteneur avant mise à disposition des clients.', 'Contrôle Qualité')">
+          <div class="mag-thumbnail h-64">
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[11px] font-bold uppercase">N° 007 • QUALITÉ VFM</span>
+            <img src="assets/showroom/showroom_7.jpg" alt="Inspection Qualité VFM" class="w-full h-full object-cover">
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="mag-issue-badge">CONTRÔLE &amp; CONFORMITÉ</span>
+            <h3 class="font-serif-mag font-bold text-xl text-slate-900 leading-snug">
+              Inspection Qualité à la Sortie de Camion
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Nos ingénieurs vérifient chaque lot et chaque composant à l'arrivée pour garantir zéro défaut.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Voir la vidéo (HD)</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA MAGAZINE CONTACT -->
+  <section class="py-16 bg-slate-900 text-white text-center border-t border-slate-800">
+    <div class="container mx-auto max-w-4xl px-4 space-y-6">
+      <span class="font-mono-mag text-xs font-bold text-sky-400 uppercase tracking-widest px-4 py-1.5 rounded-full bg-sky-900/40 border border-sky-700/50">DISTRIBUTEUR AGRÉÉ PEDROLLO</span>
+      <h2 class="font-serif-mag text-3xl sm:text-5xl font-bold text-white leading-tight">
+        Commandez directement vos équipements certifiés Pedrollo
+      </h2>
+      <p class="text-slate-300 text-lg font-light max-w-2xl mx-auto leading-relaxed">
+        Bénéficiez du matériel original fraîchement arrivé d'Italie avec garantie constructeur et assistance technique VFM Services.
+      </p>
+      <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="contact.html#devisForm" class="px-8 py-4 rounded-xl bg-brand-red text-white font-bold hover:brightness-110 transition-all shadow-xl flex items-center justify-center gap-2" style="background: #E31E24;">
+          <span class="material-symbols-outlined">send</span>
+          <span>Demander une Cotation Express</span>
+        </a>
+        <a href="https://wa.me/2250715416831" target="_blank" class="px-8 py-4 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-all shadow-xl flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">chat</span>
+          <span>Contact WhatsApp (+225 07 15 41 68 31)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- CINEMA LIGHTBOX MODAL -->
+<div id="vfmCinemaModal" class="vfm-cinema-modal" onclick="closeCinemaModal(event)">
+  <div class="vfm-cinema-container" onclick="event.stopPropagation()">
+    
+    <div class="vfm-cinema-header">
+      <div>
+        <span id="modalTag" class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 text-xs font-bold uppercase tracking-wider font-mono-mag">Catégorie</span>
+        <h3 id="modalTitle" class="font-serif-mag text-xl font-bold text-white mt-1">Titre de la vidéo</h3>
+        <p id="modalLocation" class="text-xs text-slate-400 font-mono-mag">Localisation</p>
+      </div>
+      <button onclick="closeCinemaModalForce()" class="p-2 rounded-full bg-slate-800 text-slate-300 hover:bg-red-600 hover:text-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="vfm-cinema-body">
+      <video id="modalVideoPlayer" controls autoplay preload="auto">
+        <source id="modalVideoSource" src="" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+
+    <div class="vfm-cinema-footer">
+      <p id="modalDesc" class="text-sm text-slate-300 max-w-xl font-light">Description détaillée de l'arrivage.</p>
+      <div class="flex items-center gap-3">
+        <a id="modalWhatsappLink" href="https://wa.me/2250715416831" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center gap-1.5 font-mono-mag">
+          <span class="material-symbols-outlined text-sm">chat</span>
+          <span>Demander un Devis sur ce Lot</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer Executive VFM Services -->
+<footer class="vfm-footer">
+  <div class="container vfm-footer__container">
+    
+    <!-- Colonne 1 : Logo & Présentation Entreprise -->
+    <div class="vfm-footer__col vfm-footer__col--brand">
+      <div class="vfm-footer__logo-card">
+        <img src="assets/logo.png" alt="VFM Services Logo">
+      </div>
+      <p class="vfm-footer__desc">
+        VFM SERVICES, le partenaire de confiance pour la fourniture, l'installation et la maintenance de matériels industriels et hydrauliques.
+      </p>
+      <div class="vfm-footer__legal">
+        <p class="vfm-footer__legal-title">Société agréée en Équipements Industriels</p>
+        <p class="vfm-footer__legal-subtitle">Fourniture – Installation – Maintenance</p>
+        <p class="vfm-footer__legal-info">Siège : Abidjan, Riviera, Cité ATCI</p>
+      </div>
+      <div class="vfm-footer__socials">
+        <a href="https://linkedin.com" target="_blank" class="vfm-footer__social-btn" aria-label="LinkedIn">in</a>
+        <a href="https://facebook.com" target="_blank" class="vfm-footer__social-btn" aria-label="Facebook">f</a>
+      </div>
+    </div>
+
+    <!-- Colonne 2 : Liens Rapides -->
+    <div class="vfm-footer__col">
+      <h4 class="vfm-footer__title">Liens Rapides</h4>
+      <ul class="vfm-footer__links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="Nos Realisations.html">Nos Réalisations</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html#devisForm">Soumission de Devis</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 3 : Nos Services -->
+    <div class="vfm-footer__col">
+      <h4 class="vfm-footer__title">Nos Services</h4>
+      <ul class="vfm-footer__links">
+        <li><a href="catalogue.html?cat=pompes">Pompes Hydrauliques (Pedrollo)</a></li>
+        <li><a href="catalogue.html?cat=groupes">Groupes Électrogènes</a></li>
+        <li><a href="catalogue.html?cat=outillage">Outillage Professionnel (31)</a></li>
+        <li><a href="contact.html#devisForm">Maintenance &amp; Dépannage</a></li>
+        <li><a href="produits_et_services.md" target="_blank">Fiche Produits &amp; Services</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 4 : Contactez-nous -->
+    <div class="vfm-footer__col vfm-footer__col--contact">
+      <h4 class="vfm-footer__title">Contactez-nous</h4>
+      <ul class="vfm-footer__contact-list">
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">location_on</span></span>
+          <span>Abidjan, Riviera, Cité ATCI, Côte d'Ivoire</span>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">call</span></span>
+          <a href="tel:+2252722230392">+225 27 22 23 03 92</a>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span></span>
+          <a href="https://wa.me/2250715416831" target="_blank">+225 07 15 41 68 31 (WhatsApp)</a>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">mail</span></span>
+          <a href="mailto:infos@vfmservices.net">infos@vfmservices.net</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Barre Bas de Page -->
+  <div class="vfm-footer__bottom">
+    <p>© 2026 VFM Services Sarl. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  function filterMagItems(cat, btn) {
+    document.querySelectorAll('.mag-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const items = document.querySelectorAll('.mag-item');
+    items.forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function openCinemaModal(videoSrc, title, location, desc, tag) {
+    const modal = document.getElementById('vfmCinemaModal');
+    const player = document.getElementById('modalVideoPlayer');
+    const source = document.getElementById('modalVideoSource');
+
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalLocation').textContent = location;
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modalTag').textContent = tag;
+    document.getElementById('modalWhatsappLink').href = `https://wa.me/2250715416831?text=Bonjour%20VFM%20Services,%20je%20suis%20intéressé%20par%20l'arrivage%20:${encodeURIComponent(title)}`;
+
+    source.src = videoSrc;
+    player.load();
+    modal.classList.add('active');
+    player.play();
+  }
+
+  function closeCinemaModal(e) {
+    if (e.target.id === 'vfmCinemaModal') {
+      closeCinemaModalForce();
+    }
+  }
+
+  function closeCinemaModalForce() {
+    const modal = document.getElementById('vfmCinemaModal');
+    const player = document.getElementById('modalVideoPlayer');
+    player.pause();
+    modal.classList.remove('active');
+  }
+</script>
+
+<script src="js/app.min.js"></script>
+</body>
+</html>

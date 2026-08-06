@@ -1,6 +1,6 @@
 # Produits, Équipements et Services - VFM Services
 
-À partir du visuel et de son positionnement stratégique, **VFM Services** est spécialisé dans la **fourniture, l'installation et la maintenance** de matériels industriels, équipements hydrauliques et énergies en Côte d'Ivoire et Afrique de l'Ouest.
+À partir du visuel et de son positionnement stratégique, **VFM Services** est spécialisé dans la **fourniture, l'installation et la maintenance** de matériels industriels, équipements hydrauliques et énergies en Côte d'Ivoire.
 
 ---
 

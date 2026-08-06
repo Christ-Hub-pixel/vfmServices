@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title id="pageTitle">Fiche Produit Équipement | VFM SERVICES</title>
+  <link rel="icon" type="image/png" href="assets/icone.png">
+  <link rel="shortcut icon" type="image/png" href="assets/icone.png">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Work+Sans:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    :root {
+      --vfm-navy: #07121E;
+      --vfm-blue: #022b6b;
+      --vfm-cyan: #0096D6;
+      --vfm-red: #E31E24;
+    }
+
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      font-family: 'Work Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-mono-tag {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* GALERIE PRODUIT & THUMBNAILS */
+    .product-stage-box {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(7, 18, 30, 0.06);
+      position: relative;
+    }
+
+    .product-main-img {
+      width: 100%;
+      height: 420px;
+      object-fit: contain;
+      padding: 2rem;
+      transition: transform 0.4s ease;
+      background: #FFFFFF;
+    }
+
+    .product-main-img:hover {
+      transform: scale(1.05);
+    }
+
+    .thumb-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      border: 2px solid #E2E8F0;
+      background: #FFFFFF;
+      padding: 6px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      overflow: hidden;
+    }
+
+    .thumb-btn.active, .thumb-btn:hover {
+      border-color: #0096D6;
+      box-shadow: 0 4px 12px rgba(0, 150, 214, 0.2);
+    }
+
+    .thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* BADGES & HIGHLIGHTS */
+    .spec-table tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+
+    .spec-table td, .spec-table th {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 0.92rem;
+    }
+
+    .highlight-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
+    }
+
+    .highlight-card:hover {
+      border-color: #0096D6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 150, 214, 0.08);
+    }
+
+    .app-sector-pill {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #1E293B;
+      border-radius: 50px;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* DÉFILLEMENT HORIZONTAL DES ONGLETS */
+    .tab-btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #64748B;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: #022b6b;
+      color: #FFFFFF;
+      border-color: #022b6b;
+      box-shadow: 0 6px 18px rgba(2, 43, 107, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- HEADER NAVIGATION SMARTPHONE & DESKTOP -->
+  <header class="header" role="banner">
+    <div class="container header__nav">
+      <a href="index.html" class="header__logo">
+        <img src="assets/logo.png" alt="VFM Services Logo">
+      </a>
+
+      <nav id="mainMobileNav" role="navigation" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Accueil</a></li>
+          <li><a href="apropos.html" class="nav__link">À Propos</a></li>
+          <li><a href="Nos Realisations.html" class="nav__link">Nos Réalisations</a></li>
+          <li><a href="catalogue.html" class="nav__link nav__link--active">Catalogue</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="contact.html#devisForm" class="btn btn--accent hidden md:inline-flex">
+          Soumettre une Demande
+        </a>
+        <button id="mobileNavToggleBtn" onclick="toggleMobileNav()" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+<main class="py-8 sm:py-12">
+  <div class="container mx-auto max-w-7xl px-4 space-y-8">
+    
+    <!-- BARRE DE NAVIGATION RAPIDE & BOUTON RETOUR CATALOGUE -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <a href="catalogue.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-700 font-bold text-sm border border-slate-300 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+        <span class="material-symbols-outlined text-base">arrow_back</span>
+        <span>◄ Retour au Catalogue</span>
+      </a>
+
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 font-medium overflow-x-auto whitespace-nowrap">
+        <a href="index.html" class="hover:text-sky-600">Accueil</a>
+        <span>/</span>
+        <a href="catalogue.html" class="hover:text-sky-600">Catalogue</a>
+        <span>/</span>
+        <span id="breadcrumbCategory" class="text-slate-700 font-bold">Pompes Hydrauliques</span>
+        <span>/</span>
+        <span id="breadcrumbName" class="text-sky-600 font-bold">Produit</span>
+      </nav>
+    </div>
+
+    <!-- MAIN PRODUCT SECTION (GRID 2 COLONNES) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start" id="productMainContainer">
+      
+      <!-- COLONNE GAUCHE : SCÈNE DE L'IMAGE & GALERIE -->
+      <div class="lg:col-span-6 space-y-4">
+        
+        <!-- Scène Image Principale -->
+        <div class="product-stage-box">
+          <span id="stockStatusBadge" class="absolute top-4 left-4 z-10 px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider shadow-md flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">check_circle</span>
+            <span>Disponible en Stock (Riviera)</span>
+          </span>
+
+          <span id="brandBadge" class="absolute top-4 right-4 z-10 px-3.5 py-1.5 rounded-full bg-slate-900 text-white font-mono-tag text-xs font-bold uppercase tracking-wider shadow-md">
+            Pedrollo Italia
+          </span>
+
+          <img id="mainProductImg" src="assets/catalogue/surface/surface/peripheriques/PKm60-300x300.webp" alt="Produit VFM Services" class="product-main-img" onerror="this.src='assets/logo.png'">
+        </div>
+
+        <!-- Galerie Vignettes (Thumbnails) -->
+        <div class="flex items-center gap-3 overflow-x-auto py-2 scrollbar-none" id="thumbGallery">
+          <button class="thumb-btn active" onclick="switchMainImage(this.querySelector('img').src, this)">
+            <img id="thumb1" src="assets/catalogue/surface/surface/peripheriques/PKm60-300x300.webp" alt="Vignette 1" onerror="this.src='assets/logo.png'">
+          </button>
+          <button class="thumb-btn" onclick="switchMainImage(this.querySelector('img').src, this)">
+            <img id="thumb2" src="assets/showroom/showroom_1.jpg" alt="Vignette 2" onerror="this.src='assets/logo.png'">
+          </button>
+          <button class="thumb-btn" onclick="switchMainImage(this.querySelector('img').src, this)">
+            <img id="thumb3" src="assets/showroom/showroom_6.jpg" alt="Vignette 3" onerror="this.src='assets/logo.png'">
+          </button>
+        </div>
+
+        <!-- Fiche d'Agrément Officiel Badge -->
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-sky-600">verified</span>
+            <div>
+              <p class="text-xs font-bold text-slate-900 uppercase tracking-wide">Distributeur Officiel Agréé</p>
+              <p class="text-xs text-slate-600">Matériel 100% original certifié avec garantie VFM Services</p>
+            </div>
+          </div>
+          <a href="assets/showroom/certificat_pedrollo.jpeg" target="_blank" class="px-3 py-1.5 rounded-lg bg-sky-600 text-white text-xs font-bold hover:bg-sky-700 transition-colors whitespace-nowrap">
+            Attestation 📜
+          </a>
+        </div>
+
+      </div>
+
+      <!-- COLONNE DROITE : INFOS CLÉS, POINTS FORTS & BOUTONS D'ACTION (SANS PRIX NI PANIER) -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span id="productCategoryBadge" class="text-xs font-bold font-mono-tag text-sky-600 uppercase tracking-widest px-3 py-1 rounded-md bg-sky-100">
+              Pompes Hydrauliques
+            </span>
+            <span id="productRefBadge" class="text-xs font-mono-tag text-slate-500">
+              Réf: VFM-PED-PKM60
+            </span>
+          </div>
+
+          <h1 id="productTitle" class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+            Pompe Périphérique Pedrollo PKm 60
+          </h1>
+
+          <p id="productSubtitle" class="text-slate-600 text-base font-light mt-3 leading-relaxed">
+            Électropompe de surpression compacte haute performance conçue pour l'adduction d'eau propre et la distribution d'eau sous pression continue.
+          </p>
+        </div>
+
+        <!-- POINTS FORTS (ICÔNES ET AVANTAGES PRO) -->
+        <div class="space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 font-mono-tag">Points Forts &amp; Avantages Certifiés</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-emerald-600 text-xl">high_quality</span>
+              <span class="text-xs font-bold text-slate-800">Haute Qualité</span>
+            </div>
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-sky-600 text-xl">shield</span>
+              <span class="text-xs font-bold text-slate-800">Grande Résistance</span>
+            </div>
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-indigo-600 text-xl">precision_manufacturing</span>
+              <span class="text-xs font-bold text-slate-800">Usage Pro</span>
+            </div>
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-amber-600 text-xl">verified</span>
+              <span class="text-xs font-bold text-slate-800">Normes CE &amp; ISO</span>
+            </div>
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-red-600 text-xl">speed</span>
+              <span class="text-xs font-bold text-slate-800">Rendement Max</span>
+            </div>
+            <div class="highlight-card">
+              <span class="material-symbols-outlined text-purple-600 text-xl">history</span>
+              <span class="text-xs font-bold text-slate-800">Garantie 2 Ans</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOUTONS D'ACTION DIRECTS (SANS AUCUN PRIX NI PANIER) -->
+        <div class="p-6 rounded-2xl bg-white border border-slate-200 space-y-4 shadow-sm">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Demande de Cotation &amp; Assistance Technico-Commerciale</h3>
+          
+          <div class="space-y-3">
+            <!-- Action 1: Formulaire Devis Express -->
+            <a href="#devisSection" class="w-full py-4 px-6 rounded-xl bg-brand-red text-white font-bold hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2 text-base" style="background: #E31E24;">
+              <span class="material-symbols-outlined">send</span>
+              <span>Demander un Devis Gratuit</span>
+            </a>
+
+            <!-- Action 2: WhatsApp Conseiller -->
+            <a id="whatsappProductBtn" href="https://wa.me/2250715416831" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-all shadow-md flex items-center justify-center gap-2 text-sm">
+              <span class="material-symbols-outlined">chat</span>
+              <span>Contacter un Conseiller via WhatsApp (+225 07 15 41 68 31)</span>
+            </a>
+
+            <!-- Action 3: Appeler Téléphone Fixe -->
+            <a href="tel:+2252722230392" class="w-full py-3 px-6 rounded-xl bg-slate-100 text-slate-800 font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 text-xs sm:text-sm border border-slate-300">
+              <span class="material-symbols-outlined text-base">call</span>
+              <span>Appeler le Service Client (+225 27 22 23 03 92)</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTIONS DÉTAILLÉES : DESCRIPTION, APPLICATIONS & SPÉCIFICATIONS -->
+    <div class="pt-8 space-y-8">
+      
+      <!-- Barre d'Onglets -->
+      <div class="flex items-center gap-3 border-b border-slate-200 pb-4 overflow-x-auto scrollbar-none">
+        <button onclick="switchTab('tabDesc', this)" class="tab-btn active">Description Professionnelle</button>
+        <button onclick="switchTab('tabApps', this)" class="tab-btn">Secteurs d'Application</button>
+        <button onclick="switchTab('tabSpecs', this)" class="tab-btn">Spécifications Techniques</button>
+      </div>
+
+      <!-- Onglet 1 : Description -->
+      <div id="tabDesc" class="tab-content bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-4">
+        <h2 class="text-2xl font-bold text-slate-900 font-serif-mag">Fonctionnalités &amp; Domaines d'Utilisation</h2>
+        <p id="detailedDescription" class="text-slate-600 leading-relaxed font-light text-base">
+          L'électropompe Pedrollo PKm 60 est spécialement conçue pour le pompage et l'adduction d'eau propre sans particules abrasives. Son système hydraulique breveté à turbine périphérique garantit des débits élevés avec une pression régulière et constante. Elle convient particulièrement aux installations industrielles, aux surpresseurs d'immeubles, aux ateliers BTP et à la distribution d'eau potable.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <span class="text-xs font-bold text-sky-600 font-mono-tag uppercase">Fonction Principale</span>
+            <p class="text-sm text-slate-800 font-medium">Pompage &amp; Surpression d'eau propre</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <span class="text-xs font-bold text-sky-600 font-mono-tag uppercase">Moteur Électrique</span>
+            <p class="text-sm text-slate-800 font-medium">Asynchrone haute efficacité en continu (S1)</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <span class="text-xs font-bold text-sky-600 font-mono-tag uppercase">Protection Thermique</span>
+            <p class="text-sm text-slate-800 font-medium">Condensateur &amp; protection intégrés</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet 2 : Applications -->
+      <div id="tabApps" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-6">
+        <h2 class="text-2xl font-bold text-slate-900 font-serif-mag">Secteurs d'Activité Concernés</h2>
+        <div class="flex flex-wrap gap-3">
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">domain</span> BTP &amp; Construction</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">factory</span> Industrie &amp; Usines</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">engineering</span> Génie Civil</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">handyman</span> Maintenance &amp; Dépannage</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">electrical_services</span> Électricité &amp; Énergie</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">landscape</span> Mines &amp; Carrières</span>
+          <span class="app-sector-pill"><span class="material-symbols-outlined text-sky-600">water_drop</span> Irrigation &amp; Agriculture</span>
+        </div>
+      </div>
+
+      <!-- Onglet 3 : Tableau des Spécifications Techniques -->
+      <div id="tabSpecs" class="tab-content hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-6">
+        <h2 class="text-2xl font-bold text-slate-900 font-serif-mag">Fiche Technique Complète</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left spec-table">
+            <tbody>
+              <tr><th class="w-1/3 text-slate-500 font-mono-tag">Marque Constructeur</th><td id="specBrand" class="font-bold text-slate-900">Pedrollo S.p.A (Italie)</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Modèle / Référence</th><td id="specModel" class="font-bold text-slate-900">PKm 60 (Réf: VFM-PED-PKM60)</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Puissance Moteur</th><td id="specPower" class="font-bold text-slate-900">0.37 kW (0.5 HP) • Monophasé 230V 50Hz</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Débit Maximum</th><td id="specFlow" class="font-bold text-slate-900">40 Litres / Minute (2.4 m³/h)</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Hauteur Manométrique (HMT)</th><td id="specHead" class="font-bold text-slate-900">40 Mètres max.</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Matériau du Corps</th><td class="font-bold text-slate-900">Fonte haute résistance traitée cataphorèse</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Matériau Turbine / Rotor</th><td class="font-bold text-slate-900">Laiton avec pales centrifuges radiales</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Indice de Protection</th><td class="font-bold text-slate-900">IP X4 (Classe F)</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Normes &amp; Certifications</th><td class="font-bold text-slate-900">CE, ISO 9001, ISO 14001</td></tr>
+              <tr><th class="text-slate-500 font-mono-tag">Garantie VFM Services</th><td class="font-bold text-sky-600">2 Ans avec pièces d'origine certifiées</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORMULAIRE DE DEVIS EN LIGNE (SECTION INTÉGRÉE) -->
+    <section id="devisSection" class="pt-12">
+      <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white space-y-6 shadow-2xl">
+        <div class="max-w-2xl space-y-2">
+          <span class="px-3.5 py-1 rounded-full bg-sky-500/20 text-sky-300 font-mono-tag text-xs font-bold uppercase tracking-wider">SOUMISSION DE DEVIS EXPRESS</span>
+          <h2 class="text-2xl sm:text-4xl font-bold font-serif-mag">Obtenir une Cotation pour ce Produit</h2>
+          <p class="text-slate-300 text-sm font-light">Remplissez le formulaire ci-dessous. Nos ingénieurs vous répondent avec une offre officielle sous 2 heures ouvrées.</p>
+        </div>
+
+        <form id="productDevisForm" onsubmit="handleProductDevis(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+          <div>
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Nom &amp; Prénom *</label>
+            <input type="text" required placeholder="Votre nom complet" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Entreprise / Société</label>
+            <input type="text" placeholder="Nom de votre société" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Téléphone WhatsApp *</label>
+            <input type="tel" required placeholder="+225 07 00 00 00 00" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+          <div>
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Email Professionnel *</label>
+            <input type="email" required placeholder="adresse@exemple.com" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Produit Sélectionné</label>
+            <input type="text" id="devisProductInput" readonly class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-sky-500/50 text-sky-300 font-bold">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-mono-tag text-slate-300 mb-1">Détails de votre Besoin / Quantité souhaitée</label>
+            <textarea rows="3" placeholder="Précisez la quantité, le lieu de livraison ou vos questions techniques..." class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"></textarea>
+          </div>
+          <div class="md:col-span-2 pt-2">
+            <button type="submit" class="w-full py-4 rounded-xl bg-brand-red text-white font-bold text-base hover:brightness-110 transition-all shadow-xl flex items-center justify-center gap-2" style="background: #E31E24;">
+              <span class="material-symbols-outlined">send</span>
+              <span>Envoyer la Demande de Devis</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECTION PRODUITS SIMILAIRES (4 À 6 ÉQUIPEMENTS RECOMMANDÉS) -->
+    <section class="pt-12">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold font-mono-tag text-sky-600 uppercase tracking-widest">ÉQUIPEMENTS SIMILAIRES</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 font-serif-mag mt-1">Produits de la Même Catégorie</h2>
+        </div>
+        <a href="catalogue.html" class="text-xs font-bold font-mono-tag text-sky-600 hover:underline flex items-center gap-1">
+          <span>Tout le Catalogue</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="similarProductsGrid">
+        <!-- Rempli dynamiquement par JavaScript -->
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer Executive VFM Services -->
+<footer class="vfm-footer">
+  <div class="container vfm-footer__container">
+    
+    <!-- Colonne 1 : Logo & Présentation Entreprise -->
+    <div class="vfm-footer__col vfm-footer__col--brand">
+      <div class="vfm-footer__logo-card">
+        <img src="assets/logo.png" alt="VFM Services Logo">
+      </div>
+      <p class="vfm-footer__desc">
+        VFM SERVICES, le partenaire de confiance pour la fourniture, l'installation et la maintenance de matériels industriels et hydrauliques.
+      </p>
+      <div class="vfm-footer__legal">
+        <p class="vfm-footer__legal-title">Société agréée en Équipements Industriels</p>
+        <p class="vfm-footer__legal-subtitle">Fourniture – Installation – Maintenance</p>
+        <p class="vfm-footer__legal-info">Siège : Abidjan, Riviera, Cité ATCI</p>
+      </div>
+      <div class="vfm-footer__socials">
+        <a href="https://linkedin.com" target="_blank" class="vfm-footer__social-btn" aria-label="LinkedIn">in</a>
+        <a href="https://facebook.com" target="_blank" class="vfm-footer__social-btn" aria-label="Facebook">f</a>
+      </div>
+    </div>
+
+    <!-- Colonne 2 : Liens Rapides -->
+    <div class="vfm-footer__col">
+      <h4 class="vfm-footer__title">Liens Rapides</h4>
+      <ul class="vfm-footer__links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="Nos Realisations.html">Nos Réalisations</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html#devisForm">Soumission de Devis</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 3 : Nos Services -->
+    <div class="vfm-footer__col">
+      <h4 class="vfm-footer__title">Nos Services</h4>
+      <ul class="vfm-footer__links">
+        <li><a href="catalogue.html?cat=pompes">Pompes Hydrauliques (Pedrollo)</a></li>
+        <li><a href="catalogue.html?cat=groupes">Groupes Électrogènes</a></li>
+        <li><a href="catalogue.html?cat=outillage">Outillage Professionnel (31)</a></li>
+        <li><a href="contact.html#devisForm">Maintenance &amp; Dépannage</a></li>
+        <li><a href="produits_et_services.md" target="_blank">Fiche Produits &amp; Services</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 4 : Contactez-nous -->
+    <div class="vfm-footer__col vfm-footer__col--contact">
+      <h4 class="vfm-footer__title">Contactez-nous</h4>
+      <ul class="vfm-footer__contact-list">
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">location_on</span></span>
+          <span>Abidjan, Riviera, Cité ATCI, Côte d'Ivoire</span>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">call</span></span>
+          <a href="tel:+2252722230392">+225 27 22 23 03 92</a>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span></span>
+          <a href="https://wa.me/2250715416831" target="_blank">+225 07 15 41 68 31 (WhatsApp)</a>
+        </li>
+        <li>
+          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">mail</span></span>
+          <a href="mailto:infos@vfmservices.net">infos@vfmservices.net</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Barre Bas de Page -->
+  <div class="vfm-footer__bottom">
+    <p>© 2026 VFM Services Sarl. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  // BASE DE DONNÉES D'ÉQUIPEMENTS CERTIFIÉS VFM SERVICES
+  const PRODUCTS_DATABASE = [
+    {
+      id: "pkm60",
+      name: "Pompe Périphérique Pedrollo PKm 60",
+      brand: "Pedrollo S.p.A (Italie)",
+      ref: "VFM-PED-PKM60",
+      category: "Pompes Hydrauliques",
+      img: "assets/catalogue/surface/surface/peripheriques/PKm60-300x300.webp",
+      desc: "Électropompe de surpression compacte haute performance conçue pour l'adduction d'eau propre et la distribution d'eau sous pression continue.",
+      power: "0.37 kW (0.5 HP) • 230V 50Hz",
+      flow: "40 L/min max.",
+      head: "40 Mètres HMT",
+      stock: "Disponible en Stock (Riviera)"
+    },
+    {
+      id: "jswm2ax",
+      name: "Pompe Auto-amorçante Pedrollo JSWm 2AX",
+      brand: "Pedrollo S.p.A (Italie)",
+      ref: "VFM-PED-JSW2AX",
+      category: "Pompes Hydrauliques",
+      img: "assets/catalogue/surface/surface/autoamorcantes/JSWm-2AX-300x300.webp",
+      desc: "Pompe auto-amorçante haute pression idéale pour l'aspiration d'eau jusqu'à 9 mètres de profondeur avec présence d'air dissous.",
+      power: "1.1 kW (1.5 HP) • 230V 50Hz",
+      flow: "85 L/min max.",
+      head: "58 Mètres HMT",
+      stock: "Disponible en Stock (Riviera)"
+    },
+    {
+      id: "4sr412",
+      name: "Pompe Immergée 4SR4/12 Pedrollo",
+      brand: "Pedrollo S.p.A (Italie)",
+      ref: "VFM-PED-4SR412",
+      category: "Pompes Immergées",
+      img: "assets/catalogue/forage/forage/4-pouces/4SR4-12-300x300.webp",
+      desc: "Pompe de forage 4 pouces immergée inox conçue pour le pompage d'eau claire en puits profonds jusqu'à 100 mètres.",
+      power: "1.5 kW (2.0 HP) • Monophasé/Triphasé",
+      flow: "100 L/min max.",
+      head: "92 Mètres HMT",
+      stock: "Disponible en Stock (Riviera)"
+    },
+    {
+      id: "hydrofresh",
+      name: "Surpresseur Hydrofresh Pedrollo PKm60 24CL",
+      brand: "Pedrollo & Varem (Italie)",
+      ref: "VFM-PED-HYDRO24",
+      category: "Surpresseurs",
+      img: "assets/catalogue/surpresseurs/HYDROFRESH-PKm60-24CL-300x300.webp",
+      desc: "Groupe de surpression automatique complet avec ballon à membrane Varem 24L et contacteur manométrique pour villas et immeubles.",
+      power: "0.37 kW (0.5 HP) • 230V",
+      flow: "40 L/min max.",
+      head: "40 Mètres HMT",
+      stock: "Disponible en Stock (Riviera)"
+    },
+    {
+      id: "cgm15kva",
+      name: "Groupe Électrogène Diesel CGM 15 kVA Insonorisé",
+      brand: "CGM Italia",
+      ref: "VFM-CGM-15KVA",
+      category: "Groupes Électrogènes",
+      img: "assets/dept/dept_groupes.png",
+      desc: "Groupe électrogène diesel insonorisé avec démarrage automatique ATS pour secours industriel et bâtiments tertiaires.",
+      power: "15 kVA / 12 kW • Moteur Diesel",
+      flow: "Régulation AVR ±1%",
+      head: "Autonomie 18 Hours",
+      stock: "Sur Commande Express"
+    },
+    {
+      id: "varem100l",
+      name: "Réservoir Surpresseur Varem 100 Litres Vertical",
+      brand: "Varem (Italie)",
+      ref: "VFM-VAR-100V",
+      category: "Surpresseurs",
+      img: "assets/showroom/showroom_5.jpg",
+      desc: "Réservoir sous pression à membrane interchangeable en EPDM pour eau potable et réseaux industriels.",
+      power: "Pression max: 10 Bars",
+      flow: "Capacité: 100 Litres",
+      head: "Température: -10°C à +99°C",
+      stock: "Disponible en Stock (Riviera)"
+    }
+  ];
+
+  // PARSER ET CHARGER LES DONNÉES DU PRODUIT SÉLECTIONNÉ
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id') || urlParams.get('name') || 'pkm60';
+    
+    let product = PRODUCTS_DATABASE.find(p => p.id.toLowerCase() === productId.toLowerCase() || p.name.toLowerCase().includes(productId.toLowerCase()));
+
+    // Fallback dynamique si le paramètre provient directement d'une carte du catalogue
+    if (!product && urlParams.get('title')) {
+      product = {
+        id: "custom",
+        name: urlParams.get('title'),
+        brand: urlParams.get('brand') || "Pedrollo S.p.A (Italie)",
+        ref: urlParams.get('ref') || "VFM-EQUIPMENT",
+        category: urlParams.get('category') || "Équipements Industriels",
+        img: urlParams.get('img') || "assets/logo.png",
+        desc: urlParams.get('desc') || "Équipement professionnel certifié distribué par VFM Services en Côte d'Ivoire.",
+        power: "Conforme Spécifications Usine",
+        flow: "Standard Industriel",
+        head: "Selon Configuration",
+        stock: "Disponible sur Demande"
+      };
+    }
+
+    if (!product) {
+      product = PRODUCTS_DATABASE[0]; // Produit par défaut
+    }
+
+    renderProductPage(product);
+    renderSimilarProducts(product);
+  });
+
+  function renderProductPage(product) {
+    document.title = `${product.name} | VFM SERVICES`;
+    
+    document.getElementById('breadcrumbCategory').textContent = product.category;
+    document.getElementById('breadcrumbName').textContent = product.name;
+
+    document.getElementById('mainProductImg').src = product.img;
+    document.getElementById('thumb1').src = product.img;
+    document.getElementById('productTitle').textContent = product.name;
+    document.getElementById('productSubtitle').textContent = product.desc;
+    document.getElementById('productCategoryBadge').textContent = product.category;
+    document.getElementById('productRefBadge').textContent = `Réf: ${product.ref}`;
+    document.getElementById('brandBadge').textContent = product.brand;
+    document.getElementById('stockStatusBadge').querySelector('span:last-child').textContent = product.stock;
+
+    // Spec table
+    document.getElementById('specBrand').textContent = product.brand;
+    document.getElementById('specModel').textContent = `${product.name} (${product.ref})`;
+    document.getElementById('specPower').textContent = product.power;
+    document.getElementById('specFlow').textContent = product.flow;
+    document.getElementById('specHead').textContent = product.head;
+
+    document.getElementById('detailedDescription').textContent = product.desc;
+    document.getElementById('devisProductInput').value = `${product.name} (Réf: ${product.ref})`;
+
+    // WhatsApp prefilled link
+    const waText = encodeURIComponent(`Bonjour VFM Services, je souhaite obtenir un devis rapide pour l'équipement : ${product.name} (Réf: ${product.ref}).`);
+    document.getElementById('whatsappProductBtn').href = `https://wa.me/2250715416831?text=${waText}`;
+  }
+
+  function renderSimilarProducts(currentProduct) {
+    const container = document.getElementById('similarProductsGrid');
+    if (!container) return;
+
+    const similars = PRODUCTS_DATABASE.filter(p => p.id !== currentProduct.id).slice(0, 4);
+
+    container.innerHTML = similars.map(p => `
+      <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden p-5 flex flex-col justify-between space-y-4 hover:border-sky-500 hover:shadow-lg transition-all">
+        <div class="h-44 flex items-center justify-center p-2 bg-slate-50 rounded-xl overflow-hidden">
+          <img src="${p.img}" alt="${p.name}" class="max-h-full max-w-full object-contain" onerror="this.src='assets/logo.png'">
+        </div>
+        <div class="space-y-2">
+          <span class="text-[10px] font-mono-tag font-bold text-sky-600 uppercase px-2 py-0.5 rounded bg-sky-100">${p.category}</span>
+          <h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2">${p.name}</h3>
+        </div>
+        <a href="produit.html?id=${p.id}" class="w-full py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold text-center block hover:bg-sky-600 transition-colors">
+          Consulter la Fiche ➔
+        </a>
+      </div>
+    `).join('');
+  }
+
+  function switchMainImage(src, btn) {
+    document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('mainProductImg').src = src;
+  }
+
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    document.getElementById(tabId).classList.remove('hidden');
+  }
+
+  function toggleMobileNav() {
+    const nav = document.getElementById('mainMobileNav');
+    const toggleBtn = document.getElementById('mobileNavToggleBtn');
+    if (nav) {
+      const isOpen = nav.classList.toggle('nav-open');
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+  }
+
+  function handleProductDevis(e) {
+    e.preventDefault();
+    alert("✅ Votre demande de devis a été enregistrée avec succès ! Notre équipe commerciale VFM Services vous recontacte sous 2h.");
+  }
+</script>
+
+<script src="js/app.min.js"></script>
+</body>
+</html>

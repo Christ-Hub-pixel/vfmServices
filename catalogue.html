@@ -103,14 +103,14 @@
 
           <!-- PAGINATION PUCES DESIGN PILULE VERRE EN HAUT À DROITE -->
           <div class="hero-carousel__dots" id="heroDots">
-            <span class="hero-carousel__dot active" data-slide="0"></span>
-            <span class="hero-carousel__dot" data-slide="1"></span>
-            <span class="hero-carousel__dot" data-slide="2"></span>
+            <span class="hero-carousel__dot active" data-slide="0" onclick="VFMApp.setHeroSlide(0, event)"></span>
+            <span class="hero-carousel__dot" data-slide="1" onclick="VFMApp.setHeroSlide(1, event)"></span>
+            <span class="hero-carousel__dot" data-slide="2" onclick="VFMApp.setHeroSlide(2, event)"></span>
           </div>
 
           <!-- Boutons Précédent / Suivant -->
-          <button class="hero-carousel__btn hero-carousel__btn--prev" id="heroPrevBtn" aria-label="Précédent">❮</button>
-          <button class="hero-carousel__btn hero-carousel__btn--next" id="heroNextBtn" aria-label="Suivant">❯</button>
+          <button type="button" class="hero-carousel__btn hero-carousel__btn--prev" id="heroPrevBtn" aria-label="Précédent" onclick="VFMApp.prevHeroSlide(event)">❮</button>
+          <button type="button" class="hero-carousel__btn hero-carousel__btn--next" id="heroNextBtn" aria-label="Suivant" onclick="VFMApp.nextHeroSlide(event)">❯</button>
         </div>
 
         <!-- BARRE DE RECHERCHE ULTRA-PRO ET CLAIRE EN DESSOUS DU CARROUSEL -->

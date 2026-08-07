@@ -1163,7 +1163,8 @@ body.menu-open {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 35;
+  pointer-events: auto;
   transition: all var(--transition-fast);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -1260,7 +1261,8 @@ body.menu-open {
   right: 0.75rem;
   display: flex;
   gap: 0.5rem;
-  z-index: 10;
+  z-index: 35;
+  pointer-events: auto;
   background: rgba(7, 18, 30, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);

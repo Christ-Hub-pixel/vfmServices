@@ -1,143 +1,158 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" lang="fr"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VFM Services | Solutions Industrielles &amp; Hydrauliques</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Work+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link rel="icon" type="image/png" href="assets/icone.png">
-<link rel="shortcut icon" type="image/png" href="assets/icone.png">
-<link rel="stylesheet" href="css/styles.css">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "secondary-fixed-dim": "#ffb4a8",
-                        "surface": "#f8f9ff",
-                        "inverse-surface": "#022b6b",
-                        "on-primary-fixed-variant": "#00487f",
-                        "surface-bright": "#f8f9ff",
-                        "on-tertiary-fixed": "#0b1d2d",
-                        "surface-dim": "#cbdbf5",
-                        "on-error": "#ffffff",
-                        "surface-container-low": "#eff4ff",
-                        "on-primary-fixed": "#001c37",
-                        "surface-tint": "#022b6b",
-                        "tertiary-container": "#5e6f83",
-                        "surface-variant": "#d3e4fe",
-                        "on-secondary": "#ffffff",
-                        "surface-container-high": "#dce9ff",
-                        "on-tertiary": "#ffffff",
-                        "on-secondary-fixed-variant": "#930000",
-                        "on-background": "#0b1c30",
-                        "secondary-container": "#e22618",
-                        "primary-fixed-dim": "#a0c9ff",
-                        "on-tertiary-fixed-variant": "#38485a",
-                        "secondary-fixed": "#ffdad4",
-                        "tertiary": "#465769",
-                        "on-primary": "#ffffff",
-                        "primary-container": "#0070c0",
-                        "inverse-on-surface": "#eaf1ff",
-                        "surface-container": "#e5eeff",
-                        "on-error-container": "#93000a",
-                        "background": "#f8f9ff",
-                        "on-surface-variant": "#414751",
-                        "outline": "#717783",
-                        "error": "#ba1a1a",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-fixed": "#d2e4fb",
-                        "primary": "#022b6b",
-                        "primary-fixed": "#d2e4ff",
-                        "surface-container-highest": "#d3e4fe",
-                        "on-primary-container": "#eaf1ff",
-                        "inverse-primary": "#a0c9ff",
-                        "outline-variant": "#c0c7d3",
-                        "error-container": "#ffdad6",
-                        "on-secondary-fixed": "#410000",
-                        "on-secondary-container": "#fffbff",
-                        "on-tertiary-container": "#e9f1ff",
-                        "tertiary-fixed-dim": "#b7c8de",
-                        "secondary": "#c01823",
-                        "on-surface": "#0b1c30",
-                        "brand-red": "#c01823",
-                        "brand-blue-light": "#dcf0ff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "gutter": "24px",
-                        "margin-desktop": "48px",
-                        "max-width": "1280px",
-                        "margin-mobile": "16px",
-                        "unit": "4px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Hanken Grotesk"],
-                        "button": ["Hanken Grotesk"],
-                        "body-md": ["Work Sans"],
-                        "label-sm": ["JetBrains Mono"],
-                        "headline-xl": ["Hanken Grotesk"],
-                        "headline-md": ["Hanken Grotesk"],
-                        "body-lg": ["Work Sans"],
-                        "headline-lg-mobile": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
-                        "button": ["16px", {"lineHeight": "20px", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
-                    }
-                },
-            },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
-        }
-        @media (max-width: 768px) {
-            .bento-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 20px !important;
-            }
-        }
-        .service-card-accent {
-            border-top: 4px solid;
-        }
-        .active-nav-border {
-            position: relative;
-        }
-        .active-nav-border::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--tw-color-primary);
-        }
-    </style>
+<html class="scroll-smooth" lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>VFM Services | Solutions Industrielles &amp; Hydrauliques</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Work+Sans:wght@100..900&amp;display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/icone.png">
+  <link rel="shortcut icon" type="image/png" href="assets/icone.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#ffb4a8",
+            "surface": "#f8f9ff",
+            "inverse-surface": "#022b6b",
+            "on-primary-fixed-variant": "#00487f",
+            "surface-bright": "#f8f9ff",
+            "on-tertiary-fixed": "#0b1d2d",
+            "surface-dim": "#cbdbf5",
+            "on-error": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "on-primary-fixed": "#001c37",
+            "surface-tint": "#022b6b",
+            "tertiary-container": "#5e6f83",
+            "surface-variant": "#d3e4fe",
+            "on-secondary": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#930000",
+            "on-background": "#0b1c30",
+            "secondary-container": "#e22618",
+            "primary-fixed-dim": "#a0c9ff",
+            "on-tertiary-fixed-variant": "#38485a",
+            "secondary-fixed": "#ffdad4",
+            "tertiary": "#465769",
+            "on-primary": "#ffffff",
+            "primary-container": "#0070c0",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-container": "#e5eeff",
+            "on-error-container": "#93000a",
+            "background": "#f8f9ff",
+            "on-surface-variant": "#414751",
+            "outline": "#717783",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#d2e4fb",
+            "primary": "#022b6b",
+            "primary-fixed": "#d2e4ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-primary-container": "#eaf1ff",
+            "inverse-primary": "#a0c9ff",
+            "outline-variant": "#c0c7d3",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#410000",
+            "on-secondary-container": "#fffbff",
+            "on-tertiary-container": "#e9f1ff",
+            "tertiary-fixed-dim": "#b7c8de",
+            "secondary": "#c01823",
+            "on-surface": "#0b1c30",
+            "brand-red": "#c01823",
+            "brand-blue-light": "#dcf0ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "margin-desktop": "48px",
+            "max-width": "1280px",
+            "margin-mobile": "16px",
+            "unit": "4px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Hanken Grotesk"],
+            "button": ["Hanken Grotesk"],
+            "body-md": ["Work Sans"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-xl": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "body-lg": ["Work Sans"],
+            "headline-lg-mobile": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "button": ["16px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .bento-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+    }
+
+    .service-card-accent {
+      border-top: 4px solid;
+    }
+
+    .active-nav-border {
+      position: relative;
+    }
+
+    .active-nav-border::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--tw-color-primary);
+    }
+  </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+<body
+  class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
   <!-- HEADER NAVIGATION -->
   <header class="header" role="banner">
     <div class="container header__nav">
@@ -165,350 +180,453 @@
       </div>
     </div>
   </header>
-<main>
-<!-- Hero Section -->
-<section class="relative min-h-[80vh] flex items-center overflow-hidden bg-inverse-surface">
-<!-- Animated Background Shader -->
-<div class="relative z-10 w-full px-4 sm:px-8 md:px-margin-desktop max-w-max-width mx-auto py-12 sm:py-24">
-<div class="max-w-3xl">
-<div class="inline-flex items-center gap-2 bg-brand-red border border-brand-red/20 text-white px-4 py-1.5 rounded-full mb-8 shadow-sm">
-<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Fournitures industrielles depuis 17 ans</span>
-</div>
-<h1 class="font-headline-xl text-headline-xl text-surface mb-6 leading-tight">
-                        Pompes Hydrauliques <span class="text-brand-red">Pedrollo</span>, Groupes Électrogènes &amp; Accessoires.
-                    </h1>
-<p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-2xl leading-relaxed">
-                        Basée à Abidjan (Riviera, Cité ATCI), VFM Services est l'entreprise de référence en Côte d'Ivoire pour la fourniture, l'installation et la maintenance d'équipements industriels, de pompes hydrauliques et de groupes électrogènes.
-                    </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<a href="catalogue.html" class="font-button text-button bg-brand-red text-white px-8 py-4 rounded flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-lg font-bold">
-                            Explorer Nos Produits
-                            <span class="material-symbols-outlined">arrow_forward</span>
-</a>
-<a href="contact.html#devisForm" class="font-button text-button border-2 border-surface text-surface px-8 py-4 rounded flex items-center justify-center gap-2 hover:bg-surface hover:text-inverse-surface transition-all font-semibold">
-                            Voir les Spécifications
-</a>
-</div>
-</div>
-</div>
-<!-- Floating Data Panel (Hero Asset) -->
-<div class="hidden xl:block absolute right-margin-desktop top-1/2 -translate-y-1/2 w-96 bg-surface/10 backdrop-blur-xl border border-surface/20 p-8 rounded-xl shadow-2xl">
-<div class="space-y-6">
-<div class="flex justify-between items-end border-b border-surface/20 pb-4">
-<div>
-<p class="font-label-sm text-label-sm text-surface-variant opacity-80">TEMPS DE RÉPONSE</p>
-<p class="font-headline-md text-headline-md text-surface">Moins de 60 min</p>
-</div>
-<span class="material-symbols-outlined text-brand-red">bolt</span>
-</div>
-<div class="flex justify-between items-end border-b border-surface/20 pb-4">
-<div>
-<p class="font-label-sm text-label-sm text-surface-variant opacity-80">TAUX DE FIABILITÉ</p>
-<p class="font-headline-md text-headline-md text-surface">100% de Disponibilité</p>
-</div>
-<span class="material-symbols-outlined text-surface">shield</span>
-</div>
-<div class="flex justify-between items-end">
-<div>
-<p class="font-label-sm text-label-sm text-surface-variant opacity-80">EXPÉRIENCE</p>
-<p class="font-headline-md text-headline-md text-surface">17+ ans</p>
-</div>
-<span class="material-symbols-outlined text-surface">engineering</span>
-</div>
-</div>
-</div>
-</section>
-<!-- CEO Section -->
-<section class="py-24 bg-surface-container-lowest">
-<div class="w-full px-margin-desktop max-w-max-width mx-auto">
-<div class="flex flex-col md:flex-row gap-16 items-center">
-<div class="w-full md:w-5/12">
-<img alt="Mme Virginie Konan, Gérante VFM Services" class="rounded-xl shadow-2xl w-full object-cover" style="max-height: 420px; object-fit: cover; border-radius: 18px; border: 1px solid #E2E8F0;" src="assets/directrice.jpeg"/>
-</div>
-<div class="w-full md:w-7/12 space-y-6">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Mot de la Gérante</h2>
-<div class="w-20 h-1.5 bg-brand-red mb-8"></div>
-<p class="font-body-lg text-body-lg text-on-surface-variant italic leading-relaxed text-lg">
-                    "Aujourd'hui, nous sommes fiers d'avoir participé à l'équipement de plus d'une centaine de stations-services et d'avoir accompagné de nombreuses industries dans l'optimisation de leurs installations. Notre engagement envers l'excellence et la satisfaction de nos clients reste le moteur de notre croissance continue."
-                </p>
-<div class="mt-8">
-<p class="font-headline-md text-headline-md text-primary font-bold">Mme Virginie KONAN</p>
-<p class="font-body-md text-on-surface-variant uppercase tracking-wider text-sm mt-1">Gérante, VFM Services</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- SECTION PARTENAIRES & ÉQUIPEMENTIERS DE CONFIANCE (TICKER ANIMÉ) -->
-<section class="marquee-section">
-    <div class="container" style="text-align: center; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;">
-      <span class="badge badge--red" style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;">Distributeur Agréé Officiel</span>
-      <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; padding: 0.2rem 1.5rem; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.06); transition: transform 0.3s ease; overflow: hidden;" class="hover:scale-105">
-        <img src="assets/logo pedrollo.png" alt="PEDROLLO" style="height: 140px; width: auto; max-width: 280px; object-fit: contain; margin: -30px 0; display: block;">
-      </div>
-      <span class="badge badge--blue" style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.5rem;">Autres Équipementiers &amp; Partenaires Certifiés</span>
-    </div>
-    <div class="marquee-container">
-      <div class="marquee-track">
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;"><img src="assets/CGM logo.png" alt="CGM" style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;"><img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS" style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo-varem.svg" alt="VAREM" style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo speroni.png" alt="SPERONI" style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;"><img src="assets/CGM logo.png" alt="CGM" style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;"><img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS" style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo-varem.svg" alt="VAREM" style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo speroni.png" alt="SPERONI" style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
-      </div>
-      <div class="marquee-track" aria-hidden="true">
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;"><img src="assets/CGM logo.png" alt="CGM" style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;"><img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS" style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo-varem.svg" alt="VAREM" style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo speroni.png" alt="SPERONI" style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;"><img src="assets/CGM logo.png" alt="CGM" style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;"><img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS" style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo-varem.svg" alt="VAREM" style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
-        <div class="partner-logo-badge" style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;"><img src="assets/logo speroni.png" alt="SPERONI" style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
-      </div>
-    </div>
-</section>
-
-<!-- Showroom Section -->
-<section class="py-24 bg-surface-container-low border-y border-outline-variant/30">
-<div class="w-full px-margin-desktop max-w-max-width mx-auto">
-<div class="flex flex-col md:flex-row-reverse gap-16 items-center">
-<div class="w-full md:w-1/2 cursor-pointer" onclick="openVFMZoom('assets/showroom.jpeg', 'Showroom Riviera VFM Services — Distributeur Agréé Pedrollo')">
-<img alt="Showroom VFM Services" class="rounded-xl shadow-2xl w-full object-cover transition-transform hover:scale-105 duration-300" style="max-height: 420px; object-fit: cover; border-radius: 18px; border: 1px solid #E2E8F0;" src="assets/showroom.jpeg"/>
-</div>
-<div class="w-full md:w-1/2 space-y-6">
-<span class="font-label-sm text-label-sm text-brand-red mb-2 block uppercase tracking-wider font-bold">Distributeur Agréé Pedrollo</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Nos Réalisations</h2>
-<div class="w-20 h-1.5 bg-primary mb-8"></div>
-<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                    Découvrez notre large gamme d'équipements, de pompes hydrauliques et accessoires directement dans nos locaux de présentation. En tant que distributeur agréé Pedrollo, nous vous garantissons des produits authentiques et un conseil d'expert.
-                </p>
-<div class="flex items-start gap-4 mt-10 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/50 shadow-sm">
-<div class="bg-brand-red/10 p-3 rounded-full">
-<span class="material-symbols-outlined text-brand-red text-[32px]">location_on</span>
-</div>
-<div>
-<h4 class="font-headline-md text-on-surface mb-2 font-bold">Notre Adresse</h4>
-<p class="font-body-md text-on-surface-variant text-lg">Abidjan, Riviera<br/>Cité ATCI</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Services Section - Style Éditorial / Magazine -->
-<section class="py-24 bg-surface border-t border-outline-variant/30 relative">
-  <div class="w-full px-margin-desktop max-w-max-width mx-auto">
-    <!-- Header Magazine -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b-2 border-primary/20 gap-6">
-      <div>
-        <div class="flex items-center gap-3 mb-2">
-          <span class="w-8 h-[2px] bg-brand-red"></span>
-          <span class="font-label-sm text-brand-red uppercase tracking-widest font-bold">Édition Spéciale &bull; VFM Services</span>
-        </div>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface font-black tracking-tight">Nos Domaines d'Expertise</h2>
-      </div>
-      <p class="text-on-surface-variant text-body-md max-w-md font-medium leading-relaxed">
-        Des solutions industrielles spécialement conçues pour les usines, résidences, l'irrigation et les systèmes de traitement d'eau.
-      </p>
-    </div>
-
-    <!-- Magazine Featured Showcase Card (Solutions Hydrauliques) -->
-    <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-3xl p-8 md:p-12 shadow-lg relative overflow-hidden group hover:border-primary/40 transition-all duration-300">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Image Banner Left (6 cols) -->
-        <div class="lg:col-span-6 h-72 md:h-80 w-full bg-surface-container rounded-2xl overflow-hidden shadow-sm relative">
-          <img src="assets/dept/dept_pompes.png" alt="Solutions Hydrauliques Pedrollo" class="w-full h-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105">
-        </div>
-
-        <!-- Text Content Right (6 cols) -->
-        <div class="lg:col-span-6 flex flex-col justify-between h-full">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <span class="px-3 py-1 bg-primary text-white text-[11px] font-bold tracking-widest uppercase rounded-full">DOSSIER SPÉCIAL</span>
-              <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Distributeur Agréé Officiel</span>
-            </div>
-
-            <h3 class="text-2xl md:text-3xl font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
-              Solutions Hydrauliques Haute Pression
-            </h3>
-            
-            <p class="text-on-surface-variant text-body-lg leading-relaxed mb-6">
-              Expertise certifiée dans le diagnostic, la fourniture et la maintenance préventive des pompes et réseaux hydrauliques industriels. Notre approche systématique garantit que votre matériel critique est toujours opérationnel sans interruption.
-            </p>
+  <main>
+    <!-- Hero Section -->
+    <section class="relative min-h-[80vh] flex items-center overflow-hidden bg-inverse-surface">
+      <!-- Animated Background Shader -->
+      <div class="relative z-10 w-full px-4 sm:px-8 md:px-margin-desktop max-w-max-width mx-auto py-12 sm:py-24">
+        <div class="max-w-3xl">
+          <div
+            class="inline-flex items-center gap-2 bg-brand-red border border-brand-red/20 text-white px-4 py-1.5 rounded-full mb-8 shadow-sm">
+            <span class="material-symbols-outlined text-[16px]"
+              style="font-variation-settings: 'FILL' 1;">verified</span>
+            <span class="font-label-sm text-label-sm uppercase tracking-wider">Fournitures industrielles depuis 17
+              ans</span>
           </div>
-
-          <div class="pt-6 border-t border-outline-variant/40 flex items-center justify-between flex-wrap gap-4">
-            <div class="flex items-center gap-2 text-sm font-semibold text-primary">
-              <span>DISTRIBUTEUR AGRÉÉ PEDROLLO</span>
-              <span class="material-symbols-outlined text-base">verified</span>
-            </div>
-            <a href="catalogue.html?cat=pompes" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl shadow-md hover:bg-primary/90 transition-all">
-              Explorer le Catalogue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          <h1 class="font-headline-xl text-headline-xl text-surface mb-6 leading-tight">
+            Pompes Hydrauliques <span class="text-brand-red">Pedrollo</span>, Groupes Électrogènes &amp; Accessoires.
+          </h1>
+          <p class="font-body-lg text-body-lg text-surface-variant mb-10 max-w-2xl leading-relaxed">
+            Basée à Abidjan (Riviera, Cité ATCI), VFM Services est l'entreprise de référence en Côte d'Ivoire pour la
+            fourniture, l'installation et la maintenance d'équipements industriels, de pompes hydrauliques et de groupes
+            électrogènes.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="catalogue.html"
+              class="font-button text-button bg-brand-red text-white px-8 py-4 rounded flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-lg font-bold">
+              Explorer Nos Produits
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a href="contact.html#devisForm"
+              class="font-button text-button border-2 border-surface text-surface px-8 py-4 rounded flex items-center justify-center gap-2 hover:bg-surface hover:text-inverse-surface transition-all font-semibold">
+              Voir les Spécifications
             </a>
           </div>
         </div>
-
       </div>
-    </div>
-  </div>
-</section>
-<!-- Company Values -->
-<section class="py-24 bg-surface-container-low border-t border-outline-variant/30">
-<div class="w-full px-margin-desktop max-w-max-width mx-auto">
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
-<div class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
-<span class="material-symbols-outlined text-[32px]">verified</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Fiabilité</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                            Notre promesse principale. Chaque réparation et installation est exécutée selon des normes industrielles strictes, garantissant que votre équipement fonctionne exactement comme prévu.
-                        </p>
-</div>
-<div class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
-<span class="material-symbols-outlined text-[32px]">precision_manufacturing</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Installation</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                            Du plan au dernier boulon. Services d'installation professionnels pour les réseaux hydrauliques à grande échelle et les générateurs d'alimentation de secours.
-                        </p>
-</div>
-<div class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
-<span class="material-symbols-outlined text-[32px]">build</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Maintenance</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                            Nous ne faisons pas que réparer ; nous préservons. Nos protocoles de maintenance systématique reposent sur des décennies de données techniques pour prédire et prévenir les pannes.
-                        </p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-24 bg-surface overflow-hidden relative">
-<div class="w-full px-margin-desktop max-w-max-width mx-auto">
-<div class="relative bg-brand-red text-white rounded-2xl p-12 md:p-20 overflow-hidden shadow-2xl">
-<!-- Subtle Decorative Pattern -->
-<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-<div class="relative z-10 flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-[64px] mb-6" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
-<h2 class="font-headline-xl text-headline-xl mb-6">Besoin d'Assistance Technique Immédiate ?</h2>
-<p class="font-body-lg text-body-lg mb-10 max-w-2xl opacity-90">
-                            Notre équipe d'intervention rapide est en attente 24h/24 et 7j/7 pour les urgences industrielles. Minimisez vos temps d'arrêt grâce à des techniciens experts dépêchés immédiatement.
-                        </p>
-<div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
-<a class="font-button text-button bg-white text-brand-red px-10 py-5 rounded-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-xl font-bold" href="tel:+2250707414554">
-<span class="material-symbols-outlined text-[24px]">call</span>
-                                Appeler le +225 07 07 41 45 54
-                            </a>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer Executive VFM Services (Conforme au visuel) -->
-<footer class="vfm-footer">
-  <div class="container vfm-footer__container">
-    
-    <!-- Colonne 1 : Logo & Présentation Entreprise -->
-    <div class="vfm-footer__col vfm-footer__col--brand">
-      <div class="vfm-footer__logo-card">
-        <img src="assets/logo.png" alt="VFM Services Logo">
+      <!-- Floating Data Panel (Hero Asset) -->
+      <div
+        class="hidden xl:block absolute right-margin-desktop top-1/2 -translate-y-1/2 w-96 bg-surface/10 backdrop-blur-xl border border-surface/20 p-8 rounded-xl shadow-2xl">
+        <div class="space-y-6">
+          <div class="flex justify-between items-end border-b border-surface/20 pb-4">
+            <div>
+              <p class="font-label-sm text-label-sm text-surface-variant opacity-80">TEMPS DE RÉPONSE</p>
+              <p class="font-headline-md text-headline-md text-surface">Moins de 60 min</p>
+            </div>
+            <span class="material-symbols-outlined text-brand-red">bolt</span>
+          </div>
+          <div class="flex justify-between items-end border-b border-surface/20 pb-4">
+            <div>
+              <p class="font-label-sm text-label-sm text-surface-variant opacity-80">TAUX DE FIABILITÉ</p>
+              <p class="font-headline-md text-headline-md text-surface">100% de Disponibilité</p>
+            </div>
+            <span class="material-symbols-outlined text-surface">shield</span>
+          </div>
+          <div class="flex justify-between items-end">
+            <div>
+              <p class="font-label-sm text-label-sm text-surface-variant opacity-80">EXPÉRIENCE</p>
+              <p class="font-headline-md text-headline-md text-surface">17+ ans</p>
+            </div>
+            <span class="material-symbols-outlined text-surface">engineering</span>
+          </div>
+        </div>
       </div>
-      <p class="vfm-footer__desc">
-        VFM SERVICES, le partenaire de confiance pour la fourniture, l'installation et la maintenance de matériels industriels et hydrauliques.
-      </p>
-      <div class="vfm-footer__legal">
-        <p class="vfm-footer__legal-info">Siège : Abidjan, Riviera, Cité ATCI</p>
+    </section>
+    <!-- CEO Section -->
+    <section class="py-24 bg-surface-container-lowest">
+      <div class="w-full px-margin-desktop max-w-max-width mx-auto">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
+          <div class="w-full md:w-5/12">
+            <img alt="Mme Virginie Konan, Gérante VFM Services" class="rounded-xl shadow-2xl w-full object-cover"
+              style="max-height: 420px; object-fit: cover; border-radius: 18px; border: 1px solid #E2E8F0;"
+              src="assets/directrice.jpeg" />
+          </div>
+          <div class="w-full md:w-7/12 space-y-6">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Mot de la Gérante</h2>
+            <div class="w-20 h-1.5 bg-brand-red mb-8"></div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant italic leading-relaxed text-lg">
+              "Aujourd'hui, nous sommes fiers d'équiper plus d'une centaine d'usines, de plantations, de résidences et d'entreprises à travers la Côte d'Ivoire. La satisfaction de nos clients demeure notre principale motivation."
+            </p>
+            <div class="mt-8">
+              <p class="font-headline-md text-headline-md text-primary font-bold">Mme Virginie KONAN</p>
+              <p class="font-body-md text-on-surface-variant uppercase tracking-wider text-sm mt-1">Gérante, VFM
+                Services</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="vfm-footer__socials">
-        <a href="https://linkedin.com" target="_blank" class="vfm-footer__social-btn" aria-label="LinkedIn">in</a>
-        <a href="https://facebook.com" target="_blank" class="vfm-footer__social-btn" aria-label="Facebook">f</a>
+    </section>
+
+    <!-- SECTION PARTENAIRES & ÉQUIPEMENTIERS DE CONFIANCE (TICKER ANIMÉ) -->
+    <section class="marquee-section">
+      <div class="container"
+        style="text-align: center; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;">
+        <span class="badge badge--red"
+          style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;">Distributeur
+          Agréé Officiel</span>
+        <div
+          style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; padding: 0.2rem 1.5rem; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.06); transition: transform 0.3s ease; overflow: hidden;"
+          class="hover:scale-105">
+          <img src="assets/logo pedrollo.png" alt="PEDROLLO"
+            style="height: 140px; width: auto; max-width: 280px; object-fit: contain; margin: -30px 0; display: block;">
+        </div>
+        <span class="badge badge--blue"
+          style="font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.5rem;">Autres
+          Équipementiers &amp; Partenaires Certifiés</span>
       </div>
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;">
+            <img src="assets/CGM logo.png" alt="CGM"
+              style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;">
+            <img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS"
+              style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo-varem.svg" alt="VAREM"
+              style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo speroni.png" alt="SPERONI"
+              style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;">
+            <img src="assets/CGM logo.png" alt="CGM"
+              style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;">
+            <img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS"
+              style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo-varem.svg" alt="VAREM"
+              style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo speroni.png" alt="SPERONI"
+              style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;">
+            <img src="assets/CGM logo.png" alt="CGM"
+              style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;">
+            <img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS"
+              style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo-varem.svg" alt="VAREM"
+              style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo speroni.png" alt="SPERONI"
+              style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #000000 !important; border-color: #222 !important;">
+            <img src="assets/CGM logo.png" alt="CGM"
+              style="height: 44px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px; background: #ffffff !important; border-color: #e2e8f0 !important;">
+            <img src="assets/logo-shakti-pumps.webp" alt="SHAKTI PUMPS"
+              style="height: 40px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo-varem.svg" alt="VAREM"
+              style="height: 36px; width: auto; object-fit: contain; display: block;"></div>
+          <div class="partner-logo-badge"
+            style="padding: 0.2rem 1.25rem; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 54px;">
+            <img src="assets/logo speroni.png" alt="SPERONI"
+              style="height: 38px; width: auto; object-fit: contain; display: block;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showroom Section -->
+    <section class="py-24 bg-surface-container-low border-y border-outline-variant/30">
+      <div class="w-full px-margin-desktop max-w-max-width mx-auto">
+        <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
+          <div class="w-full md:w-1/2 cursor-pointer"
+            onclick="openVFMZoom('assets/showroom.jpeg', 'Showroom Riviera VFM Services — Distributeur Agréé Pedrollo')">
+            <img alt="Showroom VFM Services"
+              class="rounded-xl shadow-2xl w-full object-cover transition-transform hover:scale-105 duration-300"
+              style="max-height: 420px; object-fit: cover; border-radius: 18px; border: 1px solid #E2E8F0;"
+              src="assets/showroom.jpeg" />
+          </div>
+          <div class="w-full md:w-1/2 space-y-6">
+            <span
+              class="font-label-sm text-label-sm text-brand-red mb-2 block uppercase tracking-wider font-bold">Distributeur
+              Agréé Pedrollo</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Nos Réalisations</h2>
+            <div class="w-20 h-1.5 bg-primary mb-8"></div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              Découvrez notre large gamme d'équipements, de pompes hydrauliques et accessoires directement dans nos
+              locaux de présentation. En tant que distributeur agréé Pedrollo, nous vous garantissons des produits
+              authentiques et un conseil d'expert.
+            </p>
+            <div
+              class="flex items-start gap-4 mt-10 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/50 shadow-sm">
+              <div class="bg-brand-red/10 p-3 rounded-full">
+                <span class="material-symbols-outlined text-brand-red text-[32px]">location_on</span>
+              </div>
+              <div>
+                <h4 class="font-headline-md text-on-surface mb-2 font-bold">Notre Adresse</h4>
+                <p class="font-body-md text-on-surface-variant text-lg">Abidjan, Riviera<br />Cité ATCI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section - Style Éditorial / Magazine -->
+    <section class="py-24 bg-surface border-t border-outline-variant/30 relative">
+      <div class="w-full px-margin-desktop max-w-max-width mx-auto">
+        <!-- Header Magazine -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b-2 border-primary/20 gap-6">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-[2px] bg-brand-red"></span>
+              <span class="font-label-sm text-brand-red uppercase tracking-widest font-bold">Édition Spéciale &bull; VFM
+                Services</span>
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface font-black tracking-tight">Nos Domaines
+              d'Expertise</h2>
+          </div>
+          <p class="text-on-surface-variant text-body-md max-w-md font-medium leading-relaxed">
+            Des solutions industrielles spécialement conçues pour les usines, résidences, l'irrigation et les systèmes
+            de traitement d'eau.
+          </p>
+        </div>
+
+        <!-- Magazine Featured Showcase Card (Solutions Hydrauliques) -->
+        <div
+          class="bg-surface-container-lowest border border-outline-variant/60 rounded-3xl p-8 md:p-12 shadow-lg relative overflow-hidden group hover:border-primary/40 transition-all duration-300">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+            <!-- Image Banner Left (6 cols) -->
+            <div
+              class="lg:col-span-6 h-72 md:h-80 w-full bg-surface-container rounded-2xl overflow-hidden shadow-sm relative">
+              <img src="assets/dept/dept_pompes.png" alt="Solutions Hydrauliques Pedrollo"
+                class="w-full h-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105">
+            </div>
+
+            <!-- Text Content Right (6 cols) -->
+            <div class="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center gap-3 mb-4">
+                  <span
+                    class="px-3 py-1 bg-primary text-white text-[11px] font-bold tracking-widest uppercase rounded-full">DOSSIER
+                    SPÉCIAL</span>
+                  <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Distributeur Agréé
+                    Officiel</span>
+                </div>
+
+                <h3
+                  class="text-2xl md:text-3xl font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight">
+                  Solutions Hydrauliques
+                </h3>
+
+                <p class="text-on-surface-variant text-body-lg leading-relaxed mb-6">
+                  Nous sommes spécialisés dans la fourniture, l'installation et la maintenance d'équipements industriels, de pompes hydrauliques et de groupes électrogènes. Notre expertise technique garantit que votre matériel critique est toujours opérationnel sans interruption.
+                </p>
+              </div>
+
+              <div class="pt-6 border-t border-outline-variant/40 flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-2 text-sm font-semibold text-primary">
+                  <span>DISTRIBUTEUR AGRÉÉ PEDROLLO</span>
+                  <span class="material-symbols-outlined text-base">verified</span>
+                </div>
+                <a href="catalogue.html?cat=pompes"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl shadow-md hover:bg-primary/90 transition-all">
+                  Explorer le Catalogue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Company Values -->
+    <section class="py-24 bg-surface-container-low border-t border-outline-variant/30">
+      <div class="w-full px-margin-desktop max-w-max-width mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div
+            class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
+            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
+              <span class="material-symbols-outlined text-[32px]">verified</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Fiabilité</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Un service fiable. Chaque installation et réparation est réalisée selon des normes industrielles strictes, garantissant un matériel de qualité et une performance durable.
+            </p>
+          </div>
+          <div
+            class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
+            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
+              <span class="material-symbols-outlined text-[32px]">precision_manufacturing</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Installation</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Un Service d'installation professionnel pour tous types de réseaux et générateurs d'alimentation de
+              secours.
+            </p>
+          </div>
+          <div
+            class="text-center md:text-left bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/50">
+            <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary">
+              <span class="material-symbols-outlined text-[32px]">build</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Maintenance</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Nous ne faisons pas que réparer ; nous préservons. Nos contrats et protocoles de maintenance reposent sur une expertise technique solide pour anticiper et prévenir les pannes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-surface overflow-hidden relative">
+      <div class="w-full px-margin-desktop max-w-max-width mx-auto">
+        <div class="relative bg-brand-red text-white rounded-2xl p-12 md:p-20 overflow-hidden shadow-2xl">
+          <!-- Subtle Decorative Pattern -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none"
+            style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;">
+          </div>
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <span class="material-symbols-outlined text-[64px] mb-6"
+              style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+            <h2 class="font-headline-xl text-headline-xl mb-6">Besoin d'Assistance Technique Immédiate ?</h2>
+            <p class="font-body-lg text-body-lg mb-10 max-w-2xl opacity-90">
+              Notre équipe d'intervention rapide est en attente 24h/24 et 7j/7 pour les urgences industrielles.
+              Minimisez vos temps d'arrêt grâce à des techniciens experts dépêchés immédiatement.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
+              <a class="font-button text-button bg-white text-brand-red px-10 py-5 rounded-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-xl font-bold"
+                href="tel:+2250707414554">
+                <span class="material-symbols-outlined text-[24px]">call</span>
+                Appeler le +225 07 07 41 45 54
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer Executive VFM Services (Conforme au visuel) -->
+  <footer class="vfm-footer">
+    <div class="container vfm-footer__container">
+
+      <!-- Colonne 1 : Logo & Présentation Entreprise -->
+      <div class="vfm-footer__col vfm-footer__col--brand">
+        <div class="vfm-footer__logo-card">
+          <img src="assets/logo.png" alt="VFM Services Logo">
+        </div>
+        <p class="vfm-footer__desc">
+          VFM SERVICES, le partenaire de confiance pour la fourniture, l'installation et la maintenance de matériels
+          industriels et hydrauliques.
+        </p>
+        <div class="vfm-footer__legal">
+          <p class="vfm-footer__legal-info">Siège : Abidjan, Riviera, Cité ATCI</p>
+        </div>
+        <div class="vfm-footer__socials">
+          <a href="https://linkedin.com" target="_blank" class="vfm-footer__social-btn" aria-label="LinkedIn">in</a>
+          <a href="https://facebook.com" target="_blank" class="vfm-footer__social-btn" aria-label="Facebook">f</a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Liens Rapides -->
+      <div class="vfm-footer__col">
+        <h4 class="vfm-footer__title">Liens Rapides</h4>
+        <ul class="vfm-footer__links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="apropos.html">À Propos</a></li>
+          <li><a href="Nos Realisations.html">Nos Réalisations</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html#devisForm">Soumission de Devis</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Nos Services -->
+      <div class="vfm-footer__col">
+        <h4 class="vfm-footer__title">Nos Services</h4>
+        <ul class="vfm-footer__links">
+          <li><a href="catalogue.html?cat=pompes">Pompes Hydrauliques (Pedrollo)</a></li>
+          <li><a href="catalogue.html?cat=groupes">Groupes Électrogènes</a></li>
+          <li><a href="contact.html#devisForm">Maintenance & Dépannage</a></li>
+          <li><a href="produits_et_services.md" target="_blank">Fiche Produits & Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 : Contactez-nous -->
+      <div class="vfm-footer__col vfm-footer__col--contact">
+        <h4 class="vfm-footer__title">Contactez-nous</h4>
+        <ul class="vfm-footer__contact-list">
+          <li>
+            <span class="vfm-footer__icon"><span class="material-symbols-outlined"
+                style="font-size: 1.15rem;">location_on</span></span>
+            <span>Abidjan, Riviera, Cité ATCI, Côte d'Ivoire</span>
+          </li>
+          <li>
+            <span class="vfm-footer__icon"><span class="material-symbols-outlined"
+                style="font-size: 1.15rem;">call</span></span>
+            <a href="tel:+2252722230392">+225 27 22 23 03 92</a>
+          </li>
+          <li>
+            <span class="vfm-footer__icon"><span class="material-symbols-outlined"
+                style="font-size: 1.15rem;">chat</span></span>
+            <a href="https://wa.me/2250715416831" target="_blank">+225 07 15 41 68 31 (WhatsApp)</a>
+          </li>
+          <li>
+            <span class="vfm-footer__icon"><span class="material-symbols-outlined"
+                style="font-size: 1.15rem;">mail</span></span>
+            <a href="mailto:infos@vfmservices.net">infos@vfmservices.net</a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Colonne 2 : Liens Rapides -->
-    <div class="vfm-footer__col">
-      <h4 class="vfm-footer__title">Liens Rapides</h4>
-      <ul class="vfm-footer__links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="apropos.html">À Propos</a></li>
-        <li><a href="Nos Realisations.html">Nos Réalisations</a></li>
-        <li><a href="catalogue.html">Catalogue</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="contact.html#devisForm">Soumission de Devis</a></li>
-      </ul>
+    <!-- Barre Bas de Page -->
+    <div class="vfm-footer__bottom">
+      <p>© 2026 VFM Services Sarl. Tous droits réservés.</p>
     </div>
-
-    <!-- Colonne 3 : Nos Services -->
-    <div class="vfm-footer__col">
-      <h4 class="vfm-footer__title">Nos Services</h4>
-      <ul class="vfm-footer__links">
-        <li><a href="catalogue.html?cat=pompes">Pompes Hydrauliques (Pedrollo)</a></li>
-        <li><a href="catalogue.html?cat=groupes">Groupes Électrogènes</a></li>
-        <li><a href="catalogue.html?cat=outillage">Outillage Professionnel (31)</a></li>
-        <li><a href="contact.html#devisForm">Maintenance & Dépannage</a></li>
-        <li><a href="produits_et_services.md" target="_blank">Fiche Produits & Services</a></li>
-      </ul>
-    </div>
-
-    <!-- Colonne 4 : Contactez-nous -->
-    <div class="vfm-footer__col vfm-footer__col--contact">
-      <h4 class="vfm-footer__title">Contactez-nous</h4>
-      <ul class="vfm-footer__contact-list">
-        <li>
-          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">location_on</span></span>
-          <span>Abidjan, Riviera, Cité ATCI, Côte d'Ivoire</span>
-        </li>
-        <li>
-          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">call</span></span>
-          <a href="tel:+2252722230392">+225 27 22 23 03 92</a>
-        </li>
-        <li>
-          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span></span>
-          <a href="https://wa.me/2250715416831" target="_blank">+225 07 15 41 68 31 (WhatsApp)</a>
-        </li>
-        <li>
-          <span class="vfm-footer__icon"><span class="material-symbols-outlined" style="font-size: 1.15rem;">mail</span></span>
-          <a href="mailto:infos@vfmservices.net">infos@vfmservices.net</a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- Barre Bas de Page -->
-  <div class="vfm-footer__bottom">
-    <p>© 2026 VFM Services Sarl. Tous droits réservés.</p>
-  </div>
-</footer>
-<script>
-        // Micro-interaction for scroll reveal or other effects could be added here
-        document.querySelectorAll('button, a').forEach(el => {
-            el.addEventListener('mousedown', () => {
-                el.style.transform = 'scale(0.98)';
-            });
-            el.addEventListener('mouseup', () => {
-                el.style.transform = '';
-            });
-            el.addEventListener('mouseleave', () => {
-                el.style.transform = '';
-            });
-        });
-    </script>
-    <!-- JSPDF & AUTOTABLE POUR GÉNÉRATION PDF DEVIS OFFICIEL -->
+  </footer>
+  <script>
+    // Micro-interaction for scroll reveal or other effects could be added here
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('mousedown', () => {
+        el.style.transform = 'scale(0.98)';
+      });
+      el.addEventListener('mouseup', () => {
+        el.style.transform = '';
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    });
+  </script>
+  <!-- JSPDF & AUTOTABLE POUR GÉNÉRATION PDF DEVIS OFFICIEL -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
   <script src="js/app.min.js"></script>
-</body></html>
+</body>
+
+</html>

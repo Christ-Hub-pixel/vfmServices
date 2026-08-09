@@ -57,7 +57,7 @@
       background: #07121E;
     }
 
-    .mag-thumbnail img {
+    .mag-thumbnail img, .mag-thumbnail video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -65,7 +65,7 @@
       filter: brightness(0.92);
     }
 
-    .mag-card:hover .mag-thumbnail img {
+    .mag-card:hover .mag-thumbnail img, .mag-card:hover .mag-thumbnail video {
       transform: scale(1.08);
       filter: brightness(0.98);
     }
@@ -144,11 +144,12 @@
       background: rgba(7, 18, 30, 0.96);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      z-index: 99999;
+      z-index: 999999;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 1rem;
+      padding: 1rem 0.5rem;
+      overflow-y: auto;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -165,14 +166,16 @@
       border-radius: 20px;
       max-width: 900px;
       width: 100%;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      transform: scale(0.95);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(-10px) scale(0.98);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .vfm-cinema-modal.active .vfm-cinema-container {
-      transform: scale(1);
+      transform: translateY(0) scale(1);
     }
 
     .vfm-cinema-header {
@@ -303,7 +306,7 @@
   <section class="py-4 sm:py-8 bg-slate-100 border-b border-slate-200">
     <div class="container mx-auto max-w-7xl px-4">
       <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-2 px-1 justify-start md:justify-center">
-        <button onclick="filterMagItems('all', this)" class="mag-filter-btn active">Tous les 13 Arrivages</button>
+        <button onclick="filterMagItems('all', this)" class="mag-filter-btn active">Tous les 14 Arrivages</button>
         <button onclick="filterMagItems('conteneur', this)" class="mag-filter-btn">Déchargement Conteneurs</button>
         <button onclick="filterMagItems('pompes', this)" class="mag-filter-btn">Pompes &amp; Électropompes</button>
         <button onclick="filterMagItems('surpresseurs', this)" class="mag-filter-btn">Surpresseurs &amp; Accessoires</button>
@@ -315,23 +318,23 @@
   <section class="py-10 sm:py-16 bg-slate-50">
     <div class="container mx-auto max-w-7xl px-4">
 
-      <!-- FEATURE STORY GRAND FORMAT (VIDÉO N° 1 - A2D61CA5-7B82-4867-8CB0-AA955E9091E6.mov) -->
-      <div class="mag-card mb-12 sm:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden" onclick="openCinemaModal('assets/video/A2D61CA5-7B82-4867-8CB0-AA955E9091E6.mov', 'Vidéo N° 1: Arrivage &amp; Déchargement du Conteneur Pedrollo Italia', 'Siège VFM Services Riviera ATCI', 'Vidéo exclusive du déchargement par camion du conteneur Pedrollo venu directement d\'Italie.', 'ARRIVAGE N° 1')">
+      <!-- FEATURE STORY GRAND FORMAT (VIDÉO N° 1 - POST TOP FLOOR July 2026.mov) -->
+      <div class="mag-card mb-12 sm:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden" onclick="openCinemaModal('assets/video/POST TOP FLOOR July 2026.mov', 'Vidéo N° 1: Présentation Top Floor &amp; Stock Prestige Pedrollo (Juillet 2026)', 'Siège VFM Services Riviera ATCI • Étage Prestige', 'Présentation vidéo exclusive du hall Top Floor et de la mise en valeur des équipements haut de gamme Pedrollo au siège VFM Services Riviera.', 'TOP FLOOR 2026')">
         <div class="lg:col-span-7 mag-thumbnail h-64 sm:h-80 lg:min-h-[460px] relative">
-          <span class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-600 text-white font-mono-mag text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-lg">🚚 VIDÉO N° 1 SUR 13</span>
-          <img src="assets/showroom/showroom_1.jpg" alt="Réception du Conteneur Pedrollo" class="w-full h-full object-cover">
+          <span class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-600 text-white font-mono-mag text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-lg">🚚 VIDÉO N° 1 SUR 14</span>
+          <video src="assets/video/POST TOP FLOOR July 2026.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
           <div class="mag-play-btn">
             <span class="material-symbols-outlined text-3xl sm:text-4xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           </div>
         </div>
         <div class="lg:col-span-5 p-6 sm:p-8 lg:p-12 flex flex-col justify-between bg-white space-y-4 sm:space-y-6">
           <div>
-            <span class="mag-issue-badge mb-2 sm:mb-3">REPORTAGE N° 001 • EXPÉDITION D'ITALIE</span>
+            <span class="mag-issue-badge mb-2 sm:mb-3">REPORTAGE EXCLUSIF N° 001 • TOP FLOOR JUILLET 2026</span>
             <h2 class="font-serif-mag text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-snug mt-1 sm:mt-2">
-              Vidéo 1 : Arrivage &amp; Déchargement du Conteneur Pedrollo
+              Vidéo 1 : Présentation Top Floor &amp; Stock Prestige Pedrollo
             </h2>
             <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-light mt-3 sm:mt-4">
-              Images exclusives du déchargement du camion de livraison transportant les pompes centrifuges, immergées et surpresseurs originaux Pedrollo, expédiés depuis l'usine en Italie vers le showroom VFM Riviera.
+              Vidéo exclusive de présentation du Top Floor VFM Services (Juillet 2026), mettant en valeur les nouveaux arrivages de pompes centrifuges, immergées et matériels industriels d'origine Pedrollo Italia.
             </p>
           </div>
 
@@ -339,7 +342,7 @@
             <div class="flex items-center gap-2.5 sm:gap-3">
               <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-xs sm:text-sm">VFM</div>
               <div>
-                <p class="text-xs font-bold text-slate-900">Arrivage Certifié Italia</p>
+                <p class="text-xs font-bold text-slate-900">Espace Top Floor Prestige</p>
                 <p class="text-[10px] sm:text-[11px] text-slate-500 font-mono-mag">Riviera ATCI • Abidjan</p>
               </div>
             </div>
@@ -351,14 +354,14 @@
         </div>
       </div>
 
-      <!-- GRILLE DES 12 AUTRES CARTES VIDÉO (TOTAL 13 VIDÉOS) -->
+      <!-- GRILLE DES 13 AUTRES CARTES VIDÉO (TOTAL 14 VIDÉOS) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="magGrid">
 
         <!-- Vidéo N° 2 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3046.mov', 'Vidéo N° 2: Déchargement Camion Conteneur Pedrollo', 'Atelier VFM Riviera', 'Aperçu du déchargement des palettes de pompes Pedrollo venues directement d\'Italie.', 'Arrivage N° 2')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/A2D61CA5-7B82-4867-8CB0-AA955E9091E6.mov', 'Vidéo N° 2: Arrivage &amp; Déchargement du Conteneur Pedrollo Italia', 'Siège VFM Services Riviera ATCI', 'Vidéo exclusive du déchargement par camion du conteneur Pedrollo venu directement d\'Italie.', 'ARRIVAGE N° 2')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 2</span>
-            <img src="assets/showroom/showroom_2.jpg" alt="Déchargement Camion Pedrollo" class="w-full h-full object-cover">
+            <video src="assets/video/A2D61CA5-7B82-4867-8CB0-AA955E9091E6.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
@@ -366,10 +369,10 @@
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
             <span class="mag-issue-badge">EXPÉDITION ITALIE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 2 : Déchargement Camion Conteneur
+              Vidéo 2 : Arrivage &amp; Déchargement Conteneur
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Déchargement des palettes scellées contenant les pompes et électropompes certifiées Pedrollo Italia.
+              Déchargement du camion de livraison transportant les pompes centrifuges et surpresseurs originaux Pedrollo.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 2</span>
@@ -379,21 +382,21 @@
         </div>
 
         <!-- Vidéo N° 3 -->
-        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3052.mov', 'Vidéo N° 3: Réception Électropompes CP & PK', 'VFM Riviera Abidjan', 'Inspection des cartons scellés Pedrollo d\'origine italienne.', 'Arrivage N° 3')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3046.mov', 'Vidéo N° 3: Déchargement Camion Conteneur Pedrollo', 'Atelier VFM Riviera', 'Aperçu du déchargement des palettes de pompes Pedrollo venues directement d\'Italie.', 'Arrivage N° 3')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 3</span>
-            <img src="assets/dept/dept_maintenance.png" alt="Réception Pompes Surface" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3046.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">MATÉRIEL CERTIFIÉ</span>
+            <span class="mag-issue-badge">EXPÉDITION ITALIE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 3 : Réception Électropompes CP &amp; PK
+              Vidéo 3 : Déchargement Camion Conteneur
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Vérification des numéros de série et certificats d'authenticité Pedrollo à la réception.
+              Déchargement des palettes scellées contenant les pompes et électropompes certifiées Pedrollo Italia.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 3</span>
@@ -403,21 +406,21 @@
         </div>
 
         <!-- Vidéo N° 4 -->
-        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3053.mov', 'Vidéo N° 4: Arrivage Pompes Immergées 4BLOCK', 'Atelier Riviera', 'Déchargement des pompes de forage immergées inox livrées par camion.', 'Arrivage N° 4')">
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3052.mov', 'Vidéo N° 4: Réception Électropompes CP & PK', 'VFM Riviera Abidjan', 'Inspection des cartons scellés Pedrollo d\'origine italienne.', 'Arrivage N° 4')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 4</span>
-            <img src="assets/showroom/showroom_4.jpg" alt="Pompes Immergées 4BLOCK" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3052.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">GAMME FORAGE ITALIE</span>
+            <span class="mag-issue-badge">MATÉRIEL CERTIFIÉ</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 4 : Arrivage Pompes Immergées 4BLOCK
+              Vidéo 4 : Réception Électropompes CP &amp; PK
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Réception des moteurs sous-marins inox Pedrollo pour le pompage d'eau en puits profonds.
+              Vérification des numéros de série et certificats d'authenticité Pedrollo à la réception.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 4</span>
@@ -427,21 +430,21 @@
         </div>
 
         <!-- Vidéo N° 5 -->
-        <div class="mag-card mag-item" data-cat="surpresseurs" onclick="openCinemaModal('assets/video/IMG_3055.mov', 'Vidéo N° 5: Réception Réservoirs Surpresseurs Varem', 'Atelier VFM Riviera', 'Arrivage des ballons de surpression Varem importés d\'Italie avec les pompes.', 'Arrivage N° 5')">
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3053.mov', 'Vidéo N° 5: Arrivage Pompes Immergées 4BLOCK', 'Atelier Riviera', 'Déchargement des pompes de forage immergées inox livrées par camion.', 'Arrivage N° 5')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 5</span>
-            <img src="assets/showroom/showroom_5.jpg" alt="Surpresseurs Varem" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3053.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">ACCESSOIRES ITALIE</span>
+            <span class="mag-issue-badge">GAMME FORAGE ITALIE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 5 : Réception Surpresseurs Varem
+              Vidéo 5 : Arrivage Pompes Immergées 4BLOCK
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Ballons surpresseurs et automatismes reçus directement dans le même arrivage de camion.
+              Réception des moteurs sous-marins inox Pedrollo pour le pompage d'eau en puits profonds.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 5</span>
@@ -451,21 +454,21 @@
         </div>
 
         <!-- Vidéo N° 6 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3056.mov', 'Vidéo N° 6: Mise en Stock & Showroom Riviera', 'Showroom Riviera', 'Installation des nouveaux lots Pedrollo en rayon après déchargement.', 'Arrivage N° 6')">
+        <div class="mag-card mag-item" data-cat="surpresseurs" onclick="openCinemaModal('assets/video/IMG_3055.mov', 'Vidéo N° 6: Réception Réservoirs Surpresseurs Varem', 'Atelier VFM Riviera', 'Arrivage des ballons de surpression Varem importés d\'Italie avec les pompes.', 'Arrivage N° 6')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 6</span>
-            <img src="assets/showroom/showroom_6.jpg" alt="Mise en Stock Showroom" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3055.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">DISPONIBILITÉ IMMÉDIATE</span>
+            <span class="mag-issue-badge">ACCESSOIRES ITALIE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 6 : Mise en Stock Showroom
+              Vidéo 6 : Réception Surpresseurs Varem
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Les équipements tout juste déchargés sont mis en stock et prêts pour livraison sur toute la Côte d'Ivoire.
+              Ballons surpresseurs et automatismes reçus directement dans le même arrivage de camion.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 6</span>
@@ -475,21 +478,21 @@
         </div>
 
         <!-- Vidéo N° 7 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3059.mov', 'Vidéo N° 7: Inspection Qualité à la Sortie de Camion', 'Atelier VFM Riviera', 'Contrôle à la sortie du conteneur avant mise à disposition des clients.', 'Arrivage N° 7')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3056.mov', 'Vidéo N° 7: Mise en Stock & Showroom Riviera', 'Showroom Riviera', 'Installation des nouveaux lots Pedrollo en rayon après déchargement.', 'Arrivage N° 7')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 7</span>
-            <img src="assets/showroom/showroom_7.jpg" alt="Inspection Qualité VFM" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3056.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">CONTRÔLE QUALITÉ</span>
+            <span class="mag-issue-badge">DISPONIBILITÉ IMMÉDIATE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 7 : Inspection à la Sortie de Camion
+              Vidéo 7 : Mise en Stock Showroom
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Nos ingénieurs vérifient chaque lot et chaque composant à l'arrivée pour garantir zéro défaut.
+              Les équipements tout juste déchargés sont mis en stock et prêts pour livraison sur toute la Côte d'Ivoire.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 7</span>
@@ -499,21 +502,21 @@
         </div>
 
         <!-- Vidéo N° 8 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3061.mov', 'Vidéo N° 8: Réception Groupes Électrogènes de Secours', 'Atelier VFM Riviera', 'Déchargement des moteurs et armoires électriques importés.', 'Arrivage N° 8')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3059.mov', 'Vidéo N° 8: Inspection Qualité à la Sortie de Camion', 'Atelier VFM Riviera', 'Contrôle à la sortie du conteneur avant mise à disposition des clients.', 'Arrivage N° 8')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 8</span>
-            <img src="assets/dept/dept_maintenance.png" alt="Réception Groupes Électrogènes" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3059.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">GROUPES ÉLECTROGÈNES</span>
+            <span class="mag-issue-badge">CONTRÔLE QUALITÉ</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 8 : Réception Groupes Électrogènes
+              Vidéo 8 : Inspection à la Sortie de Camion
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Déchargement et banc de contrôle pour les groupes insonorisés de grande puissance.
+              Nos ingénieurs vérifient chaque lot et chaque composant à l'arrivée pour garantir zéro défaut.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 8</span>
@@ -523,21 +526,21 @@
         </div>
 
         <!-- Vidéo N° 9 -->
-        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3062.mov', 'Vidéo N° 9: Arrivage Pompes Monoblocs & Vannes', 'Atelier Riviera', 'Réception du matériel hydraulique haute pression.', 'Arrivage N° 9')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3061.mov', 'Vidéo N° 9: Réception Groupes Électrogènes de Secours', 'Atelier VFM Riviera', 'Déchargement des moteurs et armoires électriques importés.', 'Arrivage N° 9')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 9</span>
-            <img src="assets/showroom/showroom_1.jpg" alt="Arrivage Pompes Monoblocs" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3061.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">POMPES MONOBLOCS</span>
+            <span class="mag-issue-badge">GROUPES ÉLECTROGÈNES</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 9 : Arrivage Pompes Monoblocs
+              Vidéo 9 : Réception Groupes Électrogènes
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Vérification des ensembles motopompes et accessoires de régulation hydraulique.
+              Déchargement et banc de contrôle pour les groupes insonorisés de grande puissance.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 9</span>
@@ -547,21 +550,21 @@
         </div>
 
         <!-- Vidéo N° 10 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3073.mov', 'Vidéo N° 10: Livraison Camion & Déchargement Atelier', 'Atelier Riviera Abidjan', 'Manutention sécurisée des caisses de pompes.', 'Arrivage N° 10')">
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/IMG_3062.mov', 'Vidéo N° 10: Arrivage Pompes Monoblocs & Vannes', 'Atelier Riviera', 'Réception du matériel hydraulique haute pression.', 'Arrivage N° 10')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 10</span>
-            <img src="assets/showroom/showroom_3.jpg" alt="Livraison Camion Atelier" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3062.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">MANUTENTIONS LOURDES</span>
+            <span class="mag-issue-badge">POMPES MONOBLOCS</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 10 : Déchargement Sécurisé Atelier
+              Vidéo 10 : Arrivage Pompes Monoblocs
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Mise à quai et rangement méthodique des conteneurs Pedrollo récents.
+              Vérification des ensembles motopompes et accessoires de régulation hydraulique.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 10</span>
@@ -571,21 +574,21 @@
         </div>
 
         <!-- Vidéo N° 11 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/35925153-429C-4ACB-8D64-9209C389632D.mov', 'Vidéo N° 11: Arrivage Direct Usine Pedrollo S.p.A', 'Showroom Riviera', 'Arrivée des conteneurs scellés d\'origine italienne.', 'Arrivage N° 11')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/IMG_3073.mov', 'Vidéo N° 11: Livraison Camion & Déchargement Atelier', 'Atelier Riviera Abidjan', 'Manutention sécurisée des caisses de pompes.', 'Arrivage N° 11')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 11</span>
-            <img src="assets/showroom/showroom_5.jpg" alt="Arrivage Usine Pedrollo" class="w-full h-full object-cover">
+            <video src="assets/video/IMG_3073.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">USINE PEDROLLO ITALIE</span>
+            <span class="mag-issue-badge">MANUTENTIONS LOURDES</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 11 : Direct Usine Pedrollo S.p.A
+              Vidéo 11 : Déchargement Sécurisé Atelier
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Réception des conteneurs maritimes scellés de l'usine d'Italie jusqu'à notre siège VFM.
+              Mise à quai et rangement méthodique des conteneurs Pedrollo récents.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 11</span>
@@ -595,21 +598,21 @@
         </div>
 
         <!-- Vidéo N° 12 -->
-        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/75434E7F-77D4-4132-A8E2-EF5D7C90DF7E.mov', 'Vidéo N° 12: Réception Électropompes Centrifuges', 'Atelier VFM Riviera', 'Lots complets de pompes centrifuges d\'adduction d\'eau.', 'Arrivage N° 12')">
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/35925153-429C-4ACB-8D64-9209C389632D.mov', 'Vidéo N° 12: Arrivage Direct Usine Pedrollo S.p.A', 'Showroom Riviera', 'Arrivée des conteneurs scellés d\'origine italienne.', 'Arrivage N° 12')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 12</span>
-            <img src="assets/dept/dept_pompes.png" alt="Électropompes Centrifuges" class="w-full h-full object-cover">
+            <video src="assets/video/35925153-429C-4ACB-8D64-9209C389632D.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
           </div>
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-            <span class="mag-issue-badge">POMPES CENTRIFUGES</span>
+            <span class="mag-issue-badge">USINE PEDROLLO ITALIE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 12 : Électropompes Centrifuges
+              Vidéo 12 : Direct Usine Pedrollo S.p.A
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
-              Contrôle de déballage des motopompes centrifuges pour l'irrigation et le bâtiment.
+              Réception des conteneurs maritimes scellés de l'usine d'Italie jusqu'à notre siège VFM.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span class="font-mono-mag">Lancer la Vidéo N° 12</span>
@@ -619,10 +622,34 @@
         </div>
 
         <!-- Vidéo N° 13 -->
-        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/A900F8C9-4BDB-4585-9D71-E6308A8EFE6E.mov', 'Vidéo N° 13: Bilan Arrivage & Distribution Côte d\'Ivoire', 'Siège VFM Riviera', 'Bilan complet de la livraison conteneur d\'Italie.', 'Arrivage N° 13')">
+        <div class="mag-card mag-item" data-cat="pompes" onclick="openCinemaModal('assets/video/75434E7F-77D4-4132-A8E2-EF5D7C90DF7E.mov', 'Vidéo N° 13: Réception Électropompes Centrifuges', 'Atelier VFM Riviera', 'Lots complets de pompes centrifuges d\'adduction d\'eau.', 'Arrivage N° 13')">
           <div class="mag-thumbnail h-56 sm:h-64">
             <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 13</span>
-            <img src="assets/showroom/showroom_7.jpg" alt="Contrôle Final Arrivage" class="w-full h-full object-cover">
+            <video src="assets/video/75434E7F-77D4-4132-A8E2-EF5D7C90DF7E.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
+            <div class="mag-play-btn">
+              <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
+            <span class="mag-issue-badge">POMPES CENTRIFUGES</span>
+            <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
+              Vidéo 13 : Électropompes Centrifuges
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
+              Contrôle de déballage des motopompes centrifuges pour l'irrigation et le bâtiment.
+            </p>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
+              <span class="font-mono-mag">Lancer la Vidéo N° 13</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vidéo N° 14 -->
+        <div class="mag-card mag-item" data-cat="conteneur" onclick="openCinemaModal('assets/video/A900F8C9-4BDB-4585-9D71-E6308A8EFE6E.mov', 'Vidéo N° 14: Bilan Arrivage & Distribution Côte d\'Ivoire', 'Siège VFM Riviera', 'Bilan complet de la livraison conteneur d\'Italie.', 'Arrivage N° 14')">
+          <div class="mag-thumbnail h-56 sm:h-64">
+            <span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white font-mono-mag text-[10px] sm:text-[11px] font-bold uppercase">VIDÉO N° 14</span>
+            <video src="assets/video/A900F8C9-4BDB-4585-9D71-E6308A8EFE6E.mov#t=0.1" preload="metadata" muted playsinline class="w-full h-full object-cover"></video>
             <div class="mag-play-btn">
               <span class="material-symbols-outlined text-3xl ml-0.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </div>
@@ -630,13 +657,13 @@
           <div class="p-5 sm:p-6 space-y-2.5 sm:space-y-3">
             <span class="mag-issue-badge">DISTRIBUTION CÔTE D'IVOIRE</span>
             <h3 class="font-serif-mag font-bold text-lg sm:text-xl text-slate-900 leading-snug">
-              Vidéo 13 : Bilan Arrivage &amp; Distribution
+              Vidéo 14 : Bilan Arrivage &amp; Distribution
             </h3>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
               Fin du déchargement du conteneur d'Italie. Produits officiels VFM Services certifiés et garantis.
             </p>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
-              <span class="font-mono-mag">Lancer la Vidéo N° 13</span>
+              <span class="font-mono-mag">Lancer la Vidéo N° 14</span>
               <span class="material-symbols-outlined text-base">arrow_forward</span>
             </div>
           </div>
@@ -811,8 +838,18 @@
 
     source.src = videoSrc;
     player.load();
+    
+    // Positionner le lecteur vidéo tout en haut de l'écran & réinitialiser le défilement
+    modal.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
     modal.classList.add('active');
-    player.play();
+
+    // Défilement automatique fluide vers le haut pour garantira une visibilité immédiate
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    player.play().catch(function(err) {
+      console.log('Autoplay restreint par le navigateur:', err);
+    });
   }
 
   function closeCinemaModal(e) {
@@ -826,6 +863,7 @@
     const player = document.getElementById('modalVideoPlayer');
     player.pause();
     modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 </script>
 

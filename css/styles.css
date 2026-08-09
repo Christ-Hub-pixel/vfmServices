@@ -408,25 +408,25 @@ header nav a:hover img {
 }
 
 /* ==========================================================================
-   GIANT LOGO IN FOOTER & CARDS (.vfm-footer__logo-card)
+   LOGO IN FOOTER & CARDS (.vfm-footer__logo-card)
    ========================================================================== */
 .vfm-footer__logo-card, .footer__logo-card {
   background: #FFFFFF !important;
-  padding: 1.25rem 2rem !important;
-  border-radius: 20px !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 12px !important;
   display: inline-block !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
   border: 1px solid #E2E8F0 !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.25rem !important;
 }
 
 .vfm-footer__logo-card img, .footer__logo-card img {
-  height: 150px !important;
-  max-height: 150px !important;
+  height: 90px !important;
+  max-height: 90px !important;
   width: auto !important;
   object-fit: contain !important;
   display: block !important;
-  filter: contrast(1.12) !important;
+  filter: contrast(1.08) !important;
 }
 
 .nav__list {

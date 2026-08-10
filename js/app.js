@@ -1667,8 +1667,12 @@ const VFMCart = {
 
       const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger, #floatingMobileCartBtn, .floating-mobile-cart-btn');
       if (cartTrigger) {
-        e.preventDefault();
-        this.openDrawer();
+        if (cartTrigger.tagName === 'A' && cartTrigger.getAttribute('href') && cartTrigger.getAttribute('href') !== '#') {
+          window.location.href = cartTrigger.getAttribute('href');
+        } else {
+          e.preventDefault();
+          this.openDrawer();
+        }
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
         this.closeDrawer();

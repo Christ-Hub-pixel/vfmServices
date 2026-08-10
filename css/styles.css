@@ -5060,6 +5060,9 @@ body {
   text-decoration: none !important;
   box-shadow: 0 4px 12px rgba(0, 150, 214, 0.35) !important;
   cursor: pointer !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 /* BOUTON PANIER FLOTTANT MOBILE TOUJOURS ACCESSIBLE (EN BAS À DROITE) */

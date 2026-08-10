@@ -1718,16 +1718,35 @@ const VFMCart = {
   },
 
   openDrawer() {
-    const modal = document.getElementById('cartModal');
+    let modal = document.getElementById('cartModal');
+    if (!modal) {
+      this.injectCartDOM();
+      modal = document.getElementById('cartModal');
+    }
+    
     if (modal) {
       modal.classList.add('open');
+      modal.style.setProperty('display', 'flex', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
+      modal.style.setProperty('visibility', 'visible', 'important');
+      modal.style.setProperty('pointer-events', 'auto', 'important');
     }
+    
+    this.updateUI();
   },
 
   closeDrawer() {
     const modal = document.getElementById('cartModal');
     if (modal) {
       modal.classList.remove('open');
+      modal.style.setProperty('opacity', '0', 'important');
+      modal.style.setProperty('visibility', 'hidden', 'important');
+      modal.style.setProperty('pointer-events', 'none', 'important');
+      setTimeout(() => {
+        if (!modal.classList.contains('open')) {
+          modal.style.display = 'none';
+        }
+      }, 300);
     }
   },
 

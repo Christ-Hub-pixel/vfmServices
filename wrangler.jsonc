@@ -2,19 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vfmservices",
   "compatibility_date": "2026-08-10",
-  "observability": {
-    "enabled": true
-  },
   "assets": {
     "directory": ".",
-    "exclude": [
-      "**/*.mov",
-      "assets/video/*.mov",
-      "Pedrollo_Catalogue_Complet.pdf"
-    ],
-    "not_found_handling": "single-page-app"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+    "not_found_handling": "single-page-application"
+  }
 }

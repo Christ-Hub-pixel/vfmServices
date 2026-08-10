@@ -1,0 +1,4 @@
+node_modules/
+.wrangler/
+assets/video/*.mov
+Pedrollo_Catalogue_Complet.pdf

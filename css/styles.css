@@ -1549,39 +1549,39 @@ body.menu-open {
 }
 
 .product-card__footer .badge {
-  display: none;
+  display: inline-block;
 }
 
-/* BOUTON PILULE OUTLINE ULTRA SOIGNÉ (EXACTEMENT COMME LA MAQUETTE) */
+/* BOUTON PILULE BLEU SOLIDE VIBRANT (EXACTEMENT COMME LA CAPTURE UTILISATEUR) */
 .btn-add-devis-pill,
 .product-card__footer .btn {
   width: 100% !important;
   border-radius: 50px !important;
-  background: #FFFFFF !important;
-  border: 1.5px solid #005FA4 !important;
-  color: #005FA4 !important;
-  font-weight: 700 !important;
-  font-size: 0.82rem !important;
-  letter-spacing: 0.04em !important;
-  padding: 0.68rem 1rem !important;
+  background: linear-gradient(135deg, #0075C9 0%, #009BE5 100%) !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-size: 0.88rem !important;
+  font-family: var(--font-heading), 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+  letter-spacing: 0.05em !important;
+  padding: 0.75rem 1.35rem !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.5rem !important;
+  gap: 0.55rem !important;
   cursor: pointer !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 2px 8px rgba(0, 95, 164, 0.06) !important;
+  box-shadow: 0 4px 16px rgba(0, 134, 214, 0.38) !important;
   text-decoration: none !important;
   text-transform: uppercase !important;
 }
 
 .btn-add-devis-pill:hover,
 .product-card__footer .btn:hover {
-  background: linear-gradient(135deg, #005FA4 0%, #0096D6 100%) !important;
+  background: linear-gradient(135deg, #005FA4 0%, #0075C9 100%) !important;
   color: #FFFFFF !important;
-  border-color: transparent !important;
-  box-shadow: 0 6px 20px rgba(0, 150, 214, 0.35) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 117, 201, 0.5) !important;
+  transform: translateY(-2px) scale(1.02) !important;
 }
 
 /* --------------------------------------------------------------------------

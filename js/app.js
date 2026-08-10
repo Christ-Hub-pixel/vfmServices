@@ -1907,49 +1907,69 @@ const VFMCart = {
     return { name, phone, email, notes };
   },
 
+  showToast(msg) {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMsg');
+    if (toast && toastMsg) {
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    } else {
+      alert(msg);
+    }
+  },
+
   sendCartByEmail() {
     if (this.items.length === 0) {
-      alert('Votre panier de devis est vide.');
+      alert('Veuillez d\'abord sélectionner au moins un matériel dans le catalogue.');
       return;
     }
 
-    const { name, phone, email, notes } = this.getCheckoutData();
+    const name = document.getElementById('cartClientName')?.value || document.getElementById('panierName')?.value || 'Client VFM';
+    const phone = document.getElementById('cartClientPhone')?.value || document.getElementById('panierPhone')?.value || 'Non renseigné';
+    const address = document.getElementById('panierAddress')?.value || 'Abidjan';
 
-    // Mettre à jour l'IU et fermer le panier latéral
-    this.updateUI();
+    const itemsText = this.items.map((item, index) => `${index + 1}. ${item.title} (x${item.quantity})`).join('\n');
+
+    const subject = encodeURIComponent(`COMMANDE DE MATÉRIEL VFM - ${name}`);
+    const body = encodeURIComponent(
+      `BON DE COMMANDE OFFICIEL VFM SERVICES\n\n` +
+      `Nom / Raison Sociale : ${name}\n` +
+      `Téléphone : ${phone}\n` +
+      `Lieu de Livraison : ${address}\n\n` +
+      `ÉQUIPEMENTS COMMANDÉS :\n${itemsText}\n\n` +
+      `Merci de valider ma commande et d'organiser la livraison.`
+    );
+
+    window.location.href = `mailto:infos@vfmservices.net,virginie.konan@vfmservices.net?subject=${subject}&body=${body}`;
+    this.showToast('Bon de commande prêt pour transmission e-mail à VFM Services !');
     this.closeDrawer();
-
-    // Rediriger ou faire défiler jusqu'au formulaire de devis sur contact.html
-    const firstItem = this.items[0];
-    const targetUrl = `contact?article=${encodeURIComponent(firstItem?.title || 'Panier VFM')}&image=${encodeURIComponent(firstItem?.image || 'assets/logo.png')}#devisForm`;
-    
-    if (!window.location.pathname.includes('contact')) {
-      window.location.href = targetUrl;
-    } else {
-      document.getElementById('devisForm')?.scrollIntoView({ behavior: 'smooth' });
-      if (window.VFMApp && typeof window.VFMApp.initDevisForm === 'function') {
-        window.VFMApp.initDevisForm();
-      }
-    }
   },
 
   sendCartByWhatsApp() {
     if (this.items.length === 0) {
-      alert('Votre panier est vide.');
+      alert('Veuillez d\'abord sélectionner au moins un matériel dans le catalogue.');
       return;
     }
 
-    let itemsList = this.items.map((item, index) => 
+    const name = document.getElementById('cartClientName')?.value || document.getElementById('panierName')?.value || '';
+    const phone = document.getElementById('cartClientPhone')?.value || document.getElementById('panierPhone')?.value || '';
+    const address = document.getElementById('panierAddress')?.value || '';
+
+    let itemsList = this.items.map((item) => 
       `• *${item.title}* (Quantité : ${item.quantity})`
     ).join('\n');
 
-    const whatsappMessage = `*DEMANDE DE DEVIS VFM SERVICES*\n\n` +
-                            `Bonjour VFM Services, je souhaite obtenir une cotation pour le(s) matériel(s) suivant(s) :\n\n` +
-                            `${itemsList}\n\n` +
-                            `Merci de me recontacter avec votre meilleure offre tarifaire.`;
+    const whatsappMessage = `*BON DE COMMANDE VFM SERVICES*\n\n` +
+                            (name ? `*Client / Société* : ${name}\n` : '') +
+                            (phone ? `*Contact WhatsApp* : ${phone}\n` : '') +
+                            (address ? `*Lieu de Livraison* : ${address}\n` : '') +
+                            `\n*ÉQUIPEMENTS COMMANDÉS* :\n${itemsList}\n\n` +
+                            `Bonjour VFM Services, je valide ma commande ci-dessus. Merci de me contacter immédiatement.`;
 
     const waUrl = `https://wa.me/2250715416831?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(waUrl, '_blank');
+    this.showToast('Commande transmise avec succès sur WhatsApp !');
     this.closeDrawer();
   },
 

@@ -481,45 +481,43 @@
 
                     </div>
 
-                    <!-- COLONNE DROITE : RÉCAPITULATIF & ACTION VERS PAGE CONTACT -->
+                    <!-- COLONNE DROITE : FORMULAIRE DE COMMANDE DIRECTE -->
                     <aside class="panier-sidebar-card">
 
                         <div class="summary-card-header">
-                            <h3 class="summary-card-title">Récapitulatif de Cotation</h3>
-                            <p class="summary-card-sub">Transmettez votre sélection à nos ingénieurs à Abidjan.</p>
+                            <h3 class="summary-card-title">🛒 Valider Ma Commande</h3>
+                            <p class="summary-card-sub">Validation instantanée de vos équipements VFM Services.</p>
                         </div>
 
-                        <!-- BADGES DE GARANTIE PRO -->
-                        <div class="panier-trust-features">
-                            <div class="trust-item">
-                                <span class="material-symbols-outlined">verified</span>
-                                <span>Matériel 100% Certifié Origine Pedrollo</span>
+                        <form id="panierDirectForm" onsubmit="event.preventDefault(); VFMCart.sendCartByEmail();">
+                            <div style="margin-bottom: 0.9rem;">
+                                <label style="font-size: 0.8rem; font-weight: 700; color: #1E293B; display: block; margin-bottom: 0.35rem;">Nom / Entreprise *</label>
+                                <input type="text" id="panierName" placeholder="Ex: Jean Kouassi / Sotra" required style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.88rem;">
                             </div>
-                            <div class="trust-item">
-                                <span class="material-symbols-outlined">schedule</span>
-                                <span>Délai de réponse garanti sous 24h</span>
+
+                            <div style="margin-bottom: 0.9rem;">
+                                <label style="font-size: 0.8rem; font-weight: 700; color: #1E293B; display: block; margin-bottom: 0.35rem;">Téléphone (WhatsApp) *</label>
+                                <input type="tel" id="panierPhone" placeholder="Ex: +225 07 00 00 00 00" required style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.88rem;">
                             </div>
-                            <div class="trust-item">
-                                <span class="material-symbols-outlined">engineering</span>
-                                <span>Support & Assistance Technique à Abidjan</span>
+
+                            <div style="margin-bottom: 1.25rem;">
+                                <label style="font-size: 0.8rem; font-weight: 700; color: #1E293B; display: block; margin-bottom: 0.35rem;">Lieu de livraison / Chantier</label>
+                                <input type="text" id="panierAddress" placeholder="Ex: Abidjan Cocody / Bouaké" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.88rem;">
                             </div>
-                        </div>
 
-                        <!-- ACTION REDIRECTION CONTACT PRÉ-REMPLI -->
-                        <a href="contact.html#devisForm" class="btn-checkout-contact">
-                            <span class="material-symbols-outlined" style="font-size: 1.25rem;">send</span>
-                            Valider & Transmettre mon Devis
-                        </a>
+                            <button type="button" onclick="VFMCart.sendCartByWhatsApp()" class="btn-checkout-wa" style="width: 100%; margin-bottom: 0.75rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); border: none; padding: 0.85rem; border-radius: 10px; font-weight: 700; color: #FFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                <span class="material-symbols-outlined" style="font-size: 1.2rem;">chat</span>
+                                💬 Commander via WhatsApp Direct
+                            </button>
 
-                        <button type="button" onclick="VFMCart.sendCartByWhatsApp()" class="btn-checkout-wa">
-                            <span class="material-symbols-outlined" style="font-size: 1.2rem;">chat</span>
-                            Commander via WhatsApp Direct
-                        </button>
+                            <button type="submit" class="btn-checkout-contact" style="width: 100%; background: linear-gradient(135deg, #005FA4 0%, #0096D6 100%); border: none; padding: 0.85rem; border-radius: 10px; font-weight: 700; color: #FFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                <span class="material-symbols-outlined" style="font-size: 1.2rem;">send</span>
+                                ✉️ Valider par E-mail
+                            </button>
+                        </form>
 
-                        <div
-                            style="margin-top: 1.5rem; text-align: center; font-size: 0.78rem; color: #64748B; background: #F1F5F9; padding: 0.85rem; border-radius: 12px;">
-                            🔒 <strong>VFM Services Sarl</strong> • Distributeur Agréé Pedrollo Italia • Siège : Abidjan
-                            Riviera Cité ATCI
+                        <div style="margin-top: 1.5rem; text-align: center; font-size: 0.78rem; color: #64748B; background: #F1F5F9; padding: 0.85rem; border-radius: 12px;">
+                            🔒 <strong>VFM Services Sarl</strong> • Distributeur Agréé Pedrollo Italia • Siège : Abidjan Riviera Cité ATCI
                         </div>
 
                     </aside>

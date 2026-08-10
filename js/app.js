@@ -27,19 +27,36 @@ const VFMApp = {
   },
 
   init() {
-    this.setActiveNavLink();
-    this.initNavigation();
-    this.initHeaderScroll();
-    this.initCatalogueFiltering();
-    this.initLiveSearch();
-    this.initCarousels();
-    this.initDevisForm();
-    this.initSmoothScroll();
-    this.initBackToTop();
-    this.initAnimatedCounters();
-    this.initScrollReveal();
-    this.initHoneypotMatrix();
-    this.initInstantNavigation();
+    if (typeof this.setActiveNavLink === 'function') this.setActiveNavLink();
+    if (typeof this.initNavigation === 'function') this.initNavigation();
+    if (typeof this.initHeaderScroll === 'function') this.initHeaderScroll();
+    if (typeof this.initCatalogueFiltering === 'function') this.initCatalogueFiltering();
+    if (typeof this.initLiveSearch === 'function') this.initLiveSearch();
+    if (typeof this.initCarousels === 'function') this.initCarousels();
+    if (typeof this.initDevisForm === 'function') this.initDevisForm();
+    if (typeof this.initSmoothScroll === 'function') this.initSmoothScroll();
+    if (typeof this.initBackToTop === 'function') this.initBackToTop();
+    if (typeof this.initAnimatedCounters === 'function') this.initAnimatedCounters();
+    if (typeof this.initScrollReveal === 'function') this.initScrollReveal();
+    if (typeof this.initHoneypotMatrix === 'function') this.initHoneypotMatrix();
+    if (typeof this.initInstantNavigation === 'function') this.initInstantNavigation();
+  },
+
+  initLiveSearch() {
+    const searchInput = document.getElementById('catalogueSearchInput') || document.getElementById('liveSearchInput');
+    if (!searchInput) return;
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(term)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
   },
 
   heroCurrentIndex: 0,

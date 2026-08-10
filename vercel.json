@@ -1,0 +1,12 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/catalogue", "destination": "/catalogue.html" },
+    { "source": "/realisations", "destination": "/Nos Realisations.html" },
+    { "source": "/accueil", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/apropos", "destination": "/apropos.html" },
+    { "source": "/produit", "destination": "/produit.html" },
+    { "source": "/panier", "destination": "/panier.html" }
+  ]
+}

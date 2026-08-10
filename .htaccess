@@ -28,7 +28,13 @@
   RewriteRule ^([^/]+)\.html$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # E. Réécriture interne transparente (Servir le fichier .html sans changer l'URL)
+  RewriteRule ^catalogue/?$ catalogue.html [L,NC]
   RewriteRule ^realisations/?$ "Nos Realisations.html" [L,NC]
+  RewriteRule ^accueil/?$ index.html [L,NC]
+  RewriteRule ^contact/?$ contact.html [L,NC]
+  RewriteRule ^apropos/?$ apropos.html [L,NC]
+  RewriteRule ^produit/?$ produit.html [L,NC]
+  RewriteRule ^panier/?$ panier.html [L,NC]
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

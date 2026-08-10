@@ -769,6 +769,20 @@ const VFMApp = {
       }
     }, { passive: true });
 
+    // Résolution dynamique des liens de navigation pour éviter les erreurs "Cannot GET /catalogue"
+    document.addEventListener('click', (e) => {
+      const anchor = e.target.closest('a');
+      if (anchor && anchor.getAttribute('href')) {
+        const href = anchor.getAttribute('href').trim();
+        if (href === 'catalogue') { anchor.href = 'catalogue.html'; }
+        else if (href === 'realisations') { anchor.href = 'Nos Realisations.html'; }
+        else if (href === 'contact') { anchor.href = 'contact.html'; }
+        else if (href === 'apropos') { anchor.href = 'apropos.html'; }
+        else if (href === 'produit') { anchor.href = 'produit.html'; }
+        else if (href === 'panier') { anchor.href = 'panier.html'; }
+      }
+    });
+
     setTimeout(() => {
       document.querySelectorAll('.nav__link, .vfm-footer__links a').forEach(a => {
         if (a.href && a.origin === window.location.origin) {

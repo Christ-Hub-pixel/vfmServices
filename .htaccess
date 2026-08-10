@@ -2,31 +2,34 @@
 # SÉCURITÉ & FIREWALL ANTI-HACKING MILITAIRE (WAF) - VFM SERVICES
 # ==============================================================================
 
-# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS & GESTION DES URLS PROPRES (CLEAN URLS WITHOUT .HTML)
+# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS & GESTION DES URLS PROPRES (COMPATIBILITÉ TOTAL IOS / SAFARI / CLOUDFLARE)
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # A. Forcer HTTPS
+  # A. Forcer HTTPS (Compatible Cloudflare Proxy & Safari iOS sans boucle de redirection)
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =""
   RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-  # B. Rediriger /index.html vers la racine / (Clean URL)
+  # B. Rediriger /index.html vers / (Uniquement lors de la requête initiale client)
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/ [NC]
   RewriteRule ^index\.html$ https://%{HTTP_HOST}/ [R=301,L]
 
-  # C. Rediriger Nos Realisations.html vers /realisations (Clean URL propre)
+  # C. Rediriger /Nos%20Realisations.html vers /realisations
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Nos%20Realisations(\.html)?\ HTTP/ [NC]
   RewriteRule ^ https://%{HTTP_HOST}/realisations [R=301,L]
 
-  # D. Rediriger les demandes externes /page.html vers /page (Redirection 301)
+  # D. Rediriger /page.html vers /page (Redirection externe 301 initiale)
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+)\.html\ HTTP/ [NC]
   RewriteRule ^([^/]+)\.html$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-  # E. Réécriture interne pour servir la page HTML sans afficher .html dans la barre d'adresse
-  # cas spécifique pour realisations -> Nos Realisations.html
+  # E. Réécriture interne transparente (Servir le fichier .html sans changer l'URL)
   RewriteRule ^realisations/?$ "Nos Realisations.html" [L,NC]
 
-  # cas général pour toute autre page
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f

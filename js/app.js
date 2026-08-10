@@ -1496,6 +1496,17 @@ const VFMCart = {
       document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
+    // 2. Bouton Panier Flottant Mobile Toujours Visible (En bas à droite)
+    if (!document.getElementById('floatingMobileCartBtn')) {
+      const floatBtnHTML = `
+        <button type="button" id="floatingMobileCartBtn" class="floating-mobile-cart-btn" aria-label="Voir mon panier de commande">
+          <span class="material-symbols-outlined" style="font-size: 1.6rem;">shopping_cart</span>
+          <span id="floatCartBadge" class="floating-cart-badge">0</span>
+        </button>
+      `;
+      document.body.insertAdjacentHTML('beforeend', floatBtnHTML);
+    }
+
     // 3. Fenêtre Lightbox pour l'agrandissement de la loupe s'il n'existe pas
     if (!document.getElementById('lightboxModal')) {
       const lightboxHTML = `
@@ -1637,7 +1648,7 @@ const VFMCart = {
         }
       }
 
-      const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger');
+      const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger, #floatingMobileCartBtn, .floating-mobile-cart-btn');
       if (cartTrigger) {
         e.preventDefault();
         this.openDrawer();

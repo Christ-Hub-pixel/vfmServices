@@ -1665,18 +1665,12 @@ const VFMCart = {
         }
       }
 
-      const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger, #floatingMobileCartBtn, .floating-mobile-cart-btn');
+      const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger, #floatingMobileCartBtn, .floating-mobile-cart-btn, [href*="panier"]');
       if (cartTrigger) {
-        if (cartTrigger.tagName === 'A' && cartTrigger.getAttribute('href') && cartTrigger.getAttribute('href') !== '#') {
-          let targetUrl = cartTrigger.getAttribute('href');
-          if (!targetUrl.startsWith('/') && !targetUrl.startsWith('http')) {
-            targetUrl = '/' + targetUrl;
-          }
-          window.location.href = targetUrl;
-        } else {
-          e.preventDefault();
-          this.openDrawer();
-        }
+        e.preventDefault();
+        e.stopPropagation();
+        this.openDrawer();
+        return;
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
         this.closeDrawer();

@@ -107,8 +107,13 @@
           </div>
         </div>
 
-        <!-- ACTION CTAS (SANS PRIX NI PANIER) -->
+        <!-- ACTION CTAS (COMMANDE & DEVIS) -->
         <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+          <button id="addToCartBtn" type="button" class="w-full py-3.5 px-4 rounded-xl bg-sky-600 text-white font-extrabold text-sm hover:bg-sky-700 transition-all shadow-md flex items-center justify-center gap-2" style="background: #0096D6; border: none; cursor: pointer;">
+            <span class="material-symbols-outlined text-lg">shopping_cart</span>
+            <span>🛒 AJOUTER CE MATÉRIEL AU DEVIS</span>
+          </button>
+
           <a id="devisBtn" href="contact.html#devisForm" target="_top" class="w-full py-3 px-4 rounded-xl bg-brand-red text-white font-bold text-sm hover:brightness-110 transition-all shadow flex items-center justify-center gap-2" style="background: #E31E24;">
             <span class="material-symbols-outlined text-base">send</span>
             <span>Demander un Devis Gratuit</span>
@@ -161,6 +166,28 @@
       const waText = encodeURIComponent(`Bonjour VFM Services, je souhaite obtenir un devis pour l'équipement : ${decodeURIComponent(title)}.`);
       document.getElementById('waBtn').href = `https://wa.me/2250715416831?text=${waText}`;
       document.getElementById('fullPageLink').href = `produit.html?title=${encodeURIComponent(title)}&category=${encodeURIComponent(category)}&img=${encodeURIComponent(img)}`;
+
+      const addBtn = document.getElementById('addToCartBtn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          const itemTitle = decodeURIComponent(title);
+          const itemImg = decodeURIComponent(img);
+          const itemCat = decodeURIComponent(category);
+
+          if (window.parent && window.parent.VFMCart) {
+            window.parent.VFMCart.addItem(itemTitle, itemImg, itemCat);
+            window.parent.VFMCart.openDrawer();
+            if (window.parent.VFMProductModal && window.parent.VFMProductModal.close) {
+              window.parent.VFMProductModal.close();
+            }
+          } else if (window.VFMCart) {
+            window.VFMCart.addItem(itemTitle, itemImg, itemCat);
+            window.VFMCart.openDrawer();
+          } else {
+            window.top.location.href = 'panier.html';
+          }
+        });
+      }
     });
   </script>
 </body>

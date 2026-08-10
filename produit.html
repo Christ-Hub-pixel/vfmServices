@@ -297,11 +297,17 @@
           </div>
         </div>
 
-        <!-- BOUTONS D'ACTION DIRECTS (SANS AUCUN PRIX NI PANIER) -->
+        <!-- BOUTONS D'ACTION DIRECTS -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 space-y-4 shadow-sm">
           <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Demande de Cotation &amp; Assistance Technico-Commerciale</h3>
           
           <div class="space-y-3">
+            <!-- Action 0: Ajouter au Panier de Devis -->
+            <button id="productPageAddToCartBtn" type="button" class="w-full py-4 px-6 rounded-xl bg-sky-600 text-white font-extrabold hover:bg-sky-700 transition-all shadow-lg flex items-center justify-center gap-2 text-base" style="background: #0096D6; border: none; cursor: pointer;">
+              <span class="material-symbols-outlined text-xl">shopping_cart</span>
+              <span>🛒 AJOUTER CE MATÉRIEL AU DEVIS</span>
+            </button>
+
             <!-- Action 1: Formulaire Devis Express -->
             <a href="#devisSection" class="w-full py-4 px-6 rounded-xl bg-brand-red text-white font-bold hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2 text-base" style="background: #E31E24;">
               <span class="material-symbols-outlined">send</span>
@@ -723,6 +729,25 @@
     e.preventDefault();
     alert("✅ Votre demande de devis a été enregistrée avec succès ! Notre équipe commerciale VFM Services vous recontacte sous 2h.");
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartBtn = document.getElementById('productPageAddToCartBtn');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', () => {
+        const title = document.getElementById('productTitle')?.textContent.trim() || 'Matériel Pedrollo';
+        const img = document.getElementById('mainProductImg')?.getAttribute('src') || 'assets/logo.png';
+        const cat = document.getElementById('productCategoryBadge')?.textContent.trim() || 'Équipement';
+
+        if (window.VFMCart) {
+          window.VFMCart.addItem(title, img, cat);
+          window.VFMCart.openDrawer();
+        } else {
+          localStorage.setItem('vfm_selected_product', JSON.stringify({ title, image: img, category: cat }));
+          window.location.href = 'panier.html';
+        }
+      });
+    }
+  });
 </script>
 
 <script src="js/app.min.js"></script>

@@ -1599,14 +1599,13 @@ const VFMCart = {
 
           localStorage.setItem('vfm_selected_product', JSON.stringify({ title, image: img, category: cat }));
           this.addItem(title, img, cat);
+          this.openDrawer();
           return;
         }
       }
 
       if (e.target.closest('#navCartBtn, .btn-cart-trigger')) {
-        if (!window.location.pathname.includes('panier')) {
-          window.location.href = 'panier';
-        }
+        this.openDrawer();
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
         this.closeDrawer();

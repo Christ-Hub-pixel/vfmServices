@@ -1524,14 +1524,14 @@ const VFMCart = {
     cards.forEach(card => {
       const footer = card.querySelector('.product-card__footer');
       if (footer) {
-        footer.innerHTML = ''; // Nettoyage épuré pour correspondre à la maquette
-
-        const pillBtn = document.createElement('button');
-        pillBtn.type = 'button';
-        pillBtn.className = 'btn-add-devis-pill';
-        pillBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 1.15rem;">shopping_cart</span> COMMANDER';
-
-        footer.appendChild(pillBtn);
+        let pillBtn = footer.querySelector('.btn-add-devis-pill, button');
+        if (!pillBtn) {
+          pillBtn = document.createElement('button');
+          pillBtn.type = 'button';
+          pillBtn.className = 'btn-add-devis-pill';
+          pillBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 1.15rem;">shopping_cart</span> COMMANDER';
+          footer.appendChild(pillBtn);
+        }
       }
     });
   },

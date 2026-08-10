@@ -57,6 +57,21 @@ const VFMApp = {
         }
       });
     });
+  initProductCardLinks() {
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.product-card');
+      if (card && !e.target.closest('button') && !e.target.closest('a')) {
+        const titleEl = card.querySelector('.product-card__title, h3');
+        const catEl = card.querySelector('.product-card__category');
+        const imgEl = card.querySelector('.product-card__image, img');
+        
+        const title = titleEl ? titleEl.textContent.trim() : 'Équipement Industriels';
+        const category = catEl ? catEl.textContent.trim() : 'Pompes & Matériels';
+        const img = imgEl ? imgEl.getAttribute('src') : 'assets/logo.png';
+        
+        window.location.href = `produit.html?title=${encodeURIComponent(title)}&category=${encodeURIComponent(category)}&img=${encodeURIComponent(img)}`;
+      }
+    });
   },
 
   heroCurrentIndex: 0,

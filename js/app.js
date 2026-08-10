@@ -1604,7 +1604,9 @@ const VFMCart = {
         }
       }
 
-      if (e.target.closest('#navCartBtn, .btn-cart-trigger')) {
+      const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger');
+      if (cartTrigger) {
+        e.preventDefault();
         this.openDrawer();
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {

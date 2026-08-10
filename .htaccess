@@ -2,7 +2,7 @@
 # SÉCURITÉ & FIREWALL ANTI-HACKING MILITAIRE (WAF) - VFM SERVICES
 # ==============================================================================
 
-# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS & REDIRIGER INDEX.HTML VERS LA RACINE
+# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS & GESTION DES URLS PROPRES (CLEAN URLS WITHOUT .HTML)
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -13,6 +13,24 @@
   # B. Rediriger /index.html vers la racine / (Clean URL)
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/ [NC]
   RewriteRule ^index\.html$ https://%{HTTP_HOST}/ [R=301,L]
+
+  # C. Rediriger Nos Realisations.html vers /realisations (Clean URL propre)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Nos%20Realisations(\.html)?\ HTTP/ [NC]
+  RewriteRule ^ https://%{HTTP_HOST}/realisations [R=301,L]
+
+  # D. Rediriger les demandes externes /page.html vers /page (Redirection 301)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+)\.html\ HTTP/ [NC]
+  RewriteRule ^([^/]+)\.html$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # E. Réécriture interne pour servir la page HTML sans afficher .html dans la barre d'adresse
+  # cas spécifique pour realisations -> Nos Realisations.html
+  RewriteRule ^realisations/?$ "Nos Realisations.html" [L,NC]
+
+  # cas général pour toute autre page
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^/]+)$ $1.html [L]
 </IfModule>
 
 

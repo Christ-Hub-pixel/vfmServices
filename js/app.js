@@ -206,14 +206,18 @@ const VFMApp = {
   },
 
   setActiveNavLink() {
-    let currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    if (currentPath === '' || currentPath === 'accueil.html') {
-      currentPath = 'index.html';
+    let rawPath = decodeURIComponent(window.location.pathname.split('/').pop() || '');
+    let cleanPath = rawPath.replace(/\.html$/, '');
+    if (cleanPath === '' || cleanPath === 'index' || cleanPath === 'accueil') {
+      cleanPath = 'index';
+    }
+    if (cleanPath === 'Nos Realisations') {
+      cleanPath = 'realisations';
     }
 
     const navCartBtn = document.getElementById('navCartBtn');
     if (navCartBtn) {
-      if (currentPath === 'panier.html') {
+      if (cleanPath === 'panier') {
         navCartBtn.classList.add('active');
       } else {
         navCartBtn.classList.remove('active');
@@ -222,9 +226,18 @@ const VFMApp = {
 
     const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
-      const href = link.getAttribute('href') ? link.getAttribute('href').split('#')[0] : '';
-      const isHome = (currentPath === 'index.html') && (href === 'index.html' || href === '/' || href === './' || href === '');
-      if (isHome || (href !== '' && href === currentPath)) {
+      let rawHref = link.getAttribute('href') ? link.getAttribute('href').split('#')[0] : '';
+      let cleanHref = decodeURIComponent(rawHref).replace(/\.html$/, '').replace(/^\.\//, '');
+      if (cleanHref === '/' || cleanHref === '') {
+        cleanHref = 'index';
+      }
+      if (cleanHref === 'Nos Realisations') {
+        cleanHref = 'realisations';
+      }
+
+      const isHome = (cleanPath === 'index') && (cleanHref === 'index');
+      const isMatch = (cleanHref !== '' && cleanHref === cleanPath);
+      if (isHome || isMatch) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -1553,8 +1566,8 @@ const VFMCart = {
       }
 
       if (e.target.closest('#navCartBtn, .btn-cart-trigger')) {
-        if (!window.location.pathname.endsWith('panier.html')) {
-          window.location.href = 'panier.html';
+        if (!window.location.pathname.includes('panier')) {
+          window.location.href = 'panier';
         }
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
@@ -1587,8 +1600,8 @@ const VFMCart = {
 
       // Bouton "Soumettre une Demande" ou boutons CTA
       if (btn.textContent.includes('Soumettre une Demande') || btn.textContent.includes('Soumettre un Devis')) {
-        if (!window.location.pathname.endsWith('contact.html')) {
-          window.location.href = 'contact.html#devisForm';
+        if (!window.location.pathname.includes('contact')) {
+          window.location.href = 'contact#devisForm';
         } else {
           document.getElementById('devisForm')?.scrollIntoView({ behavior: 'smooth' });
         }
@@ -1852,9 +1865,9 @@ const VFMCart = {
 
     // Rediriger ou faire défiler jusqu'au formulaire de devis sur contact.html
     const firstItem = this.items[0];
-    const targetUrl = `contact.html?article=${encodeURIComponent(firstItem?.title || 'Panier VFM')}&image=${encodeURIComponent(firstItem?.image || 'assets/logo.png')}#devisForm`;
+    const targetUrl = `contact?article=${encodeURIComponent(firstItem?.title || 'Panier VFM')}&image=${encodeURIComponent(firstItem?.image || 'assets/logo.png')}#devisForm`;
     
-    if (!window.location.pathname.endsWith('contact.html')) {
+    if (!window.location.pathname.includes('contact')) {
       window.location.href = targetUrl;
     } else {
       document.getElementById('devisForm')?.scrollIntoView({ behavior: 'smooth' });

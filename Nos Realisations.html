@@ -880,19 +880,36 @@
     document.body.style.overflow = '';
   }
 
-  // Lecture vidéo automatique en boucle et en silence sur toutes les cartes
+  // Optimisation de fluidité : Lecture des vidéos uniquement lorsqu'elles apparaissent à l'écran
   document.addEventListener('DOMContentLoaded', function() {
     const vids = document.querySelectorAll('.mag-thumbnail video');
-    vids.forEach(function(v) {
-      v.muted = true;
-      v.loop = true;
-      var promise = v.play();
-      if (promise !== undefined) {
-        promise.catch(function(err) {
-          console.log('Autoplay silencieux:', err);
+    
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          const v = entry.target;
+          if (entry.isIntersecting) {
+            v.muted = true;
+            var p = v.play();
+            if (p !== undefined) p.catch(function() {});
+          } else {
+            v.pause();
+          }
         });
-      }
-    });
+      }, { threshold: 0.15 });
+
+      vids.forEach(function(v) {
+        v.muted = true;
+        v.loop = true;
+        observer.observe(v);
+      });
+    } else {
+      vids.forEach(function(v) {
+        v.muted = true;
+        v.loop = true;
+        v.play().catch(function() {});
+      });
+    }
   });
 </script>
 

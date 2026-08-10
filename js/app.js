@@ -222,8 +222,9 @@ const VFMApp = {
 
     const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
-      const linkPath = link.getAttribute('href').split('#')[0];
-      if (linkPath === currentPath) {
+      const href = link.getAttribute('href') ? link.getAttribute('href').split('#')[0] : '';
+      const isHome = (currentPath === 'index.html') && (href === 'index.html' || href === '/' || href === './' || href === '');
+      if (isHome || (href !== '' && href === currentPath)) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');

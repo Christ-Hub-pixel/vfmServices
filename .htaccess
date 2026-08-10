@@ -2,12 +2,19 @@
 # SÉCURITÉ & FIREWALL ANTI-HACKING MILITAIRE (WAF) - VFM SERVICES
 # ==============================================================================
 
-# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS
+# 1. FORCER LE PROTOCOLE SÉCURISÉ HTTPS & REDIRIGER INDEX.HTML VERS LA RACINE
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # A. Forcer HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # B. Rediriger /index.html vers la racine / (Clean URL)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/ [NC]
+  RewriteRule ^index\.html$ https://%{HTTP_HOST}/ [R=301,L]
 </IfModule>
+
 
 # 2. FIREWALL ANTI-HACKING WAF (BLOCAGE SQL INJECTION, RCE, XSS & PATH TRAVERSAL)
 <IfModule mod_rewrite.c>

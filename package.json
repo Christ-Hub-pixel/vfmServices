@@ -1,0 +1,11 @@
+{
+  "name": "vfmservices",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VFM Services - Vente & Distribution Équipements Hydrauliques et Électriques Abidjan Riviera",
+  "scripts": {
+    "clean:mov": "node -e \"const fs=require('fs'),path=require('path'),dir='assets/video'; if(fs.existsSync(dir)){fs.readdirSync(dir).forEach(f=>{if(f.toLowerCase().endsWith('.mov')){try{fs.unlinkSync(path.join(dir,f));console.log('Removed cached:',f)}catch(e){}}})}\"",
+    "build": "npm run clean:mov",
+    "deploy": "npm run clean:mov && npx wrangler deploy"
+  }
+}

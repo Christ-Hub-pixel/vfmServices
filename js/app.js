@@ -57,6 +57,8 @@ const VFMApp = {
         }
       });
     });
+  },
+
   initProductCardLinks() {
     document.addEventListener('click', (e) => {
       const card = e.target.closest('.product-card');

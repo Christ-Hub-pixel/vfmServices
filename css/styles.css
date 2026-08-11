@@ -5065,6 +5065,10 @@ body {
   pointer-events: auto !important;
 }
 
+.btn-cart-trigger *, #navCartBtn * {
+  pointer-events: none !important;
+}
+
 /* BOUTON PANIER FLOTTANT MOBILE TOUJOURS ACCESSIBLE (EN BAS À DROITE) */
 .floating-mobile-cart-btn {
   position: fixed !important;

@@ -11,12 +11,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Patch pour éviter les erreurs 404 sur Live Server (URL sans .html)
   if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
-    document.querySelectorAll('a').forEach(a => {
-      let href = a.getAttribute('href');
-      if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript') && !href.endsWith('.html') && href !== '/') {
-        a.setAttribute('href', href + '.html');
-      }
-    });
+    const routeMap = {
+      'realisations': 'Nos Realisations.html',
+      'catalogue': 'catalogue.html',
+      'accueil': 'index.html',
+      'contact': 'contact.html',
+      'apropos': 'apropos.html',
+      'produit': 'produit.html',
+      'panier': 'panier.html',
+      '': 'index.html'
+    };
+    const patchLinks = () => {
+      document.querySelectorAll('a').forEach(a => {
+        let href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('javascript') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+        try {
+          let url = new URL(href, window.location.href);
+          let route = url.pathname.startsWith('/') ? url.pathname.substring(1) : url.pathname;
+          if (routeMap[route] && !url.pathname.endsWith('.html')) {
+            url.pathname = '/' + routeMap[route];
+            a.setAttribute('href', url.pathname + url.search + url.hash);
+          }
+        } catch(e) {}
+      });
+    };
+    patchLinks();
+    new MutationObserver(patchLinks).observe(document.body, { childList: true, subtree: true });
   }
 
   VFMApp.init();

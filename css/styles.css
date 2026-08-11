@@ -31,13 +31,14 @@ html {
 
 html {
   box-sizing: border-box !important;
-  background-color: #050B14;
+  height: 100%;
 }
 
 body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
   width: 100% !important;
+  height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   backface-visibility: hidden;
@@ -210,6 +211,7 @@ body {
 
 main {
   flex: 1 0 auto;
+  min-height: 65vh;
 }
 
 .vfm-footer {

@@ -1045,7 +1045,7 @@ const VFMApp = {
       
       if (this.isBotSession || matrixFilled || honey) {
         form.reset();
-        this.showSuccessModal({ name, phone, email, service, message });
+        window.location.href = 'success.html';
         return;
       }
 
@@ -1140,12 +1140,12 @@ const VFMApp = {
 
         setTimeout(() => {
           form.reset();
-          this.showSuccessModal({ name, phone, email, service, message });
+          window.location.href = 'success.html';
         }, 500);
 
       } catch (err) {
         form.reset();
-        this.showSuccessModal({ name, phone, email, service, message });
+        window.location.href = 'success.html';
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -1153,90 +1153,6 @@ const VFMApp = {
         }
       }
     });
-  },
-
-  showSuccessModal(data) {
-    let modal = document.getElementById('devisSuccessModal');
-    if (!modal) {
-      const modalHTML = `
-        <div id="devisSuccessModal" class="devis-success-modal" aria-hidden="true">
-          <div class="devis-success-backdrop"></div>
-          <div class="devis-success-card">
-            <button type="button" class="devis-success-close" aria-label="Fermer">&times;</button>
-            <div class="devis-success-icon-badge">
-              <span class="material-symbols-outlined">check_circle</span>
-            </div>
-            <span class="badge badge--red" style="margin-bottom: 0.5rem;">🎉 Transmission Confirmée</span>
-            <h3 class="devis-success-title">Demande Transmise avec Succès !</h3>
-            <p class="devis-success-subtitle">
-              Merci <strong id="successClientName" style="color: #0096D6;"></strong> ! Votre demande de devis express a bien été reçue par l'équipe VFM Services.
-            </p>
-            
-            <div class="devis-success-recap">
-              <div class="devis-recap-item">
-                <span class="material-symbols-outlined">inventory_2</span>
-                <div>
-                  <small>Équipement Demandé</small>
-                  <strong id="successService"></strong>
-                </div>
-              </div>
-              <div class="devis-recap-item">
-                <span class="material-symbols-outlined">call</span>
-                <div>
-                  <small>Contact Client</small>
-                  <strong id="successContact"></strong>
-                </div>
-              </div>
-              <div class="devis-recap-item">
-                <span class="material-symbols-outlined">schedule</span>
-                <div>
-                  <small>Délai de Réponse</small>
-                  <strong>Sous 24h ouvrées</strong>
-                </div>
-              </div>
-            </div>
-
-            <div class="devis-success-actions">
-              <a id="successWhatsAppLink" href="https://wa.me/2250715416831" target="_blank" rel="noopener noreferrer" class="btn-success-wa">
-                <span class="material-symbols-outlined text-[20px]">chat</span>
-                Suivi Accéléré sur WhatsApp
-              </a>
-              <button type="button" class="btn-success-close">Fermer la fenêtre</button>
-            </div>
-          </div>
-        </div>
-      `;
-      document.body.insertAdjacentHTML('beforeend', modalHTML);
-      modal = document.getElementById('devisSuccessModal');
-
-      const closeBtns = modal.querySelectorAll('.devis-success-close, .btn-success-close, .devis-success-backdrop');
-      closeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modal.classList.remove('open');
-          modal.setAttribute('aria-hidden', 'true');
-        });
-      });
-    }
-
-    const nameElem = modal.querySelector('#successClientName');
-    const serviceElem = modal.querySelector('#successService');
-    const contactElem = modal.querySelector('#successContact');
-    const waLink = modal.querySelector('#successWhatsAppLink');
-
-    if (nameElem) nameElem.textContent = data.name || 'Cher Client';
-    if (serviceElem) serviceElem.textContent = data.service || 'Matériel Spécifié';
-    if (contactElem) contactElem.textContent = data.phone || data.email || 'Contact Enregistré';
-
-    if (waLink) {
-      const waMsg = `*SUIVI DEMANDE DE DEVIS VFM*\n\n` +
-                    `Bonjour VFM Services, je viens d'envoyer une demande de devis pour : *${data.service}*\n` +
-                    `Nom : ${data.name}\n` +
-                    `Contact : ${data.phone || data.email}`;
-      waLink.href = `https://wa.me/2250715416831?text=${encodeURIComponent(waMsg)}`;
-    }
-
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
   },
 
   sanitizeInput(str) {
@@ -1284,7 +1200,13 @@ const VFMApp = {
         <span class="btt-tooltip" aria-hidden="true">Haut de page</span>
       </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', btnHTML);
+    
+    const footer = document.querySelector('.vfm-footer');
+    if (footer) {
+      footer.insertAdjacentHTML('beforeend', btnHTML);
+    } else {
+      document.body.insertAdjacentHTML('beforeend', btnHTML);
+    }
 
     const wrapper  = document.getElementById('backToTopWrapper');
     const btn      = document.getElementById('backToTopBtn');
@@ -1494,54 +1416,14 @@ const VFMCart = {
       existingFloatBtn.remove();
     }
 
-    // 1. Popup Modale Centrale de Panier (Glassmorphisme)
-    if (!document.getElementById('cartModal')) {
-      const modalHTML = `
-        <div id="cartModal" class="cart-modal" role="dialog" aria-modal="true" aria-label="Votre Panier de Devis">
-          <div id="cartModalBackdrop" class="cart-modal-backdrop"></div>
-          <div class="cart-modal-card">
-            
-            <div class="cart-modal-header">
-              <h3 class="cart-modal-title">
-                <span>🛒</span>
-                Mon Panier de Devis
-                <span id="modalCartCount" class="cart-modal-badge">0 article</span>
-              </h3>
-              <button type="button" id="cartModalClose" class="cart-modal-close" aria-label="Fermer le panier">&times;</button>
-            </div>
-
-            <div id="cartModalBody" class="cart-modal-body">
-              <!-- Liste dynamique -->
-            </div>
-
-            <div id="cartModalFooter" class="cart-modal-footer">
-              <form id="cartModalForm" onsubmit="event.preventDefault(); VFMCart.sendCartByEmail();">
-                <div class="cart-modal-form-row">
-                  <input type="text" id="cartClientName" class="cart-modal-input" placeholder="Votre Nom / Raison Sociale *" required>
-                  <input type="tel" id="cartClientPhone" class="cart-modal-input" placeholder="Téléphone (WhatsApp) *" required>
-                </div>
-
-                <div class="cart-modal-actions">
-                  <button type="submit" class="btn-modal-email">
-                    <span class="material-symbols-outlined" style="font-size: 1.15rem;">send</span>
-                    Valider & Envoyer le Devis
-                  </button>
-                  <button type="button" onclick="VFMCart.sendCartByWhatsApp()" class="btn-modal-wa">
-                    <span class="material-symbols-outlined" style="font-size: 1.15rem;">chat</span>
-                    Commander par WhatsApp
-                  </button>
-                </div>
-              </form>
-            </div>
-
-          </div>
-        </div>
-
+    // 1. Notifications Toast
+    if (!document.getElementById('toastNotification')) {
+      const toastHTML = `
         <div id="toastNotification" class="toast-notification">
           <span id="toastMsg"></span>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', modalHTML);
+      document.body.insertAdjacentHTML('beforeend', toastHTML);
     }
 
     // 2. Bouton Panier Flottant Mobile Toujours Visible (En bas à droite)
@@ -1691,7 +1573,6 @@ const VFMCart = {
 
           localStorage.setItem('vfm_selected_product', JSON.stringify({ title, image: img, category: cat }));
           this.addItem(title, img, cat);
-          this.openDrawer();
           return;
         }
       }
@@ -1700,9 +1581,6 @@ const VFMCart = {
       if (cartTrigger) {
         window.location.href = 'panier.html';
         return;
-      }
-      if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {
-        this.closeDrawer();
       }
       if (e.target.closest('#cartClearBtn')) {
         if (confirm('Voulez-vous vraiment vider tout votre panier de devis ?')) {
@@ -1748,39 +1626,6 @@ const VFMCart = {
     }
   },
 
-  openDrawer() {
-    let modal = document.getElementById('cartModal');
-    if (!modal) {
-      this.injectCartDOM();
-      modal = document.getElementById('cartModal');
-    }
-    
-    if (modal) {
-      modal.classList.add('open');
-      modal.style.setProperty('display', 'flex', 'important');
-      modal.style.setProperty('opacity', '1', 'important');
-      modal.style.setProperty('visibility', 'visible', 'important');
-      modal.style.setProperty('pointer-events', 'auto', 'important');
-    }
-    
-    this.updateUI();
-  },
-
-  closeDrawer() {
-    const modal = document.getElementById('cartModal');
-    if (modal) {
-      modal.classList.remove('open');
-      modal.style.setProperty('opacity', '0', 'important');
-      modal.style.setProperty('visibility', 'hidden', 'important');
-      modal.style.setProperty('pointer-events', 'none', 'important');
-      setTimeout(() => {
-        if (!modal.classList.contains('open')) {
-          modal.style.display = 'none';
-        }
-      }, 300);
-    }
-  },
-
   updateUI() {
     const count = this.getTotalCount();
     const navCount = document.getElementById('navCartCount');
@@ -1793,42 +1638,7 @@ const VFMCart = {
     if (floatBadge) floatBadge.textContent = count;
     if (headerCount) headerCount.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;
 
-    // Render dans la Popup Modale Centrale (Glassmorphisme)
-    const modalBody = document.getElementById('cartModalBody');
-    const modalCount = document.getElementById('modalCartCount');
 
-    if (modalCount) {
-      modalCount.textContent = `${count} ${count > 1 ? 'articles' : 'article'}`;
-    }
-
-    if (modalBody) {
-      if (this.items.length === 0) {
-        modalBody.innerHTML = `
-          <div style="text-align: center; padding: 2.5rem 1rem;">
-            <div style="font-size: 3rem; margin-bottom: 0.5rem; opacity: 0.6;">🛒</div>
-            <h4 style="font-size: 1.1rem; font-weight: 700; color: #1E293B; margin-bottom: 0.4rem;">Votre panier de devis est vide</h4>
-            <p style="font-size: 0.88rem; color: #64748B; margin-bottom: 1.25rem;">Sélectionnez vos pompes hydrauliques et équipements pour composer votre cotation.</p>
-            <a href="catalogue.html" onclick="VFMCart.closeDrawer()" class="btn btn--primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Explorer le Catalogue ➔</a>
-          </div>
-        `;
-      } else {
-        modalBody.innerHTML = this.items.map(item => `
-          <div class="cart-modal-item">
-            <img src="${item.image}" alt="${item.title}" class="cart-modal-img">
-            <div class="cart-modal-info">
-              <h4>${item.title}</h4>
-              <span>${item.category || 'Matériel Pedrollo'}</span>
-            </div>
-            <div class="cart-modal-qty">
-              <button type="button" class="cart-modal-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', -1)" aria-label="Moins">-</button>
-              <span class="cart-modal-qty-val">${item.quantity}</span>
-              <button type="button" class="cart-modal-qty-btn" onclick="VFMCart.updateQuantity('${item.id}', 1)" aria-label="Plus">+</button>
-            </div>
-            <button type="button" class="cart-modal-del" onclick="VFMCart.removeItem('${item.id}')" title="Supprimer cet article">&times;</button>
-          </div>
-        `).join('');
-      }
-    }
 
     // Render sur la page dédiée panier.html
     const panierPageList = document.getElementById('panierPageList');
@@ -2498,32 +2308,28 @@ const VFMProductModal = {
     this.allCards = Array.from(document.querySelectorAll('.product-card'));
 
     // Click sur les cartes produit pour ouvrir la fiche détaillée (affichedetail.html)
-    document.querySelectorAll('.product-card__image-container, .product-card__title').forEach(el => {
+    document.querySelectorAll('.product-card').forEach(el => {
       el.style.cursor = 'pointer';
       el.addEventListener('click', (e) => {
+        // Ne pas rediriger si on clique sur le bouton "COMMANDER" ou un lien interne
+        if (e.target.closest('.product-card__footer, button, a')) return;
+        
         e.preventDefault();
         e.stopImmediatePropagation();
-        const card = el.closest('.product-card');
-        if (card) {
-          const imgEl   = card.querySelector('.product-card__image');
-          const titleEl = card.querySelector('.product-card__title');
-          const catEl   = card.querySelector('.product-card__category');
-          const descEl  = card.querySelector('p');
+        const card = el;
+        
+        const imgEl   = card.querySelector('.product-card__image');
+        const titleEl = card.querySelector('.product-card__title');
+        const catEl   = card.querySelector('.product-card__category');
+        const descEl  = card.querySelector('p');
 
-          const imgSrc   = imgEl   ? encodeURIComponent(imgEl.getAttribute('src')) : '';
-          const titleTxt = titleEl ? encodeURIComponent(titleEl.textContent.trim()) : '';
-          const catTxt   = catEl   ? encodeURIComponent(catEl.textContent.trim())   : '';
-          const descTxt  = descEl  ? encodeURIComponent(descEl.textContent.trim())  : '';
+        const imgSrc   = imgEl   ? encodeURIComponent(imgEl.getAttribute('src')) : '';
+        const titleTxt = titleEl ? encodeURIComponent(titleEl.textContent.trim()) : '';
+        const catTxt   = catEl   ? encodeURIComponent(catEl.textContent.trim())   : '';
+        const descTxt  = descEl  ? encodeURIComponent(descEl.textContent.trim())  : '';
 
-          const iframe = document.getElementById('pdrModalIframe');
-          if (iframe) {
-            iframe.src = `affichedetail.html?nom=${titleTxt}&cat=${catTxt}&img=${imgSrc}&desc=${descTxt}`;
-          }
-          if (this.overlay) {
-            this.overlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-          }
-        }
+          // Rediriger vers la page complète produit.html au lieu de la modale
+          window.location.href = `produit.html?title=${titleTxt}&category=${catTxt}&img=${imgSrc}&desc=${descTxt}`;
       }, true);
     });
 

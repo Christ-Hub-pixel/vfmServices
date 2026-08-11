@@ -628,7 +628,7 @@
   // PARSER ET CHARGER LES DONNÉES DU PRODUIT SÉLECTIONNÉ
   document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id') || urlParams.get('name') || 'pkm60';
+    const productId = urlParams.get('id') || urlParams.get('name') || urlParams.get('title') || 'pkm60';
     
     let product = PRODUCTS_DATABASE.find(p => p.id.toLowerCase() === productId.toLowerCase() || p.name.toLowerCase().includes(productId.toLowerCase()));
 

@@ -2089,9 +2089,9 @@ body.cart-drawer-open .floating-cart-btn {
    BOUTON RETOUR EN HAUT — PREMIUM SCROLL PROGRESS
    ===================================================== */
 .back-to-top-wrapper {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -3791,24 +3791,27 @@ body.cart-drawer-open .floating-cart-btn {
 .devis-success-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(7, 18, 30, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #F8FAFC;
 }
 
 .devis-success-card {
   position: relative;
-  width: 100%;
-  max-width: 480px;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
-  border: 1px solid rgba(0, 150, 214, 0.25);
-  border-radius: 24px;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  background: #F8FAFC;
+  border: none;
+  border-radius: 0;
   padding: 2.25rem 2rem;
   text-align: center;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   transform: scale(0.92) translateY(20px);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .devis-success-modal.open .devis-success-card {
@@ -3816,9 +3819,9 @@ body.cart-drawer-open .floating-cart-btn {
 }
 
 .devis-success-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
   width: 36px;
   height: 36px;
   border-radius: 50%;

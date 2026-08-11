@@ -215,20 +215,28 @@
                 
                 <!-- Profondeur/Hauteur -->
                 <div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Hauteur / Profondeur</label>
-                    <span id="calcHmtVal" style="font-size: 0.8rem; font-weight: 800; color: #0096D6;">30 m</span>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Hauteur / Profondeur (m)</label>
+                    <input type="number" id="calcHmtValInput" value="30" min="5" max="120" style="width: 55px; font-size: 0.85rem; font-weight: 800; color: #0096D6; text-align: center; border: 1px solid #CBD5E1; border-radius: 6px; padding: 4px; background: #F8FAFC; outline: none; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);" oninput="document.getElementById('calcHmt').value = this.value;">
                   </div>
-                  <input type="range" id="calcHmt" min="5" max="120" value="30" step="5" style="width: 100%; accent-color: #0096D6;" oninput="document.getElementById('calcHmtVal').textContent = this.value + ' m'">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <button type="button" onclick="const s=document.getElementById('calcHmt'); s.stepDown(); document.getElementById('calcHmtValInput').value = s.value;" style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid #CBD5E1; background: #FFFFFF; color: #1A365D; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">-</button>
+                    <input type="range" id="calcHmt" min="5" max="120" value="30" step="5" style="flex-grow: 1; accent-color: #0096D6; cursor: pointer; height: 6px;" oninput="document.getElementById('calcHmtValInput').value = this.value;">
+                    <button type="button" onclick="const s=document.getElementById('calcHmt'); s.stepUp(); document.getElementById('calcHmtValInput').value = s.value;" style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid #CBD5E1; background: #FFFFFF; color: #1A365D; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">+</button>
+                  </div>
                 </div>
                 
                 <!-- Débit -->
-                <div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Débit souhaité</label>
-                    <span id="calcDebitVal" style="font-size: 0.8rem; font-weight: 800; color: #0096D6;">40 L/min</span>
+                <div style="margin-top: 1rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <label style="font-size: 0.72rem; font-weight: 700; color: #1A365D; text-transform: uppercase;">Débit souhaité (L/min)</label>
+                    <input type="number" id="calcDebitValInput" value="40" min="10" max="250" style="width: 55px; font-size: 0.85rem; font-weight: 800; color: #0096D6; text-align: center; border: 1px solid #CBD5E1; border-radius: 6px; padding: 4px; background: #F8FAFC; outline: none; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);" oninput="document.getElementById('calcDebit').value = this.value;">
                   </div>
-                  <input type="range" id="calcDebit" min="10" max="250" value="40" step="10" style="width: 100%; accent-color: #0096D6;" oninput="document.getElementById('calcDebitVal').textContent = this.value + ' L/min'">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <button type="button" onclick="const s=document.getElementById('calcDebit'); s.stepDown(); document.getElementById('calcDebitValInput').value = s.value;" style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid #CBD5E1; background: #FFFFFF; color: #1A365D; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">-</button>
+                    <input type="range" id="calcDebit" min="10" max="250" value="40" step="10" style="flex-grow: 1; accent-color: #0096D6; cursor: pointer; height: 6px;" oninput="document.getElementById('calcDebitValInput').value = this.value;">
+                    <button type="button" onclick="const s=document.getElementById('calcDebit'); s.stepUp(); document.getElementById('calcDebitValInput').value = s.value;" style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid #CBD5E1; background: #FFFFFF; color: #1A365D; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">+</button>
+                  </div>
                 </div>
 
                 <!-- PANNEAU DE RÉSULTAT TECHNIQUE DYNAMIQUE -->
@@ -2332,7 +2340,7 @@
               </article>
               <article class="product-card" data-category="pieces" >
                 <div class="product-card__image-container">
-                  <img src="assets/catalogue/accessoires/Serbatoio-1SF-1-foto-v23_2-300x300.jpg" alt="Serbatoio 1Sf 1 Foto V23 2" class="product-card__image" loading="lazy">
+                  <img src="assets/catalogue/accessoires/serbatoio-pedrollo.png" alt="Serbatoio 1Sf 1 Foto V23 2" class="product-card__image" loading="lazy">
                 </div>
                 <div class="product-card__body">
                   <span class="product-card__category">Pedrollo • Accessoire</span>
@@ -2964,7 +2972,7 @@
     </div>
   </div><!-- /productModal -->
 
-  <script src="js/app.min.js"></script>
+  <script src="js/app.min.js?v=2.2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Gestionnaire de secours pour les images de cartes produits

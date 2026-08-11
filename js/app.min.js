@@ -1668,9 +1668,7 @@ const VFMCart = {
 
       const cartTrigger = e.target.closest('#navCartBtn, .btn-cart-trigger, #floatingMobileCartBtn, .floating-mobile-cart-btn, [href*="panier"]');
       if (cartTrigger) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.openDrawer();
+        window.location.href = 'panier.html';
         return;
       }
       if (e.target.closest('#cartModalClose') || e.target.id === 'cartModalBackdrop') {

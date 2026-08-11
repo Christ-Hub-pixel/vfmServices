@@ -1359,6 +1359,7 @@ const VFMCart = {
 
   init() {
     this.loadCart();
+    this.injectCartDOM();
     this.bindEvents();
     this.updateUI();
   },

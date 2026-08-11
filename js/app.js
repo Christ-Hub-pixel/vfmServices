@@ -9,6 +9,16 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Patch pour éviter les erreurs 404 sur Live Server (URL sans .html)
+  if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+    document.querySelectorAll('a').forEach(a => {
+      let href = a.getAttribute('href');
+      if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript') && !href.endsWith('.html') && href !== '/') {
+        a.setAttribute('href', href + '.html');
+      }
+    });
+  }
+
   VFMApp.init();
   VFMCart.init();
   VFMProductModal.init();

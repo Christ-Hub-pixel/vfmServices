@@ -5289,3 +5289,9 @@ body {
     font-size: 0.85rem !important;
   }
 }
+
+/* Masquer totalement la barre de contrôle pour certaines vidéos modales */
+.hide-all-controls::-webkit-media-controls,
+.hide-all-controls::-webkit-media-controls-enclosure {
+    display: none !important;
+}

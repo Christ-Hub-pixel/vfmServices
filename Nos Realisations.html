@@ -727,7 +727,7 @@
     </div>
 
     <div class="vfm-cinema-body">
-      <video id="modalVideoPlayer" controls autoplay preload="auto">
+      <video id="modalVideoPlayer" controls autoplay muted preload="auto" onclick="this.paused ? this.play() : this.pause()" class="cursor-pointer">
         <source id="modalVideoSource" src="" type="video/mp4">
         Votre navigateur ne supporte pas la lecture vidéo.
       </video>
@@ -851,6 +851,19 @@
     document.getElementById('modalWhatsappLink').href = `https://wa.me/2250715416831?text=Bonjour%20VFM%20Services,%20je%20suis%20intéressé%20par%20l'arrivage%20:${encodeURIComponent(title)}`;
 
     source.src = videoSrc;
+    player.muted = true;
+    player.volume = 0;
+    
+    // Restauration des contrôles pour éviter l'écran noir
+    player.setAttribute('controls', 'controls');
+    
+    // Masquer visuellement la barre de contrôle complète via CSS pour les vidéos autres que 1 et 2
+    if (title.includes('Vidéo N° 1:') || title.includes('Vidéo N° 2:')) {
+      player.classList.remove('hide-all-controls');
+    } else {
+      player.classList.add('hide-all-controls');
+    }
+
     player.load();
     
     // Positionner le lecteur vidéo tout en haut de l'écran & réinitialiser le défilement
@@ -898,13 +911,15 @@
         });
       }, { threshold: 0.15 });
 
-      vids.forEach(function(v) {
+      vids.forEach(function(v, index) {
+        if (index >= 2) v.classList.add('hide-controls');
         v.muted = true;
         v.loop = true;
         observer.observe(v);
       });
     } else {
-      vids.forEach(function(v) {
+      vids.forEach(function(v, index) {
+        if (index >= 2) v.classList.add('hide-controls');
         v.muted = true;
         v.loop = true;
         v.play().catch(function() {});
